@@ -13,13 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('restrictions', function (Blueprint $table) {
+        Schema::create('rols', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_pais')->nullable();
-            $table->foreign('id_pais')->references('id')->on('countries');
-            $table->unsignedBigInteger('id_cancion')->nullable();
-            $table->foreign('id_cancion')->references('id')->on('songs');
-        
             $table->timestamps();
         });
     }
@@ -31,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('restrictions');
+        Schema::dropIfExists('rols');
     }
 };

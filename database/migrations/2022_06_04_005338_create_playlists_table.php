@@ -18,14 +18,7 @@ return new class extends Migration
             $table->string('nombre_playlist');
             $table->integer('likes_playlist')->nullable();
             $table->unsignedBigInteger('playlist_creator')->nullable();
-            $table->foreign('playlist_creator')->references('id')->on('users');
-            //Esto no se si esta del todo correcto, ya que deberia entregarle un array de ids de canciones
-            //pero solo entrego un id.
-            $table->unsignedBigInteger('id_song')->nullable();
-            $table->foreign('id_song')->references('id')->on('songs');
-
-            
-
+            $table->foreign('playlist_creator')->references('id')->on('users'); 
             $table->timestamps();
         });
     }

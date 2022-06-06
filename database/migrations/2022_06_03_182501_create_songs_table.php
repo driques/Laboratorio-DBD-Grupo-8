@@ -28,7 +28,7 @@ return new class extends Migration
             $table->foreign('id_genre')->references('id')->on('genres');
 
             $table->unsignedBigInteger('id_artist')->nullable();
-            $table->foreign('id_artist')->references('id')->on('artists');
+            $table->foreign('id_artist')->references('id')->on('users');
             $table->timestamps();
         });
     }

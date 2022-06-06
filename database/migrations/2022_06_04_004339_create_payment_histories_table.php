@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('payment_histories', function (Blueprint $table) {
             $table->id();
-            $table->float('monto');
-            $table->integer('metodo_pago');
+            $table->integer('monto');
+            $table->string('metodo_pago');
             $table->unsignedBigInteger('user_pay')->nullable();
             $table->foreign('user_pay')->references('id')->on('users');
             $table->timestamps();

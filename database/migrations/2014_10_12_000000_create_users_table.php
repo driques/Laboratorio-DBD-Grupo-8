@@ -20,8 +20,16 @@ return new class extends Migration
             $table->string('password');
             $table->boolean('plan');
             $table->year('birth_year');
+
+            $table->unsignedBigInteger('id_pais')->nullable();
+            $table->foreign('id_pais')->references('id')->on('countries');
+
+            $table->unsignedBigInteger('id_rol')->nullable();
+            $table->foreign('id_rol')->references('id')->on('rols');
+
             $table->rememberToken();
             $table->timestamps();
+            
         });
     }
 
