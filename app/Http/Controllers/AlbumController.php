@@ -46,10 +46,10 @@ class AlbumController extends Controller
             ]
             );*/
         $newAlbum = new Album();
-        $newAlbum->nombre_album = $request->nombre_album;
-        //$newAlbum->borrado = $request->borrado;
+        $newAlbum->album_name = $request->album_name;
+        //$newAlbum->borrado = FALSE;
         $newAlbum-> save();
-        return response->json(['Se ha creado el album'],201);
+        return response()->json(['Se ha creado el album'],201);
     }
 
     /**
