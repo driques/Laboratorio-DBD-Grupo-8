@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Rol>
  */
-class AlbumFactory extends Factory
+class RolFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +17,8 @@ class AlbumFactory extends Factory
     public function definition()
     {
         return [
-            'nombre_album'=>$this->faker->lastName
-           //
+            'rol'=>$this->faker->numberBetween($min = 0, $max = 2) 
+            //
         ];
     }
 }
