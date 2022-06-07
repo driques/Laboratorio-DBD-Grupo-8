@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->boolean('plan');
-            $table->year('birth_year');
+            $table->date('birth_year');
 
             $table->unsignedBigInteger('id_pais')->nullable();
             $table->foreign('id_pais')->references('id')->on('countries');
