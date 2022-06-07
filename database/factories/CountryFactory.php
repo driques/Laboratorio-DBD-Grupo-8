@@ -18,11 +18,7 @@ class CountryFactory extends Factory
     {
         return [
             'name_country' => $this->faker->lastName,
-<<<<<<< Updated upstream
             'borrado'=> $this->faker->boolean()
-=======
-            'borrado'=>$this->faker->boolean()
->>>>>>> Stashed changes
         ];
     }
 }

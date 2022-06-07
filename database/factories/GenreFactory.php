@@ -20,7 +20,7 @@ class GenreFactory extends Factory
             'genre_name'=>$this->faker->lastName
             
             //
-            'borrado'=> $this->faker->boolean()
+           // 'borrado'=> $this->faker->boolean()
         ];
     }
 }

@@ -15,7 +15,7 @@ class GenreController extends Controller
     public function index()
     {
         //
-        $genres= Genre::where('borrado',false)->get();
+        $genres= Genre::all();//where('borrado',false)->get();
         if($genres->isEmpty()){
             return response()->json(['response'=>'No se encuentran generos',],204);
         }

@@ -22,11 +22,7 @@ class Payment_historyFactory extends Factory
             'monto'=>$this->faker->numberBetween($min = 0, $max = 10000),
             'metodo pago'=>$this->faker->creditCardType(),
             'user_pay'=>$this->faker->numberBetween($min = 0, $max = 100),
-<<<<<<< Updated upstream
             'borrado'=> $this->faker->boolean()
-=======
-            'borrado'=>$this->faker->boolean()
->>>>>>> Stashed changes
             
         ];
     }
