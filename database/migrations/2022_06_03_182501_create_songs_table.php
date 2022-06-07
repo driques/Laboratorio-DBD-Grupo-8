@@ -29,6 +29,7 @@ return new class extends Migration
 
             $table->unsignedBigInteger('id_artist')->nullable();
             $table->foreign('id_artist')->references('id')->on('users');
+            $table->boolean('borrado');
             $table->timestamps();
         });
     }

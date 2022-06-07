@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('likes_playlist')->nullable();
             $table->unsignedBigInteger('playlist_creator')->nullable();
             $table->foreign('playlist_creator')->references('id')->on('users'); 
+            $table->boolean('borrado');
             $table->timestamps();
         });
     }

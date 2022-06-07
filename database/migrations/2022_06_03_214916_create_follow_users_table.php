@@ -21,6 +21,7 @@ return new class extends Migration
             //Para los seguidos
             $table->unsignedBigInteger('following')->nullable();
             $table->foreign('following')->references('id')->on('users');
+            $table->boolean('borrado');
             $table->timestamps();
         });
     }

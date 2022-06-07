@@ -21,6 +21,7 @@ return new class extends Migration
             //Llamo a la llave de playlist
             $table->unsignedBigInteger('id_playlist')->nullable();
             $table->foreign('id_playlist')->references('id')->on('playlists');
+            $table->boolean('borrado');
 
             $table->timestamps();
         });

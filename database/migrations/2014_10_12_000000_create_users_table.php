@@ -27,7 +27,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_rol')->nullable();
             $table->foreign('id_rol')->references('id')->on('rols');
 
-            $table->rememberToken();
+            $table->boolean('borrado');
             $table->timestamps();
             
         });

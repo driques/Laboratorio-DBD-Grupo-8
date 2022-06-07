@@ -21,6 +21,7 @@ return new class extends Migration
             //Referencia al usuario que gusta la cancion
             $table->unsignedBigInteger('user_like')->nullable();
             $table->foreign('user_like')->references('id')->on('users');
+            $table->boolean('borrado');
             $table->timestamps();
         });
     }

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('metodo_pago');
             $table->unsignedBigInteger('user_pay')->nullable();
             $table->foreign('user_pay')->references('id')->on('users');
+            $table->boolean('borrado');
             $table->timestamps();
         });
     }
