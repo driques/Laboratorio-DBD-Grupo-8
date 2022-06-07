@@ -21,7 +21,8 @@ class Payment_historyFactory extends Factory
 
             'monto'=>$this->faker->numberBetween($min = 0, $max = 10000),
             'metodo pago'=>$this->faker->creditCardType(),
-            'user_pay'=>$this->faker->numberBetween($min = 0, $max = 100)
+            'user_pay'=>$this->faker->numberBetween($min = 0, $max = 100),
+            'borrado'=> $this->faker->boolean()
             
         ];
     }

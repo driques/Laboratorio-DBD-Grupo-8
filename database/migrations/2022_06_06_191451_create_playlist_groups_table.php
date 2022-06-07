@@ -22,7 +22,6 @@ return new class extends Migration
             $table->unsignedBigInteger('id_playlist')->nullable();
             $table->foreign('id_playlist')->references('id')->on('playlists');
             $table->boolean('borrado');
-
             $table->timestamps();
         });
     }

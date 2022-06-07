@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Album;
 use Illuminate\Http\Request;
 
 class AlbumController extends Controller
@@ -13,7 +13,11 @@ class AlbumController extends Controller
      */
     public function index()
     {
-        //
+        $albums = Album::where('borrado',false)->get();
+        if($albums->isEmpty()){
+            return response()->json(['response'=>'no se encuentran albumes',]);
+        }
+        return response($albums,200);
     }
 
     /**
@@ -34,7 +38,18 @@ class AlbumController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        /*
+        $validator = Validator::make(
+            $request->all(),[
+                'name' => 'required|min : 2|max : 20',
+            ]
+            );*/
+        $newAlbum = new Album();
+        $newAlbum->nombre_album = $request->nombre_album;
+        //$newAlbum->borrado = $request->borrado;
+        $newAlbum-> save();
+        return response->json(['Se ha creado el album'],201);
     }
 
     /**

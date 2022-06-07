@@ -21,7 +21,8 @@ class UserFactory extends Factory
             'email' => $this->faker->safeEmail,
             'password' => $this->faker->password,
             'plan' =>  $this->faker->boolean,
-            'birth_year' => $this->faker->date($format = 'Y-m-d', $max = 'now')
+            'birth_year' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
+            'borrado'=> $this->faker->boolean()
             //'id_pais' => $this->faker->numberBetween($min = 1, $max = 193),
             //'id_rol' => $this->faker->numberBetween($min = 1, $max = 3)
         ];

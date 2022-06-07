@@ -18,6 +18,7 @@ class GenreFactory extends Factory
     {
         return [
             //
+            'borrado'=> $this->faker->boolean()
         ];
     }
 }
