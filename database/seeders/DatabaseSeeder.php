@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         \App\Models\Country::factory(193)->create();
         \App\Models\Rol::factory(10)->create();
         \App\Models\Album::factory(10)->create();
+        \App\Models\Genre::factory(10)->create();
     }
 }

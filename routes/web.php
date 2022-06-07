@@ -1,8 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+<<<<<<< Updated upstream
 use App\Http\Controllers\AlbumController;
 
+=======
+use App\Http\Controllers\GenreController;
+>>>>>>> Stashed changes
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,5 +22,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+<<<<<<< Updated upstream
 Route::get('/albums',[AlbumController::class,'index']); 
 Route::post('/albums/create',[AlbumController::class,'store']);
+=======
+Route::get('/genres',[GenreController::class,'index']);
+Route::post('/genres/store',[GenreController::class,'store']);
+>>>>>>> Stashed changes
