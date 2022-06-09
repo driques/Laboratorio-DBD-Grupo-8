@@ -18,7 +18,11 @@ class AlbumFactory extends Factory
     {
         return [
             'album_name'=>$this->faker->lastName,
+<<<<<<< HEAD
             'borrado' => $this->faker->boolean
+=======
+            'borrado'=> $this->faker->boolean()
+>>>>>>> main
            //
         ];
     }
