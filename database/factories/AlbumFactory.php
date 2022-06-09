@@ -17,13 +17,8 @@ class AlbumFactory extends Factory
     public function definition()
     {
         return [
-<<<<<<< HEAD
             'album_name'=>$this->faker->lastName,
-            'borrado'=> $this->faker->boolean()
-=======
-            'nombre_album'=>$this->faker->lastName,
             'borrado' => $this->faker->boolean
->>>>>>> main
            //
         ];
     }
