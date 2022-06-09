@@ -18,7 +18,11 @@ class CountryFactory extends Factory
     {
         return [
             'name_country' => $this->faker->lastName,
+<<<<<<< HEAD
             'borrado'=> $this->faker->boolean()
+=======
+            'borrado' => $this->faker->boolean
+>>>>>>> main
         ];
     }
 }

@@ -18,7 +18,11 @@ class RolFactory extends Factory
     {
         return [
             'rol'=>$this->faker->numberBetween($min = 0, $max = 2),
+<<<<<<< HEAD
             'borrado'=>$this->faker->boolean()
+=======
+            'borrado' => $this->faker->boolean
+>>>>>>> main
         ];
     }
 }

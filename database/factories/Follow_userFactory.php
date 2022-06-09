@@ -3,11 +3,12 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\User;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Genre>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Follow_user>
  */
-class GenreFactory extends Factory
+class Follow_userFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,13 +18,9 @@ class GenreFactory extends Factory
     public function definition()
     {
         return [
-<<<<<<< HEAD
-            'genre_name'=>$this->faker->lastName,
-            'borrado'=> $this->faker->boolean()
-=======
-            'genre_name' => $this->faker->lastName,
+            'follower' => User::all()->random()->id,
+            'following' => User::all()->random()->id,
             'borrado' => $this->faker->boolean
->>>>>>> main
         ];
     }
 }
