@@ -17,13 +17,8 @@ class GenreFactory extends Factory
     public function definition()
     {
         return [
-<<<<<<< HEAD
             'genre_name'=>$this->faker->lastName,
             'borrado'=> $this->faker->boolean()
-=======
-            'genre_name' => $this->faker->lastName,
-            'borrado' => $this->faker->boolean
->>>>>>> main
         ];
     }
 }
