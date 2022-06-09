@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Genre>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Playlist_group>
  */
-class GenreFactory extends Factory
+class Playlist_groupFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +17,7 @@ class GenreFactory extends Factory
     public function definition()
     {
         return [
-            'genre_name' => $this->faker->lastName,
-            'borrado' => $this->faker->boolean
+            //
         ];
     }
 }

@@ -3,11 +3,13 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Song;
+use App\Models\User;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Genre>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Like_song>
  */
-class GenreFactory extends Factory
+class Like_songFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +19,8 @@ class GenreFactory extends Factory
     public function definition()
     {
         return [
-            'genre_name' => $this->faker->lastName,
+            'id_song' => Song::all()->random()->id,
+            'user_like' => User::all()->random()->id,
             'borrado' => $this->faker->boolean
         ];
     }

@@ -17,7 +17,8 @@ class RolFactory extends Factory
     public function definition()
     {
         return [
-            'rol'=>$this->faker->numberBetween($min = 0, $max = 2)
+            'rol'=>$this->faker->numberBetween($min = 0, $max = 2),
+            'borrado' => $this->faker->boolean
         ];
     }
 }
