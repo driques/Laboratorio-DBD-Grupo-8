@@ -17,10 +17,15 @@ use App\Http\Controllers\GenreController;
 Route::get('/', function () {
     return view('welcome');
 });
-
+//Albums
 Route::get('/albums',[AlbumController::class,'index']); 
-Route::post('/albums/create',[AlbumController::class,'store']);
-
+Route::get('/albums/{id}',[AlbumController::class,'show']);
+Route::post('/albums/store',[AlbumController::class,'store']);
+Route::put('/albums/update/{id}',[AlbumController::class,'update']);
+Route::put('/albums/delete/{id}',[AlbumController::class,'delete']);
+Route::delete('/albums/destroy/{id}',[AlbumController::class,'destroy']);
+//Genres
 Route::get('/genres',[GenreController::class,'index']);
+Route::get('/genres/{id}',[GenreController::class,'show']);
 Route::post('/genres/store',[GenreController::class,'store']);
 

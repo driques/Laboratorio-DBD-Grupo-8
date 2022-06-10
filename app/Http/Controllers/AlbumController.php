@@ -115,7 +115,7 @@ class AlbumController extends Controller
         if(empty($album)){
             return response()->json(['message' => 'El id no existe.']);
         }
-        if ($request->Nombre == $album->Nombre){
+        if ($request->album_name == $album->album_name){
             return response()->json([
                 "message" => "Los datos ingresados son iguales a los actuales."
             ], 203);
@@ -129,15 +129,34 @@ class AlbumController extends Controller
         ], 201);
 
     }
+    //Cabe destacar que se realizan 2 funciones de borrado, uno para un soft y otro para un hard
+    //delete sera la funcion que se encargara del delete soft, y destroy la encargada del delete hard.
+    //Se toma la funcion delete como si fuera un update para el objeto album.
+    public function delete($id){
+        $album = Album::find($id);
+        if(empty($album) or $album->borrado == true){
+            return response()->json(['message' => 'No se encuentra el id ingresado']);
+        }
+        $album->borrado = true;
+        $album->save();
+        return response()->json([
+            'message' => 'El album fue eliminado correctamente',
+            'id' => $album->id,
+        ], 201);
+    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $album = Album::find($id);
+        if(empty($album)){
+            return response()->json(['No se encuentra el id ingresado']);
+        }
+        $album->delete();
+        return response()->json([
+            'message' => 'El album fue destruido con exito',
+            'id' => $album->id,
+        ], 201);
+        
     }
+
 }

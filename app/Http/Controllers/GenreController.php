@@ -16,7 +16,7 @@ class GenreController extends Controller
     {
         //
         $genres= Genre::all();//where('borrado',false)->get();
-        if($genres->isEmpty()){
+        if($genres->empty()){
             return response()->json(['response'=>'No se encuentran generos',],204);
         }
         return response($genres);
@@ -57,7 +57,7 @@ class GenreController extends Controller
     public function show($id)
     {
         $genres = Genre::find($id);
-        if(isEmpty($genres)){
+        if(empty($genres)){
             return response()->json(['response'=>'No se encuentran generos',],204);
         }
         return response($genres);
