@@ -24,8 +24,11 @@ Route::post('/albums/store',[AlbumController::class,'store']);
 Route::put('/albums/update/{id}',[AlbumController::class,'update']);
 Route::put('/albums/delete/{id}',[AlbumController::class,'delete']);
 Route::delete('/albums/destroy/{id}',[AlbumController::class,'destroy']);
+
 //Genres
 Route::get('/genres',[GenreController::class,'index']);
 Route::get('/genres/{id}',[GenreController::class,'show']);
 Route::post('/genres/store',[GenreController::class,'store']);
-
+Route::put('/genres/update/{id}',[GenreController::class,'update']);
+Route::put('/genres/delete/{id}',[GenreController::class,'delete']);
+Route::delete('/genres/destroy/{id}',[GenreController::class,'destroy']);

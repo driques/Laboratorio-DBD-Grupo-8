@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Genre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class GenreController extends Controller
 {
@@ -16,7 +17,7 @@ class GenreController extends Controller
     {
         //
         $genres= Genre::all();//where('borrado',false)->get();
-        if($genres->empty()){
+        if($genres->isEmpty()){
             return response()->json(['response'=>'No se encuentran generos',],204);
         }
         return response($genres);
@@ -41,6 +42,15 @@ class GenreController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make(
+            $request->all(),[
+                'genre_name' => 'required|min : 2|max : 20',
+            ],
+            ['genre_name.required'=>'Se debe ingresar un nombre de genero.',
+            'genre_name.min'=>'Ingresar un genero de 2 o mas caracteres.',
+            'genre_name.max'=>'Ingresar un genero de 20 o menos caracteres.',
+            'genre_name.nullable'=>'Ingresar un genero no nulo. ']
+            );
         $newGenre = new Genre();
         $newGenre->genre_name = $request->genre_name;
         $newGenre->save();
@@ -56,11 +66,11 @@ class GenreController extends Controller
      */
     public function show($id)
     {
-        $genres = Genre::find($id);
-        if(empty($genres)){
+        $genre = Genre::find($id);
+        if(empty($genre)){
             return response()->json(['response'=>'No se encuentran generos',],204);
         }
-        return response($genres);
+        return response($genre);
         //
     }
 
@@ -84,6 +94,36 @@ class GenreController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validator = Validator::make(
+            $request->all(),[
+                'genre_name' => 'required|min:2|max:20',
+            ],
+            [
+                'genre_name.required' => 'Se debe ingresar un nombre para actualizar genero.',
+                'genre_name.min' => 'Debe ser de largo mínimo :min',
+                'genre_name.max' => 'Debe ser de largo máximo :max'
+            ]
+        );
+    
+        if($validator->fails()){
+            return response($validator->errors());
+        }
+        $genre = Genre::find($id);
+        if(empty($genre)){
+            return response()->json(['message' => 'El id no existe.']);
+        }
+        if ($request->genre_name == $genre->genre_name){
+            return response()->json([
+                "message" => "Los datos ingresados son iguales a los actuales."
+            ], 203);
+        }
+        $genre->genre_name = $request->genre_name;
+        $genre->save();
+        return response()->json([
+            'message' => 'Se cambio el nombre del genero',
+            'id' => $genre->id,
+            'nombre_genre' => $genre->genre_name
+        ], 200);
         //
     }
 
@@ -93,8 +133,34 @@ class GenreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
     public function destroy($id)
     {
+        $genre = Genre::find($id);
+        if(empty($genre)){
+            return response()->json(['No se encuentra el id ingresado']);
+        }
+        $genre->delete();
+        return response()->json([
+            'message' => 'El genero fue destruido con exito',
+            'id' => $genre->id,
+        ], 200);
+        
         //
     }
+
+    public function delete($id){
+        $genre = Genre::find($id);
+        if(empty($genre) or $genre->borrado == true){
+            return response()->json(['message' => 'No se encuentra el id ingresado']);
+        }
+        $genre->borrado = true;
+        $genre->save();
+        return response()->json([
+            'message' => 'El genero fue eliminado correctamente',
+            'id' => $genre->id,
+        ], 201);
+    }
+    
 }
