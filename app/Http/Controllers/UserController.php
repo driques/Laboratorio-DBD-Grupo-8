@@ -44,7 +44,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $countries = Country::where('borrado', false)->get();
-        $rol = Rol::where('borrado',false)->where('rol', 0)->get();
+        $myRol = Rol::where('borrado',false)->where('rol', 0)->get();
        
         $users = User::where('borrado', false)->where('id_rol', 0)->get();
         $validator = Validator::make(
@@ -82,13 +82,13 @@ class UserController extends Controller
         $newUser->plan = TRUE;
         $newUser->birth_year = $request->birth_year;
         $newUser->id_pais = $request->id_pais;
-        //$newUser->id_rol = $rol;//Esta variable hay que sacarla directamente de la tabla
+       // $newUser->id_rol = $myRol[0]->rol;
+        //Esta variable hay que sacarla directamente de la tabla
                                 //de roles, o dejara el error de que falta una llave foranea, pero aun no cacho
                                 //como hacerlo
         $newUser->borrado = FALSE;
         $newUser-> save();
-        //return response()->json(['Se ha creado el usuario'],201);
-        return response()->json(['rol'=>$rol]);
+        return response()->json(['Se ha creado el usuario'],201);
        
     }
 
@@ -100,7 +100,11 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        if(empty($user) or $user->borrado == true){
+            return response()->json(['message' => 'El id no existe.']);
+        }
+        return response($user, 200);
     }
 
     /**
@@ -123,17 +127,76 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make(
+            $request->all(),[
+                'name' => 'required|min : 2|max : 20',
+                'email' => 'required|min:4|max:256|unique:users',
+                'password' => 'required|min : 8|max : 20',
+            ],
+            ['name.required'=>'Se debe ingresar un nombre.',
+            'name.min'=>'Se debe ingresar un nombre de mas caracteres.',
+            'name.max'=>'Se debe ingresar un nombre de menos caracteres.',
+            'email.required'=>'Se debe ingresar un email',
+            'email.min'=>'Se debe ingresar un email de mas caracteres',
+            'email.max'=>'Se debe ingresar un email de menos caracteres',
+            'email.unique'=>'Se debe ingresar un email que no este en uso',
+            'pasword.required'=>'se debe ingresar una contrasenia',
+            'pasword.min'=>'se debe ingresar una contrasenia de 8 o mas caracteres',
+            'pasword.required'=>'se debe ingresar una contrasenia de menos de 20 caracteres',
+            ]
+        );
+    
+        if($validator->fails()){
+            return response($validator->errors());
+        }
+        $user = User::find($id);
+        if(empty($user)){
+            return response()->json(['message' => 'El id no existe.']);
+        }
+        if ($request->name == $user->name){
+            return response()->json([
+                "message" => "Los datos ingresados son iguales a los actuales."
+            ], 203);
+        }
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+
+        $user->save();
+        return response()->json([
+            'message' => 'Se actualizaron los datos',
+            'id' => $user->id,
+            'nombre_genre' => $user->name
+        ], 200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //Cabe destacar que se realizan 2 funciones de borrado, uno para un soft y otro para un hard
+    //delete sera la funcion que se encargara del delete soft, y destroy la encargada del delete hard.
+    //Se toma la funcion delete como si fuera un update para el objeto user.
+    public function delete($id){
+        $user = User::find($id);
+        if(empty($user) or $user->borrado == true){
+            return response()->json(['message' => 'No se encuentra el id ingresado']);
+        }
+        $user->borrado = true;
+        $user->save();
+        return response()->json([
+            'message' => 'El user fue eliminado correctamente',
+            'id' => $user->id,
+        ], 201);
+    }
+
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        if(empty($user)){
+            return response()->json(['No se encuentra el id ingresado']);
+        }
+        $user->delete();
+        return response()->json([
+            'message' => 'El rol fue destruido con exito de la base de datos',
+            'id' => $user->id,
+        ], 201);
+        
     }
 }
