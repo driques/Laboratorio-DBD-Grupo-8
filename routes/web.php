@@ -33,11 +33,9 @@ Route::delete('/albums/destroy/{id}',[AlbumController::class,'destroy']);
 Route::get('/genres',[GenreController::class,'index']);
 Route::get('/genres/{id}',[GenreController::class,'show']);
 Route::post('/genres/store',[GenreController::class,'store']);
-<<<<<<< Updated upstream
 Route::put('/genres/update/{id}',[GenreController::class,'update']);
 Route::put('/genres/delete/{id}',[GenreController::class,'delete']);
 Route::delete('/genres/destroy/{id}',[GenreController::class,'destroy']);
-=======
 //Country
 Route::get('/countries',[CountryController::class,'index']); 
 Route::get('/countries/{id}',[CountryController::class,'show']);
@@ -59,4 +57,3 @@ Route::post('/users/store',[UserController::class,'store']);
 Route::put('/users/update/{id}',[UserController::class,'update']);
 Route::put('/users/delete/{id}',[UserController::class,'delete']);
 Route::delete('/users/destroy/{id}',[UserController::class,'destroy']);
->>>>>>> Stashed changes

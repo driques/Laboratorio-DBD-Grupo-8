@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Country;
+use App\Models\Rol;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -43,6 +44,8 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $countries = Country::where('borrado', false)->get();
+        $rol = Rol::where('borrado',false)->where('rol', 0)->get();
+       
         $users = User::where('borrado', false)->where('id_rol', 0)->get();
         $validator = Validator::make(
             $request->all(),[
@@ -79,11 +82,13 @@ class UserController extends Controller
         $newUser->plan = TRUE;
         $newUser->birth_year = $request->birth_year;
         $newUser->id_pais = $request->id_pais;
-        $newUser->id_rol = 0;//Tengo una duda con esta variable, ya que deberia ser foranea segun el mr, pero como
-                            //el usuario deberia elegirla?.
+        //$newUser->id_rol = $rol;//Esta variable hay que sacarla directamente de la tabla
+                                //de roles, o dejara el error de que falta una llave foranea, pero aun no cacho
+                                //como hacerlo
         $newUser->borrado = FALSE;
         $newUser-> save();
-        return response()->json(['Se ha creado el usuario'],201);
+        //return response()->json(['Se ha creado el usuario'],201);
+        return response()->json(['rol'=>$rol]);
        
     }
 
