@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\Follow_userController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UserController;
@@ -57,3 +58,10 @@ Route::post('/users/store',[UserController::class,'store']);
 Route::put('/users/update/{id}',[UserController::class,'update']);
 Route::put('/users/delete/{id}',[UserController::class,'delete']);
 Route::delete('/users/destroy/{id}',[UserController::class,'destroy']);
+//Follow_users
+Route::get('/follow_users',[Follow_userController::class,'index']); 
+Route::get('/follow_users/{id}',[Follow_userController::class,'show']);
+Route::post('/follow_users/store',[Follow_userController::class,'store']);
+Route::put('/follow_users/update/{id}',[Follow_userController::class,'update']);
+Route::put('/follow_users/delete/{id}',[Follow_userController::class,'delete']);
+Route::delete('/follow_users/destroy/{id}',[Follow_userController::class,'destroy']);
