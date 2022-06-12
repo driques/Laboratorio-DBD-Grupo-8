@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('id_song')->references('id')->on('songs');
             $table->unsignedBigInteger('id_country')->nullable();
             $table->foreign('id_country')->references('id')->on('countries');
+            $table->boolean('borrado');
             $table->timestamps();
         });
     }

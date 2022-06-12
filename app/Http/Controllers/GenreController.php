@@ -51,6 +51,9 @@ class GenreController extends Controller
             'genre_name.max'=>'Ingresar un genero de 20 o menos caracteres.',
             'genre_name.nullable'=>'Ingresar un genero no nulo. ']
             );
+            if($validator->fails()){
+                return response($validator->errors(), 400);
+            }
         $newGenre = new Genre();
         $newGenre->genre_name = $request->genre_name;
         $newGenre->save();

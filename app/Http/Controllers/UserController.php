@@ -166,7 +166,7 @@ class UserController extends Controller
         return response()->json([
             'message' => 'Se actualizaron los datos',
             'id' => $user->id,
-            'nombre_genre' => $user->name
+            'name' => $user->name
         ], 200);
     }
 
