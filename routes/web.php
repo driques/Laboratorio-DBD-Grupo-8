@@ -12,7 +12,6 @@ use App\Http\Controllers\PaymentHistoryController;
 use App\Http\Controllers\PlaylistController;
 use App\Http\Controllers\Playlist_groupController;
 use App\Http\Controllers\Like_songController;
-use App\Http\Controllers\SongController;
 
 /*
 |--------------------------------------------------------------------------
