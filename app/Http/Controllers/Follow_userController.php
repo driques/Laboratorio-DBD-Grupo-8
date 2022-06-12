@@ -134,7 +134,7 @@ class Follow_userController extends Controller
         if(empty($updateFollow)){
             return response()->json(['message' => 'Id no existe']);
         }
-
+        //Faltan las validaciones para saber si el update no se repite
         if ( ($request->follower == $updateFollow->follower)|
             ($request->following == $updateFollow->following)){
             return response()->json([
