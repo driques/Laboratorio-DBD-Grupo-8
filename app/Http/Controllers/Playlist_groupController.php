@@ -18,7 +18,7 @@ class Playlist_groupController extends Controller
         $playlist_group = Playlist_gorup::where('borrado',false)->get();
         if($playlist_group->isEmpty()){
             return response()->json([
-                'respuesta' => 'No se encuentra los follows']);
+                'respuesta' => 'No se encuentra la agrupacion de canciones asociada']);
         }
         return response($playlist_group, 200);
     }
@@ -41,7 +41,38 @@ class Playlist_groupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'id_cancion' => 'required|integer|exists:id_cancion,id',
+                'id_playlist' => 'required|integer|exists:playlist,id',
+            ],
+            [
+                'id_cancion.required' => 'Ingresa el id de la cancion',
+                'id_cancion.integer' => 'La id de la cancion debe ser integer',
+                'id_cancion.exists' => 'El id de la cancion no existe',
+                'id_playlist.required' => 'Ingresa el id de la playlist',
+                'id_playlist.integer' => 'El id de la playlist debe ser integer',
+                'id_playlist.exists' => 'El id de la playlist no existe',
+            ]
+        );
+        //Caso falla la validación
+        if($validator->fails()){
+            return response($validator->errors(), 400);
+        }
+
+        $newPlaylistGroup = new Playlist_group();
+        $newPlaylistGroup->id_cancion = $request->id_cancion;
+        $newPlaylistGroup->id_playlist = $request->id_playlist;
+        $newPlaylistGroup->borrado = false;
+        $newPlaylistGroup->save();
+
+        return response()->json([
+            'message' => 'Cancion agregada a la playlist',
+            'id_cancion'=> $newPlaylistGroup->id_cancion,
+            'playlist' =>$newPlaylistGroup->id_playlist,
+            'id' => $newPlaylistGroup->id,
+        ], 201);
     }
 
     /**
@@ -52,7 +83,12 @@ class Playlist_groupController extends Controller
      */
     public function show($id)
     {
-        //
+        $playlist_group = Playlist_group::find($id);
+        if(empty($playlist_group) or $playlist_group->borrado == true){
+            return response()->json(['mensaje' => 'El id no existe']);
+        }
+
+        return response($playlist_group, 200);
     }
 
     /**
@@ -75,7 +111,59 @@ class Playlist_groupController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'id_cancion' => 'required|integer|exists:id_cancion,id',
+                'id_playlist' => 'required|integer|exists:playlist,id',
+            ],
+            [
+                'id_cancion.required' => 'Ingresa el id de la cancion',
+                'id_cancion.integer' => 'La id de la cancion debe ser integer',
+                'id_cancion.exists' => 'El id de la cancion no existe',
+                'id_playlist.required' => 'Ingresa el id de la playlist',
+                'id_playlist.integer' => 'El id de la playlist debe ser integer',
+                'id_playlist.exists' => 'El id de la playlist no existe',
+            ]
+        );
+        //Caso falla la validación
+        if($validator->fails()){
+            return response($validator->errors(), 400);
+        }
+
+        $updatePlaylistGroup = Playlist_group::find($id);
+        if(empty($updatePlaylistGroup)){
+            return response()->json(['message' => 'Id no existe']);
+        }
+        //Faltan las validaciones para saber si el update no se repite
+        if ( ($request->id_cancion == $updatePlaylistGroup->id_cancion)|
+            ($request->id_playlist == $updatePlaylistGroup->id_playlist)){
+            return response()->json([
+                "mensaje" => "Los datos ingresados son iguales a los actuales."
+            ], 203);
+        }
+
+        $updatePlaylist_group->id_cancion = $request->id_cancion;
+        $updatePlaylist_group->id_playlist = $request->id_playlist;
+        $updatePlaylist_group->save();
+
+        return response()->json([
+            'message' => 'Grupo de playlist modificado con exito',
+            'id' => $updatePlaylistGroup->id,
+        ], 201);
+    }
+
+    public function delete($id){
+        $playlist_group = Playlist_group::find($id);
+        if(empty($playlist_group) or $playlist_group->borrado == true){
+            return response()->json(['message' => 'No se encuentra el id ingresado']);
+        }
+        $playlist_group->borrado = true;
+        $playlist_group->save();
+        return response()->json([
+            'message' => 'El user fue eliminado correctamente(soft delete)',
+            'id' => $playlist_group->id,
+        ], 201);
     }
 
     /**
@@ -86,6 +174,14 @@ class Playlist_groupController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $playlist_group = Playlist_group::find($id);
+        if(empty($playlist_group)){
+            return response()->json(['No se encuentra el id ingresado']);
+        }
+        $playlist_group->delete();
+        return response()->json([
+            'message' => 'El rol fue eliminado con exito de la base de datos(hard delete)',
+            'id' => $playlist_group->id,
+        ], 201);
     }
 }
