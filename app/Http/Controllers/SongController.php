@@ -78,15 +78,15 @@ class SongController extends Controller
             return response($validator->errors(), 400);
         }
         $newSong=new Song();
-        $newsong->nombre_cancion = $request->nombre_cancion;
-        $newsong->likes = $request->likes;
-        $newsong->reproducciones = $request->reproducciones;
-        $newsong->restriccion_etaria= $request->restriccion_etaria;
-        $newsong->id_album = $request->id_album;
-        $newsong->id_genre = $request->id_genre;
-        $newsong->id_artist = $request->id_user;
-        $newsong->borrado = FALSE;
-        $newsong-> save();
+        $newSong->nombre_cancion = $request->nombre_cancion;
+        $newSong->likes = $request->likes;
+        $newSong->reproducciones = $request->reproducciones;
+        $newSong->restriccion_etaria= $request->restriccion_etaria;
+        $newSong->id_album = $request->id_album;
+        $newSong->id_genre = $request->id_genre;
+        $newSong->id_artist = $request->id_user;
+        $newSong->borrado = FALSE;
+        $newSong-> save();
         return response()->json(['Se ha creado la canción'],201);
         //
     }

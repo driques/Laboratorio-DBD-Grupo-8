@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\Follow_userController;
+use App\Http\Controllers\SongController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UserController;
@@ -106,3 +107,10 @@ Route::put('/playlist_group/update/{id}',[Playlist_groupController::class,'updat
 Route::put('/playlist_group/delete/{id}',[Playlist_groupController::class,'delete']);
 Route::delete('/playlist_group/destroy/{id}',[Playlist_groupController::class,'destroy']);
 
+//Song
+Route::get('/songs',[SongController::class,'index']); 
+Route::get('/songs/{id}',[SongController::class,'show']);
+Route::post('/songs/store',[SongController::class,'store']);
+Route::put('/songs/update/{id}',[SongController::class,'update']);
+Route::put('/songs/delete/{id}',[SongController::class,'delete']);
+Route::delete('/songs/destroy/{id}',[SongController::class,'destroy']);
