@@ -20,7 +20,7 @@ class GenreController extends Controller
         if($genres->isEmpty()){
             return response()->json(['response'=>'No se encuentran generos',],204);
         }
-        return response($genres);
+        return response($genres,200);
     }
 
     /**
