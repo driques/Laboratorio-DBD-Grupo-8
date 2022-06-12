@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\Follow_userController;
+use App\Http\Controllers\SongController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UserController;
@@ -114,4 +115,3 @@ Route::post('/songs/store',[SongController::class,'store']);
 Route::put('/songs/update/{id}',[SongController::class,'update']);
 Route::put('/songs/delete/{id}',[SongController::class,'delete']);
 Route::delete('/songs/destroy/{id}',[SongController::class,'destroy']);
-
