@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class playlist_group extends Model
+class Playlist_group extends Model
 {
     use HasFactory;
 }

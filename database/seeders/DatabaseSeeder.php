@@ -24,6 +24,6 @@ class DatabaseSeeder extends Seeder
         \App\Models\Like_song::factory(50)->create();
         \App\Models\Playlist::factory(45)->create();
         \App\Models\Follow_user::factory(45)->create();
-        //\App\Models\Playlist_group::factory(45)->create();
+        \App\Models\Playlist_group::factory(45)->create();
     }
 }
