@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Playlist_group;
+use App\Models\Song;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -15,7 +16,7 @@ class Playlist_groupController extends Controller
      */
     public function index()
     {
-        $playlist_group = Playlist_gorup::where('borrado',false)->get();
+        $playlist_group = Playlist_group::where('borrado',false)->get();
         if($playlist_group->isEmpty()){
             return response()->json([
                 'respuesta' => 'No se encuentra la agrupacion de canciones asociada']);
@@ -44,8 +45,8 @@ class Playlist_groupController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'id_cancion' => 'required|integer|exists:id_cancion,id',
-                'id_playlist' => 'required|integer|exists:playlist,id',
+                'id_cancion' => 'required|integer|exists:songs,id',
+                'id_playlist' => 'required|integer|exists:playlists,id',
             ],
             [
                 'id_cancion.required' => 'Ingresa el id de la cancion',
@@ -111,11 +112,16 @@ class Playlist_groupController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $updatePlaylistGroup = Playlist_group::find($id);
+        if(empty($updatePlaylistGroup)){
+            return response()->json(['message' => 'Id no existe']);
+        }
+
         $validator = Validator::make(
             $request->all(),
             [
-                'id_cancion' => 'required|integer|exists:id_cancion,id',
-                'id_playlist' => 'required|integer|exists:playlist,id',
+                'id_cancion' => 'required|integer|exists:songs,id',
+                'id_playlist' => 'required|integer|exists:playlists,id',
             ],
             [
                 'id_cancion.required' => 'Ingresa el id de la cancion',
@@ -131,21 +137,17 @@ class Playlist_groupController extends Controller
             return response($validator->errors(), 400);
         }
 
-        $updatePlaylistGroup = Playlist_group::find($id);
-        if(empty($updatePlaylistGroup)){
-            return response()->json(['message' => 'Id no existe']);
-        }
         //Faltan las validaciones para saber si el update no se repite
-        if ( ($request->id_cancion == $updatePlaylistGroup->id_cancion)|
+        if ( ($request->id_cancion == $updatePlaylistGroup->id_cancion)&
             ($request->id_playlist == $updatePlaylistGroup->id_playlist)){
             return response()->json([
                 "mensaje" => "Los datos ingresados son iguales a los actuales."
             ], 203);
         }
 
-        $updatePlaylist_group->id_cancion = $request->id_cancion;
-        $updatePlaylist_group->id_playlist = $request->id_playlist;
-        $updatePlaylist_group->save();
+        $updatePlaylistGroup->id_cancion = $request->id_cancion;
+        $updatePlaylistGroup->id_playlist = $request->id_playlist;
+        $updatePlaylistGroup->save();
 
         return response()->json([
             'message' => 'Grupo de playlist modificado con exito',

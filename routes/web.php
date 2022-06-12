@@ -8,6 +8,9 @@ use App\Http\Controllers\GenreController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PaymentHistoryController;
+use App\Http\Controllers\PlaylistController;
+use App\Http\Controllers\Playlist_groupController;
+use App\Http\Controllers\Like_songController;
 
 /*
 |--------------------------------------------------------------------------

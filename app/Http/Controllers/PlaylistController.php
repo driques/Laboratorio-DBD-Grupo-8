@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Playlist;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 
 class PlaylistController extends Controller
@@ -18,7 +19,7 @@ class PlaylistController extends Controller
         $playlist = Playlist::where('borrado',false)->get();
         if($playlist->isEmpty()){
             return response()->json([
-                'respuesta' => 'No se encuentra la playlist']);
+                'respuesta' => 'No se encuentran playlist']);
         }
         return response($playlist, 200);
     }
@@ -48,8 +49,8 @@ class PlaylistController extends Controller
                 'playlist_creator' => 'required|integer|exists:users,id',
             ],
             [
-                'nombre_playlist.required' => 'Ingresa el nombre de la playlist',
-                'nombre_playlist.integer' => 'El id del seguidor debe ser un string',
+                'nombre_playlist.required' => 'Ingresa el nombre de la playlist a crear',
+                'nombre_playlist.string' => 'El nombre de la playlist debe ser un string',
                 'playlist_creator.required' => 'Ingresa el id del creador de la playlist',
                 'playlist_creator.integer' => 'El id del creador debe ser integer',
                 'playlist_creator.exists' => 'El id del creador no existe',
@@ -64,13 +65,13 @@ class PlaylistController extends Controller
         $newPlaylist->nombre_playlist = $request->nombre_playlist;
         $newPlaylist->playlist_creator = $request->playlist_creator;
         $newPlaylist->borrado = false;
-        $newPlaylist->likes = 0;
+        $newPlaylist->likes_playlist = 0;
         $newPlaylist->save();
 
         return response()->json([
             'message' => 'Playlist creada con exito',
             'nombre_playlist'=> $newPlaylist->nombre_playlist,
-            'playlist_creator' =>$newPlaylist->playlist_creator,
+            'likes_playlist' =>$newPlaylist->likes_playlist,
             'id' => $newPlaylist->id,
         ], 201);
     }
@@ -111,38 +112,38 @@ class PlaylistController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $updatePlaylist = Playlist::find($id);
+        if(empty($updatePlaylist)){
+            return response()->json(['message' => 'Id no existe']);
+        }
+
         $validator = Validator::make(
             $request->all(),
             [
                 'nombre_playlist' => 'required|string',
-                'playlist_creator' => 'required|integer|exists:users,id',
+                'likes_playlist' => 'required|integer',
             ],
             [
                 'nombre_playlist.required' => 'Ingresa el nombre de la playlist',
                 'nombre_playlist.integer' => 'El id del seguidor debe ser un string',
-                'playlist_creator.required' => 'Ingresa el id del creador de la playlist',
-                'playlist_creator.integer' => 'El id del creador debe ser integer',
-                'playlist_creator.exists' => 'El id del creador no existe',
+                'likes_playlist.required' => 'Ingrese la cantidad de likes actualizada',
+                'likes_playlist.integer' => 'Debe ser un integer',
             ]
         );
         if($validator->fails()){
             return response($validator->errors(), 400);
         }
 
-        $updatePlaylist = Playlist::find($id);
-        if(empty($updatePlaylist)){
-            return response()->json(['message' => 'Id no existe']);
-        }
         //Faltan las validaciones para saber si el update no se repite
-        if ( ($request->nombre_playlist == $updatePlaylist->nombre_playlist)|
-            ($request->playlist_creator == $updatePlaylist->playlist_creator)){
+        if ( ($request->nombre_playlist == $updatePlaylist->nombre_playlist)&
+            ($request->likes_playlist == $updatePlaylist->likes_playlist)){
             return response()->json([
                 "mensaje" => "Los datos ingresados son iguales a los actuales."
             ], 203);
         }
 
         $updatePlaylist->nombre_playlist = $request->nombre_playlist;
-        $updatePlaylist->playlist_creator = $request->playlist_creator;
+        $updatePlaylist->likes_playlist = $request->likes_playlist;
         $updatePlaylist->save();
         return response()->json([
                 'mensaje' => 'Se modifico la playlist',
