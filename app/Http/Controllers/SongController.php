@@ -50,8 +50,6 @@ class SongController extends Controller
         $validator = Validator::make(
             $request->all(),[
                 'nombre_cancion' => 'required|min : 2|max : 20',
-                'likes' => 'required|min:0',
-                'reproducciones' => 'required|min:0',
                 'restriccion_etaria' => 'required|min:0|max:18',
                 'id_album' => 'required|integer|exists:albums,id',
                 'id_genre' => 'required|integer|exists:genres,id',
@@ -59,10 +57,6 @@ class SongController extends Controller
             ],['nombre_cancion.required'=>'Se debe ingresar un nombre.',
             'nombre_cancion.min'=>'Se debe ingresar un nombre de mas caracteres.',
             'nombre_cancion.max'=>'Se debe ingresar un nombre de menos caracteres.',
-            'likes.required'=>'Se debe ingresar likes',
-            'likes.min'=>'los likes deben ser iguales o mayores a 0',
-            'reproducciones.required'=>'Se debe ingresar reproducciones',
-            'reproducciones.min'=>'las reproducciones deben ser iguales o mayores a 0',
             'restriccion_etaria.required'=>'Se debe ingresar restriccion etaria',
             'restriccion_etaria.min'=>'las restricciones deben ser iguales o mayores a 0',
             'restriccion_etaria.max'=>'las restricciones deben ser iguales o menores a 18',
@@ -78,15 +72,15 @@ class SongController extends Controller
             return response($validator->errors(), 400);
         }
         $newSong=new Song();
-        $newsong->nombre_cancion = $request->nombre_cancion;
-        $newsong->likes = $request->likes;
-        $newsong->reproducciones = $request->reproducciones;
-        $newsong->restriccion_etaria= $request->restriccion_etaria;
-        $newsong->id_album = $request->id_album;
-        $newsong->id_genre = $request->id_genre;
-        $newsong->id_artist = $request->id_user;
-        $newsong->borrado = FALSE;
-        $newsong-> save();
+        $newSong->nombre_cancion = $request->nombre_cancion;
+        $newSong->likes = 0;
+        $newSong->reproducciones = 0;
+        $newSong->restriccion_etaria= $request->restriccion_etaria;
+        $newSong->id_album = $request->id_album;
+        $newSong->id_genre = $request->id_genre;
+        $newSong->id_artist = $request->id_user;
+        $newSong->borrado = FALSE;
+        $newSong-> save();
         return response()->json(['Se ha creado la canción'],201);
         //
     }
@@ -133,12 +127,18 @@ class SongController extends Controller
             $request->all(),[
                 'nombre_cancion' => 'required|min : 2|max : 20',
                 'restriccion_etaria' => 'required|min:0|max:18',
+                'likes' => 'required|min:0',
+                'reproducciones' => 'required|min:0',
                 'id_album' => 'required|integer|exists:albums,id',
                 'id_genre' => 'required|integer|exists:genres,id',
  
             ],['nombre_cancion.required'=>'Se debe ingresar un nombre.',
             'nombre_cancion.min'=>'Se debe ingresar un nombre de mas caracteres.',
             'nombre_cancion.max'=>'Se debe ingresar un nombre de menos caracteres.',
+            'likes.required'=>'Se debe ingresar likes',
+            'likes.min'=>'los likes deben ser iguales o mayores a 0',
+            'reproducciones.required'=>'Se debe ingresar reproducciones',
+            'reproducciones.min'=>'las reproducciones deben ser iguales o mayores a 0',
             'restriccion_etaria.required'=>'Se debe ingresar restriccion etaria',
             'restriccion_etaria.min'=>'las restricciones deben ser iguales o mayores a 0',
             'restriccion_etaria.max'=>'las restricciones deben ser iguales o menores a 18',
@@ -162,6 +162,8 @@ class SongController extends Controller
         }
         $song->nombre_cancion = $request->nombre_cancion;
         $song->restriccion_etaria = $request->restriccion_etaria;
+        $song->likes = $request->likes;
+        $song->reproducciones = $request->reproducciones;
         $song->id_album = $request->id_album;
         $song->id_genre = $request->id_genre;
 
@@ -169,7 +171,7 @@ class SongController extends Controller
         return response()->json([
             'message' => 'Se actualizaron los datos',
             'id' => $song->id,
-            'nombre_cancion' => $song->name
+            'nombre_cancion' => $song->nombre_cancion
         ], 200);
         //
     }

@@ -11,6 +11,7 @@ use App\Http\Controllers\PaymentHistoryController;
 use App\Http\Controllers\PlaylistController;
 use App\Http\Controllers\Playlist_groupController;
 use App\Http\Controllers\Like_songController;
+use App\Http\Controllers\SongController;
 
 /*
 |--------------------------------------------------------------------------
@@ -105,4 +106,12 @@ Route::post('/playlist_group/store',[Playlist_groupController::class,'store']);
 Route::put('/playlist_group/update/{id}',[Playlist_groupController::class,'update']);
 Route::put('/playlist_group/delete/{id}',[Playlist_groupController::class,'delete']);
 Route::delete('/playlist_group/destroy/{id}',[Playlist_groupController::class,'destroy']);
+
+//Song
+Route::get('/songs',[SongController::class,'index']); 
+Route::get('/songs/{id}',[SongController::class,'show']);
+Route::post('/songs/store',[SongController::class,'store']);
+Route::put('/songs/update/{id}',[SongController::class,'update']);
+Route::put('/songs/delete/{id}',[SongController::class,'delete']);
+Route::delete('/songs/destroy/{id}',[SongController::class,'destroy']);
 
