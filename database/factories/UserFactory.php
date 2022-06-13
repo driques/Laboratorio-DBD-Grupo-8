@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Country;
+use App\Models\Rol;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,9 +24,9 @@ class UserFactory extends Factory
             'password' => $this->faker->password,
             'plan' =>  $this->faker->boolean,
             'birth_year' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
-            'borrado' => $this->faker->boolean
-            //'id_pais' => $this->faker->numberBetween($min = 1, $max = 193),
-            //'id_rol' => $this->faker->numberBetween($min = 1, $max = 3)
+            'borrado' => $this->faker->boolean,
+            'id_pais' => Country::all()->random()->id,
+            'id_rol' => Rol::all()->random()->id
         ];
     }
 }
