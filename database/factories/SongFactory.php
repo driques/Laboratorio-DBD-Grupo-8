@@ -24,6 +24,7 @@ class SongFactory extends Factory
             'likes' => $this->faker->numberBetween($min = 0, $max = 1000000),
             'reproducciones' => $this->faker->numberBetween($min = 0, $max = 1000000),
             'restriccion_etaria' => $this->faker->numberBetween($min = 0, $max = 21),
+            'song_duration' => $this->faker->numberBetween($min = 60, $max = 1500),
             'id_album' => Album::all()->random()->id,
             'id_genre' => Genre::all()->random()->id,
             'id_artist' => User::all()->random()->id,

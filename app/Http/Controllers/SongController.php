@@ -54,6 +54,7 @@ class SongController extends Controller
                 'id_album' => 'required|integer|exists:albums,id',
                 'id_genre' => 'required|integer|exists:genres,id',
                 'id_user' => 'required|integer|exists:users,id',
+                'song_duration' => 'required|integer',
             ],['nombre_cancion.required'=>'Se debe ingresar un nombre.',
             'nombre_cancion.min'=>'Se debe ingresar un nombre de mas caracteres.',
             'nombre_cancion.max'=>'Se debe ingresar un nombre de menos caracteres.',
@@ -66,6 +67,8 @@ class SongController extends Controller
             'id_genre.exists' => 'No se encuentra el id del genero',
             'id_artist.integer' => 'El id del usuario debe ser un integer.',
             'id_artist.exists' => 'No se encuentra el id del usuario',
+            'song_duration.required' => 'Se debe ingresar una duracion de cancion',
+            'song_duration.integer' => 'Se debe ingresar un numero de segundos(entero)',
             ]
             );
         if($validator->fails()){
@@ -79,6 +82,7 @@ class SongController extends Controller
         $newSong->id_album = $request->id_album;
         $newSong->id_genre = $request->id_genre;
         $newSong->id_artist = $request->id_user;
+        $newSong->song_duration = $request->song_duration;
         $newSong->borrado = FALSE;
         $newSong-> save();
         return response()->json(['Se ha creado la canción'],201);

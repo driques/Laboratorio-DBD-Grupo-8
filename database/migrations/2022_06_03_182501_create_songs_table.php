@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('likes');
             $table->integer('reproducciones');
             $table->integer('restriccion_etaria');
+            $table->integer('song_duration');
             //$table->unsignedBigInteger('songs_id_restriccion_foreign')->nullable(); Falta creacion de restricciones de pais
             //$table->foreign('songs_id_restriccion_foreign')->references('id_pais')->on('restrictions');
             $table->unsignedBigInteger('id_album')->nullable();
