@@ -132,6 +132,8 @@ class UserController extends Controller
                 'name' => 'required|min : 2|max : 20',
                 'email' => 'required|min:4|max:256|unique:users',
                 'password' => 'required|min : 8|max : 20',
+                'birth_year' => 'required|date:y-m-d',
+                'id_pais' => 'required|integer|exists:countries,id',
             ],
             ['name.required'=>'Se debe ingresar un nombre.',
             'name.min'=>'Se debe ingresar un nombre de mas caracteres.',
@@ -143,6 +145,10 @@ class UserController extends Controller
             'pasword.required'=>'se debe ingresar una contrasenia',
             'pasword.min'=>'se debe ingresar una contrasenia de 8 o mas caracteres',
             'pasword.required'=>'se debe ingresar una contrasenia de menos de 20 caracteres',
+            'birth_year.required'=>'se debe ingresar una fecha de nacimiento',
+            'birth_year.required'=>'se debe ingresar una fecha de nacimiento formato d-m-y',
+            'id_pais.integer' => 'El id del pais debe ser un integer.',
+            'id_pais.exists' => 'No se encuentra el id del pais',
             ]
         );
     
@@ -161,6 +167,8 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = $request->password;
+        $user->birth_year= $request->birth_year;
+        $user->id_pais=$request->id_pais;
 
         $user->save();
         return response()->json([

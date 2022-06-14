@@ -79,7 +79,7 @@ Route::delete('/follow_users/destroy/{id}',[Follow_userController::class,'destro
 Route::get('/paymentHistories',[PaymentHistoryController::class,'index']); 
 Route::get('/paymentHistories/{id}',[PaymentHistoryController::class,'show']);
 Route::post('/paymentHistories/store',[PaymentHistoryController::class,'store']);
-//Route::put('/paymentHistories/update/{id}',[PaymentHistoryController::class,'update']);
+Route::put('/paymentHistories/update/{id}',[PaymentHistoryController::class,'update']);
 Route::put('/paymentHistories/delete/{id}',[PaymentHistoryController::class,'delete']);
 Route::delete('/paymentHistories/destroy/{id}',[PaymentHistoryController::class,'destroy']);
 

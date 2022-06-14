@@ -53,7 +53,7 @@ class SongController extends Controller
                 'restriccion_etaria' => 'required|min:0|max:18',
                 'id_album' => 'required|integer|exists:albums,id',
                 'id_genre' => 'required|integer|exists:genres,id',
-                'id_user' => 'required|integer|exists:users,id',
+                'id_artist' => 'required|integer|exists:users,id',
                 'song_duration' => 'required|integer',
             ],['nombre_cancion.required'=>'Se debe ingresar un nombre.',
             'nombre_cancion.min'=>'Se debe ingresar un nombre de mas caracteres.',
@@ -81,7 +81,7 @@ class SongController extends Controller
         $newSong->restriccion_etaria= $request->restriccion_etaria;
         $newSong->id_album = $request->id_album;
         $newSong->id_genre = $request->id_genre;
-        $newSong->id_artist = $request->id_user;
+        $newSong->id_artist = $request->id_artist;
         $newSong->song_duration = $request->song_duration;
         $newSong->borrado = FALSE;
         $newSong-> save();
@@ -135,6 +135,8 @@ class SongController extends Controller
                 'reproducciones' => 'required|min:0',
                 'id_album' => 'required|integer|exists:albums,id',
                 'id_genre' => 'required|integer|exists:genres,id',
+                'id_artist' => 'required|integer|exists:users,id',
+                'song_duration' => 'required|integer',
  
             ],['nombre_cancion.required'=>'Se debe ingresar un nombre.',
             'nombre_cancion.min'=>'Se debe ingresar un nombre de mas caracteres.',
@@ -150,6 +152,10 @@ class SongController extends Controller
             'id_album.exists' => 'No se encuentra el id del album',
             'id_genre.integer' => 'El id del genero debe ser un integer.',
             'id_genre.exists' => 'No se encuentra el id del genero',
+            'id_artist.integer' => 'El id del usuario debe ser un integer.',
+            'id_artist.exists' => 'No se encuentra el id del usuario',
+            'song_duration.required' => 'Se debe ingresar una duracion de cancion',
+            'song_duration.integer' => 'Se debe ingresar un numero de segundos(entero)',
             ]
             );
         if($validator->fails()){
@@ -170,6 +176,8 @@ class SongController extends Controller
         $song->reproducciones = $request->reproducciones;
         $song->id_album = $request->id_album;
         $song->id_genre = $request->id_genre;
+        $song->id_artist = $request->id_artist;
+        $song->song_duration= $request->song_duration;
 
         $song->save();
         return response()->json([
@@ -194,7 +202,7 @@ class SongController extends Controller
         $song->borrado = true;
         $song->save();
         return response()->json([
-            'message' => 'El user fue eliminado correctamente',
+            'message' => 'la cancion fue eliminado correctamente',
             'id' => $song->id,
         ], 201);
     }
@@ -207,7 +215,7 @@ class SongController extends Controller
         }
         $song->delete();
         return response()->json([
-            'message' => 'El rol fue destruido con exito de la base de datos',
+            'message' => 'La canción fue destruido con exito de la base de datos',
             'id' => $song->id,
         ], 201);
         
