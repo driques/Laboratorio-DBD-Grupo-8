@@ -10,8 +10,8 @@ Utilizar git para poder copiar el repositorio, o de plano descargarlo.
 ### Pre-requisitos 📋
 
 _Vs Code 1.6x+_
-_PHP 8.1.4_
-_Composer 2.3.5_
+_PHP 8+_
+_Composer 2+_
 _ PostgreSQL 14.3_
 
 
@@ -21,11 +21,20 @@ _ PostgreSQL 14.3_
 
 ## Construido con 🛠️
 
-__Falta poner las demas dependencias__
+* [Dbeaver v22]
+* [GitKraken v8.5]
+* [Composer v2.3.6]
+* [Xampp]
+* [Php 8.1.6]
+* [Laravel v9.14.1]
+* [Postgresql v14]
 * [GitHub](https://github.com/) - Controlador de versiones.
 
-## Autor ✒️
-* **Diego Riquelme** - *Código y documentación* - [driques](#driques)
+## Autores ✒️
+* **Diego Riquelme**
+* **Ian Rickmers**
+* **Alen Galindo**
+* **Andrea Cosio**
 
 ## Licencia 📄
 
