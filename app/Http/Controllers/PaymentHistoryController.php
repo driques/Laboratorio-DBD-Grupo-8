@@ -106,7 +106,40 @@ class PaymentHistoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //duda de si hacer un update acá
+        $validator = Validator::make(
+            $request->all(),[
+                'monto'=> 'required|min :1',
+                'metodo_pago' => 'required|min : 2|max : 20',
+                'user_pay' => 'required|integer|exists:users,id',
+            ],
+            ['monto.required'=>'Se debe ingresar un monto',
+            'monto.min'=>'El pago no puede ser menor que 1',
+            'metodo_pago.required'=>'Se debe ingresar un nombre de metodo de pago.',
+            'metodo_pago.min'=>'Ingresar un metodo de pago de 2 o mas caracteres.',
+            'metodo_pago.max'=>'Ingresar un metodo de pago de 20 o menos caracteres.',
+            'metodo_pago.nullable'=>'Ingresar un metodo de pago no nulo. ',
+            'user_pay.required'=>'Se debe ingresar un id de usuario',
+            'user_pay.integer'=>'El id del usuario tiene que ser un integer',
+            'user_pay.exists'=>'No se encuentra el usuario']
+            );
+    
+        if($validator->fails()){
+            return response($validator->errors());
+        }
+        $paymentHistory = Payment_History::find($id);
+        if(empty($paymentHistory)){
+            return response()->json(['message' => 'El id no existe.']);
+        }
+        $paymentHistory->monto = $request->monto;
+        $paymentHistory->metodo_pago = $request->metodo_pago;
+        $paymentHistory->user_pay = $request->user_pay;
+
+        $paymentHistory->save();
+        return response()->json([
+            'message' => 'Se actualizaron los datos',
+            'id' => $paymentHistory->id,
+            'name' => $paymentHistory->name
+        ], 200);
     }
 
     public function delete($id){

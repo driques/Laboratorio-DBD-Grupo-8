@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Models\CountrySongRestriction;
 use App\Models\Country;
 use App\Models\Song;
-use App\Models\CountrySongRestriction;
+ 
 
 
 class CountrySongRestrictionController extends Controller
@@ -150,8 +151,6 @@ class CountrySongRestrictionController extends Controller
         }
         $restriction->id_song = $id_song;
         $restriction->id_country = $id_country;
-        $restriction->id_song = $request->id_song;
-        $restriction->id_country = $request->id_country;
 
         $restriction->save();
         return response()->json([
