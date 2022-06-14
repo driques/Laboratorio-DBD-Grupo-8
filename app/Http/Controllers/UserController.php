@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Country;
+use App\Models\Like_song;
 use App\Models\Rol;
+use App\Models\Song;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -186,11 +188,20 @@ class UserController extends Controller
         ], 201);
     }
 
+
+    /*
     public function destroy($id)
     {
         $user = User::find($id);
+        $song = Song::where('id_artist',$id)->get();
+        
+        
         if(empty($user)){
             return response()->json(['No se encuentra el id ingresado']);
+        }
+        if(!empty($song)){
+
+            $song->borrado = TRUE;
         }
         $user->delete();
         return response()->json([
@@ -198,5 +209,5 @@ class UserController extends Controller
             'id' => $user->id,
         ], 201);
         
-    }
+    }*/
 }

@@ -1,0 +1,182 @@
+{
+	"info": {
+		"_postman_id": "78fe6835-c03a-4a44-bb40-1591333cbf9e",
+		"name": "CRUD User",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21414588"
+	},
+	"item": [
+		{
+			"name": "User Show",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/users/12",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"users",
+						"12"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Delete",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/users/delete/5",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"users",
+						"delete",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "juana la peruana"
+						},
+						{
+							"key": "email",
+							"value": "juana@peruana.cl"
+						},
+						{
+							"key": "password",
+							"value": "tuperuanita"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8009/users/update/5",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8009",
+					"path": [
+						"users",
+						"update",
+						"5"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "juana la peruana",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "juana@peruana.cl",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "tuperuanita",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Store",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8008/users/store?name=juanito perez&email=juanperez@gmail.cl&password=juanperezmanolo123&birth_year=1990-02-11&id_pais=5",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8008",
+					"path": [
+						"users",
+						"store"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "juanito perez"
+						},
+						{
+							"key": "email",
+							"value": "juanperez@gmail.cl"
+						},
+						{
+							"key": "password",
+							"value": "juanperezmanolo123"
+						},
+						{
+							"key": "birth_year",
+							"value": "1990-02-11"
+						},
+						{
+							"key": "id_pais",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Index",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8006/users",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8006",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
