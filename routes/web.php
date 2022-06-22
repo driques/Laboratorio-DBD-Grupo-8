@@ -23,9 +23,14 @@ use App\Http\Controllers\Like_songController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::get('/', function () {
     return view('welcome');
+});
+*/
+
+Route::get('/', function () {
+    return view('home');
 });
 //Albums
 Route::get('/albums',[AlbumController::class,'index']); 
