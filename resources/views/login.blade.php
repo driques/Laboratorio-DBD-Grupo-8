@@ -4,10 +4,10 @@
      <style>
     #grid1 {
       /*width: 1200px;*/
-      min-height: 720px;
+      min-height: 1000px;
       height: auto;
       /*margin: 80px auto 0px auto;*/
-      background-image: linear-gradient(to bottom,rgb(73,152,245), rgb(194,228,235), rgb(73,152,245));
+      background-image: linear-gradient(to bottom,rgb(138, 199, 245), rgb(57, 88, 149), rgb(31, 33, 37));
       /*padding: 10px 10px; */
       overflow: auto
     }
@@ -25,40 +25,38 @@
     <body id="grid1">
     <!-- Cracion de navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-        <img src="https://i.ibb.co/KKnBn4P/1-removebg-preview.png" width="40" height="40" class="d-inline-block align-mid"
-            alt="">
-        DEBEDE Music
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav right-left">
-            <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">Quienes somos</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link" href="#">Ayuda</a>
-            </li>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{url('/')}}">
+      <img src="{{URL('images/DEBEDE.png')}}" width="50" height="50" class="d-inline-block align-left me-3" alt="">
+      DEBEDE Music
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
 
-            <body style="background-color:rgb(33, 37, 41);">
-            <div class="d-flex align-items-right">
-                <button type="button" class="btn btn-link pl-auto me-2">
-                Iniciar sesión
-                </button>
-                <button type="button" class="btn btn-primary pl-auto me-3">
-                Registrarse
-                </button>
-            </div>
+      <ul class="navbar-nav right">
+        <li class="nav-item justify-content-end">
+          <a class="nav-link" aria-current="page" href="#">Quienes somos</a>
+        </li>
+        <li class="nav-item justify-content-end">
+          <a class="nav-link" href="#">Ayuda</a>
+        </li>
+
+        <body style="background-color:rgb(33, 37, 41);">
+          <div class="d-flex align-items-right">
+            <button type="button" class="btn btn-primary pl-auto me-3 rounded-pill">
+              Registrarse
+            </button>
+          </div>
 
 
-        </ul>
-        </div>
+      </ul>
     </div>
-    </nav>
+  </div>
+
+</nav>
     
         <div class = "position-absolute top-50 start-50 translate-middle " >
         <h3 class="text-center p-4">Ingrese los datos de su cuenta</h3>    

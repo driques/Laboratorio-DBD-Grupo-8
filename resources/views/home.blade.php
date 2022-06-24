@@ -200,10 +200,12 @@
         </li>
 
         <body style="background-color:rgb(33, 37, 41);">
-          <div class="d-flex align-items-right">
+          <div class="d-flex align-items-right" >
+            <a href="{{url('/login')}}">
             <button type="button" class="btn btn-outline-secondary me-3">
               Iniciar sesión
             </button>
+            </a>
             <button type="button" class="btn btn-primary pl-auto me-3 rounded-pill">
               Registrarse
             </button>
