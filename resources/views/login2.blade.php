@@ -57,11 +57,14 @@
         </li>
 
         <body style="background-color:rgb(33, 37, 41);">
+          <a href="{{url('/register')}}">
           <div class="d-flex align-items-right">
             <button type="button" class="btn btn-primary pl-auto me-3 rounded-pill">
               Registrarse
+           
             </button>
           </div>
+        </a>
 
 
       </ul>
@@ -71,9 +74,9 @@
 </nav>
     <!--style="background-image:url('images/vinyls.jpg');"-->
     <div class= "container" id="login">
-        <div style="height:200px;">
+        <div style="height:150px;">
         </div>
-        <h3 class="text-center p-4"style=" color:#ffffff">Ingrese los datos de su cuenta</h3>
+        <h3 class="text-center p-4"style=" color:#ffffff">Inicie sesión para continuar</h3>
         
         <form class = " border rounded-4 shadow bg-dark bg-opacity-50 border-dark p-4 fs-5 text-light">
             <div class="form-group">
@@ -97,22 +100,25 @@
     </form>
     <br>
     <h5 class="text-center p-4" style=" color:#ffffff">¿Aún no tienes cuenta?</h5>
+    <a href="{{url('/register')}}">
     <div class="d-grid col-6 mx-auto">
+      
       <button class="btn btn-primary rounded-pill" type="button">Regístrate</button>
     </div>
+  </a>
     <div style="height:200px;">
         </div>
 </div>
-<footer class="page-footer font-small blue pt-4">
+<footer class="page-footer fixed-bottom bg-dark bg-opacity-50 font-small blue pt-4">
 
   <!-- Footer Links -->
-  <div class="container-fluid text-center text-md-left">
+  <div class="container-fluid  ">
 
     <!-- Grid row -->
-    <div class="row">
+    <div class="row ">
 
       <!-- Grid column -->
-      <div class="col-md-6 mt-md-0 mt-3">
+      <div class="col text-center col-lg-4 mt-1">
 
         <!-- Content -->
         <h5 class="text-uppercase " style="color:#bbb;">
@@ -120,33 +126,24 @@
             alt="">
           DEBEDE Music
         </h5>
-        <p style="color:#bbb;">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corrupti reprehenderit quia, a
-          voluptas sequi ab nobis enim rem veniam? Dolore temporibus odit cum porro repudiandae impedit nulla quibusdam
-          ipsam pariatur?</p>
+ 
 
       </div>
       <!-- Grid column -->
-
-      <hr class="clearfix w-100 d-md-none pb-3">
-
+      <div class="col  ">
+      </div>
       <!-- Grid column -->
-      <div class="col-md-3 mb-md-3 mb-9">
+      <div class="col col-lg-4 text-center mt-2">
 
         <!-- Links -->
-        <h5 class="text-uppercase" style="color:white; text-align:right;">Links</h5>
+        <h5 class="text-uppercase" style="color:white;">Links</h5>
 
-        <ul class="list-unstyled" style="text-align: right;">
+        <ul class="list-unstyled"  >
           <li>
             <a href="www.google.cl">Link 1</a>
           </li>
           <li>
             <a href="#!">Link 2</a>
-          </li>
-          <li>
-            <a href="#!">Link 3</a>
-          </li>
-          <li>
-            <a href="#!">Link 4</a>
           </li>
         </ul>
 
