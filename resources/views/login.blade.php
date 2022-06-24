@@ -18,7 +18,14 @@
     #login {
     max-width: 600px;
     }
+ 
   </style>
+          <style>
+            .form-control:focus {
+                border-color: #ff80ff;
+                box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(255, 100, 255, 0.5);
+            }
+        </style>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Bootstrap demo</title>
@@ -62,37 +69,91 @@
   </div>
 
 </nav>
-    
+    <!--style="background-image:url('images/vinyls.jpg');"-->
     <div class= "container" id="login">
         <div style="height:200px;">
         </div>
-        <h3 class="text-center p-4">Ingrese los datos de su cuenta</h3>    
-        <form class = "border border-dark p-4 bg-secondary bg-opacity-50 fs-5">
+        <h3 class="text-center p-4">Ingrese los datos de su cuenta</h3>
+        
+        <form class = " border rounded-4 shadow bg-dark bg-opacity-50 border-dark p-4 fs-5 text-light">
             <div class="form-group">
-                <label for="exampleFormControlInput1">Email </label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="nombre@ejemplo.com" 
+                <label class="mb-2" for="exampleFormControlInput1">Email </label>
+                <input type="email" class="form-control" id="mailInputLogin" placeholder="nombre@ejemplo.com" 
                 oninvalid="this.setCustomValidity('Se debe seguir el formato <Texto@Texto.dominio>')"
                 oninput="this.setCustomValidity('')">
             </div>
             <br>
             <div class="form-group">
-                <label for="inputPassword">Contraseña</label>
-                <input type="password" class="form-control" id="inputPassword" placeholder="**********">
+                <label class="mb-3" for="inputPassword">Contraseña</label>
+                <input type="password" class="form-control" id="passwordInputLogin" placeholder="**********">
             </div>
-            <div class="d-flex align-items-right">
             <br>
-                <button type="button" class="btn btn-link pl-auto me-2">
+            <div class="d-flex">
+                
+                <button type="submit" class="btn btn-primary ">
                 Iniciar sesión
                 </button>
-                <button type="button" class="btn btn-primary pl-auto me-3">
-                Registrarse
-                </button>
+                <a href="" class="link-success">
+                ¿Olvidaste tu contraseña aaaaa?
+              </a>
             </div> 
     </form>
     <div style="height:200px;">
         </div>
 </div>
-<footer class="bg-success"><h1>aca futer</h1>
+<footer class="page-footer font-small blue pt-4">
+
+  <!-- Footer Links -->
+  <div class="container-fluid text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row">
+
+      <!-- Grid column -->
+      <div class="col-md-6 mt-md-0 mt-3">
+
+        <!-- Content -->
+        <h5 class="text-uppercase " style="color:#bbb;">
+          <img src="{{URL('images/dark-DEBEDE.png')}}" width="50" height="50" class="d-inline-block align-left me-3"
+            alt="">
+          DEBEDE Music
+        </h5>
+        <p style="color:#bbb;">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corrupti reprehenderit quia, a
+          voluptas sequi ab nobis enim rem veniam? Dolore temporibus odit cum porro repudiandae impedit nulla quibusdam
+          ipsam pariatur?</p>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none pb-3">
+
+      <!-- Grid column -->
+      <div class="col-md-3 mb-md-3 mb-9">
+
+        <!-- Links -->
+        <h5 class="text-uppercase" style="color:white; text-align:right;">Links</h5>
+
+        <ul class="list-unstyled" style="text-align: right;">
+          <li>
+            <a href="www.google.cl">Link 1</a>
+          </li>
+          <li>
+            <a href="#!">Link 2</a>
+          </li>
+          <li>
+            <a href="#!">Link 3</a>
+          </li>
+          <li>
+            <a href="#!">Link 4</a>
+          </li>
+        </ul>
+
+      </div>
+      
+    </div>
+    <!-- Grid row -->
+
+  </div>
 </footer>
 
 
