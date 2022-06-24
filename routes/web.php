@@ -32,6 +32,9 @@ Route::get('/', function () {
 Route::get('/', function () {
     return view('home');
 });
+Route::get('/login', function () {
+    return view('login');
+});
 //Albums
 Route::get('/albums',[AlbumController::class,'index']); 
 Route::get('/albums/{id}',[AlbumController::class,'show']);
