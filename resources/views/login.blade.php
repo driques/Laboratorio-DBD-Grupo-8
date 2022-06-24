@@ -15,6 +15,9 @@
       font-family: Verdana, sans-serif;
       font-size: 15px;
     }
+    #login {
+    max-width: 600px;
+    }
   </style>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,6 +27,8 @@
     </head>
     <body id="grid1">
     <!-- Cracion de navbar -->
+    
+    
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="{{url('/')}}">
@@ -58,7 +63,9 @@
 
 </nav>
     
-        <div class = "position-absolute top-50 start-50 translate-middle " >
+    <div class= "container" id="login">
+        <div style="height:200px;">
+        </div>
         <h3 class="text-center p-4">Ingrese los datos de su cuenta</h3>    
         <form class = "border border-dark p-4 bg-secondary bg-opacity-50 fs-5">
             <div class="form-group">
@@ -72,12 +79,22 @@
                 <label for="inputPassword">Contraseña</label>
                 <input type="password" class="form-control" id="inputPassword" placeholder="**********">
             </div>
-        <div class="col-auto">
+            <div class="d-flex align-items-right">
             <br>
-            <button type="submit" class="btn btn-primary">Confirmar</button>
-        </div> 
+                <button type="button" class="btn btn-link pl-auto me-2">
+                Iniciar sesión
+                </button>
+                <button type="button" class="btn btn-primary pl-auto me-3">
+                Registrarse
+                </button>
+            </div> 
     </form>
+    <div style="height:200px;">
+        </div>
 </div>
+<footer class="bg-success"><h1>aca futer</h1>
+</footer>
+
 
 </body>
 </html>
