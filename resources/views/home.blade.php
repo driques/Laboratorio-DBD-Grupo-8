@@ -206,9 +206,11 @@
               Iniciar sesión
             </button>
             </a>
+            <a href="{{url('/register')}}">
             <button type="button" class="btn btn-primary pl-auto me-3 rounded-pill">
               Registrarse
             </button>
+            </a>
           </div>
 
 
