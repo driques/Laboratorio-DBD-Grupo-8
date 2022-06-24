@@ -73,7 +73,7 @@
     <div class= "container" id="login">
         <div style="height:200px;">
         </div>
-        <h3 class="text-center p-4">Ingrese los datos de su cuenta</h3>
+        <h3 class="text-center p-4"style=" color:#ffffff">Ingrese los datos de su cuenta</h3>
         
         <form class = " border rounded-4 shadow bg-dark bg-opacity-50 border-dark p-4 fs-5 text-light">
             <div class="form-group">
@@ -88,16 +88,18 @@
                 <input type="password" class="form-control" id="passwordInputLogin" placeholder="**********">
             </div>
             <br>
-            <div class="d-flex">
-                
-                <button type="submit" class="btn btn-primary ">
+                <button type="submit" class="btn btn-primary ms-md-5 p-3">
                 Iniciar sesión
                 </button>
-                <a href="" class="link-success">
-                ¿Olvidaste tu contraseña aaaaa?
+                <a href="" class="link-success p-5">
+                ¿Olvidaste tu contraseña?
               </a>
-            </div> 
     </form>
+    <br>
+    <h5 class="text-center p-4" style=" color:#ffffff">¿Aún no tienes cuenta?</h5>
+    <div class="d-grid col-6 mx-auto">
+      <button class="btn btn-primary rounded-pill" type="button">Regístrate</button>
+    </div>
     <div style="height:200px;">
         </div>
 </div>

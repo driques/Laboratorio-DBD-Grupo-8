@@ -36,8 +36,8 @@ Route::get('/register', function () {
 Route::get('/', function () {
     return view('home');
 });
-Route::get('/login', function () {
-    return view('login');
+Route::get('/login2', function () {
+    return view('login2');
 });
 //Albums
 Route::get('/albums',[AlbumController::class,'index']); 

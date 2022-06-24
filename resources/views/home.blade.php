@@ -201,7 +201,7 @@
 
         <body style="background-color:rgb(33, 37, 41);">
           <div class="d-flex align-items-right" >
-            <a href="{{url('/login')}}">
+            <a href="{{url('/login2')}}">
             <button type="button" class="btn btn-outline-secondary me-3">
               Iniciar sesión
             </button>
