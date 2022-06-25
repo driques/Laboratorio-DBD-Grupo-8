@@ -1,167 +1,22 @@
- <style>
-     
-    .project{
-        display: block;
-        width: 100%;
-        margin: 1em 0;
-        cursor: pointer;
-    }
-    figure{
-        margin: 0;
-        padding: 0;
-    }
-    .project figure img{
-        width: 100%;
-        display: block;
-        object-fit: cover;
-        height: 300px;
-    }
-    /*Project fig captopn*/
-    .project h3{
-        color: white;
-        margin: 0;
-    }
-    .cta{
-        margin: .5em 0;
-    }
-   @media screen and (min-width:960px) {
-       .img-wrapper{
-        max-width: 960px;
-        margin: 0 auto;
-
-       }
-       .img-container{
-           display: grid;
-           grid-template-columns: repeat(3,1fr);
-           grid-gap: 1em;
-       }
-       .project :nth-child(1){
-           grid-column: 1 / span 3;
-       }
-       .project{
-           width: 100%;
-           height: 300px;
-
-       }
-       .project figure img {
-           position: relative;
-           z-index: 999;
-           transition: transform 0.4s;
-       }
-       .project figure:hover img{
-           transform: translateY(-90px);
-       }
-       
-       
-   }
-        
-
- </style>
- 
- <section class="img-section">
-    <div class="img-wrapper">
-        <div class="img-container">
-            <a class="project" href="#">
-                <figure>
-                    <img src="image1" alt="Image 1">
-                </figure>
-            </a>
-            <a class="project" href="#">
-                <figure>
-                    <img src="image2" alt="Image 2">
-                </figure>
-            </a>
-            <a class="project" href="#">
-                <figure>
-                    <img src="image3" alt="Image 3">
-                </figure>
-            </a>
-            <a class="project" href="#">
-                <figure>
-                    <img src="image4" alt="Image 4">
-                </figure>
-            </a>
-            <a class="project" href="#">
-                <figure>
-                    <img src="image5" alt="Image 5">
-                </figure>
-            </a>
-            <a class="project" href="#">
-                <figure>
-                    <img src="image6" alt="Image 6">
-                </figure>
-            </a>
-        </div>
-
-    </div>
-
- </section>
-
-
-
-
-
-
- 
-
-
-
- <!--
-<div class="slideshow-container">
-
-    <div class="mySlides fade">
-      <div class="numbertext">1 / 3</div>
-      <!--Aqui van las images-->
-      <h1> Por que DEBEDE?</h1>
-
-    </div>
-
-    <div class="mySlides fade">
-      <div class="numbertext">2 / 3</div>
-
-      <!--Aqui van las images-->
-      <h1> Descubre música</h1>
-
-    </div>
-
-    <div class="mySlides fade">
-      <div class="numbertext">3 / 3</div>
-
-      <!--Aqui van las images <img src="img_nature_wide.jpg" style="width:50%">-->
-      <h1>Alucina con nuestros precios</h1>
-
-    </div>
-
-  </div>
-  <br>
-
-  <!---->
-  <div style="text-align:center">
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-  </div>
-
-  <script>
-    let slideIndex = 0;
-    showSlides();
-
-    function showSlides() {
-      let i;
-      let slides = document.getElementsByClassName("mySlides");
-      let dots = document.getElementsByClassName("dot");
-      for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-      }
-      slideIndex++;
-      if (slideIndex > slides.length) { slideIndex = 1 }
-      for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
-      }
-      slides[slideIndex - 1].style.display = "block";
-      dots[slideIndex - 1].className += " active";
-      setTimeout(showSlides, 2000); // Change image every 2 seconds
-    }
-  </script>
-
- -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Musiquita</title>
+</head>
+<body>
+    <h1>
+        Holi hago musica
+        <script>
+            let sound = new Audio("https://www.mboxdrive.com/Rama3.mp3");
+            console.log("Holi estoy aca");
+            sound.play();
+            console.log("Holi estoy aca 2");
+           
+        </script>
+    </h1>
+    
+</body>
+</html>
