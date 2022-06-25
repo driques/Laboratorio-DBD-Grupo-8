@@ -218,6 +218,7 @@
 
 </nav>
 <div id="grid1">
+  <h1 style="color: white; text-align:center;" >Más escuchados en Julio</h1>
 
   <div id="carousel-images" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">

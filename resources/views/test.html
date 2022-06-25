@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Musiquita</title>
 </head>
+
 <body>
     <h1>
         Holi hago musica
         <script>
-            let sound = new Audio("https://www.mboxdrive.com/Rama3.mp3");
-            console.log("Holi estoy aca");
-            sound.play();
-            console.log("Holi estoy aca 2");
-           
+            const music = new Audio("//www.mboxdrive.com/Eminem_-_Without_Me_47829431.mp3");
+            function playMusic(){
+                music.play();
+            }
+            function stopMusic(){
+                music.pause();
+                console.log("Holi estoy aca");
+            }
         </script>
+        <button onclick="playMusic()">
+            <div class="loader"></div>Play musica</button>
+        <button onclick="stopMusic()">Stop musica</button>
     </h1>
-    
+
 </body>
+
 </html>
