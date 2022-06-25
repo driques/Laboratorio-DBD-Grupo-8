@@ -81,14 +81,14 @@
         <form class = " border rounded-4 shadow bg-dark bg-opacity-50 border-dark p-4 fs-5 text-light">
             <div class="form-group">
                 <label class="mb-2" for="exampleFormControlInput1">Email </label>
-                <input type="email" class="form-control" id="mailInputLogin" placeholder="nombre@ejemplo.com" 
+                <input type="email" class="form-control" id="mailInputLogin" placeholder="nombre@ejemplo.com"  required
                 oninvalid="this.setCustomValidity('Se debe seguir el formato <Texto@Texto.dominio>')"
                 oninput="this.setCustomValidity('')">
             </div>
             <br>
             <div class="form-group">
                 <label class="mb-3" for="inputPassword">Contraseña</label>
-                <input type="password" class="form-control" id="passwordInputLogin" placeholder="**********">
+                <input type="password" class="form-control" id="passwordInputLogin" placeholder="**********" required>
             </div>
             <br>
                 <button type="submit" class="btn btn-primary ms-md-5 p-3">
