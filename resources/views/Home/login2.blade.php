@@ -57,7 +57,7 @@
         </li>
 
         <body style="background-color:rgb(33, 37, 41);">
-          <a href="{{url('/register')}}">
+          <a href="{{url('/home/register')}}">
           <div class="d-flex align-items-right">
             <button type="button" class="btn btn-primary pl-auto me-3 rounded-pill">
               Registrarse
@@ -100,7 +100,7 @@
     </form>
     <br>
     <h5 class="text-center p-4" style=" color:#ffffff">¿Aún no tienes cuenta?</h5>
-    <a href="{{url('/register')}}">
+    <a href="{{url('/home/register')}}">
     <div class="d-grid col-6 mx-auto">
       
       <button class="btn btn-primary rounded-pill" type="button">Regístrate</button>

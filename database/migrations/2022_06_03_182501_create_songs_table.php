@@ -31,7 +31,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_artist')->nullable();
             $table->foreign('id_artist')->references('id')->on('users');
             $table->boolean('borrado');
-            $table->string('url_cancion');
+            $table->string('url_cancion')->nullable();
             $table->timestamps();
         });
     }

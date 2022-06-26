@@ -16,13 +16,18 @@ class SongController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function index()
     {
+        /*
         $songs = Song::where('borrado',false)->get();
         if($songs->isEmpty()){
             return response()->json(['response'=>'no se encuentran canciones registradas',]);
-        }
-        return response($songs,200);
+        }*/
+        $datosCanciones=Song::all(); 
+        return view('admin',array('canciones'=>$datosCanciones));
+        //return response($songs,200,$datosCanciones);
         //
     }
 
@@ -97,12 +102,12 @@ class SongController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($nombre_cancion)
     {
         //
-        $song = Song::find($id);
+        $song = Song::find($nombre_cancion);
         if(empty($song) or $song->borrado == true){
-            return response()->json(['message' => 'El id no existe.']);
+            return response()->json(['message' => 'La cancion no existe.']);
         }
         return response($song, 200);
     }
@@ -222,4 +227,5 @@ class SongController extends Controller
         ], 201);
         
     }
+  
 }

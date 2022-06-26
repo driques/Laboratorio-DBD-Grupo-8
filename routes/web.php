@@ -29,15 +29,24 @@ Route::get('/', function () {
 });
 */
 
-Route::get('/register', function () {
-    return view('register');
+Route::get('/home/register', function () {
+    return view('home/register');
 });
 
 Route::get('/', function () {
-    return view('home');
+    return view('home/home');
 });
-Route::get('/login2', function () {
-    return view('login2');
+Route::get('/home/login2', function () {
+    return view('home/login2');
+});
+Route::get('/song/player', function () {
+    return view('song/player');
+});
+Route::get('/song/song', function () {
+    return view('song/song');
+});
+Route::get('/song/admin', function () {
+    return view('admin');
 });
 //Albums
 Route::get('/albums',[AlbumController::class,'index']); 
@@ -121,8 +130,9 @@ Route::delete('/playlist_group/destroy/{id}',[Playlist_groupController::class,'d
 
 //Song
 Route::get('/songs',[SongController::class,'index']); 
-Route::get('/songs/{id}',[SongController::class,'show']);
+Route::get('/songs/{nombre_cancion}',[SongController::class,'show']);
 Route::post('/songs/store',[SongController::class,'store']);
 Route::put('/songs/update/{id}',[SongController::class,'update']);
 Route::put('/songs/delete/{id}',[SongController::class,'delete']);
 Route::delete('/songs/destroy/{id}',[SongController::class,'destroy']);
+Route::get('/songs/search',[SongController::class,'search']);

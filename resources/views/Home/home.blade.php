@@ -199,12 +199,12 @@
 
         <body style="background-color:rgb(33, 37, 41);">
           <div class="d-flex align-items-right">
-            <a href="{{url('/login2')}}">
+            <a href="{{url('/home/login2')}}">
               <button type="button" class="btn btn-outline-secondary me-3">
                 Iniciar sesión
               </button>
             </a>
-            <a href="{{url('/register')}}">
+            <a href="{{url('/home/register')}}">
               <button type="button" class="btn btn-primary pl-auto me-3 rounded-pill">
                 Registrarse
               </button>
@@ -355,7 +355,7 @@
   <h1 style="font-size: 80px; text-align: center; color:#bbb;">Al mejor precio.</h1>
 
   <div class="col text-center">
-    <a href="/register"
+    <a href="/home/register"
     <button class="btn btn-primary rounded-pill">Registrate aquí</button>
   </a>
   </div>
