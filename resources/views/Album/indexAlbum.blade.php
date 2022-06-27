@@ -60,8 +60,8 @@
         <tbody>
             @foreach($albums as $albums)
             <tr>
-                <td> {{$album->id}}</td>
-                <td> {{$album->album_name}}</td>
+                <td> {{$albums->id}}</td>
+                <td> {{$albums->album_name}}</td>
                 <td>
                     <a class="btn btn-info">Editar album</a>
                     <button class="btn btn-danger">Eliminar album</button>

@@ -22,7 +22,7 @@ class AlbumController extends Controller
         return view('album/indexAlbum')->with('albums',$albums);
         */
         $albums = Album::all();
-        return view('albums/indexAlbum',array('albums'=>$albums));
+        return view('album.indexAlbum',array('albums'=>$albums));
     }
 
     /**
