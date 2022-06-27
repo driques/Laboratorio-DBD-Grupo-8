@@ -15,19 +15,19 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($canciones as $canciones)
+        @foreach($datosCanciones as $datosCanciones)
         <tr>
-            <td>{{$song->id}}</td>
-            <td>{{$song->nombre_cancion}}</td>
-            <td>{{$song->likes}}</td>
-            <td>{{$song->reproduciones}}/td>
-            <td>{{$song->restriccion_etaria}}</td>
-            <td>{{$song->id_album}}</td>
-            <td>{{$song->id_genre}}</td>
-            <td>{{$song->id_artist}}</td>
-            <td>{{$song->borrado}}</td>
-            <td>{{$song->url_cancion}}</td>
-            <td>Editar | Borrar</td>
+            <td>{{$datosCanciones->id}}</td>
+            <td>{{$datosCanciones->nombre_cancion}}</td>
+            <td>{{$datosCanciones->likes}}</td>
+            <td>{{$datosCanciones->reproduciones}}/td>
+            <td>{{$datosCanciones->restriccion_etaria}}</td>
+            <td>{{$datosCanciones->id_album}}</td>
+            <td>{{$datosCanciones->id_genre}}</td>
+            <td>{{$datosCanciones->id_artist}}</td>
+            <td>{{$datosCanciones->borrado}}</td>
+            <td>{{$datosCanciones->url_cancion}}</td>
+            <td>Editar | Borrar | Escuchar</td>
         </tr>
         @endforeach
     </tbody>

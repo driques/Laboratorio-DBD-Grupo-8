@@ -26,7 +26,7 @@ class SongController extends Controller
             return response()->json(['response'=>'no se encuentran canciones registradas',]);
         }*/
         $datosCanciones=Song::all(); 
-        return view('admin',array('canciones'=>$datosCanciones));
+        return view('admin',array('datosCanciones'=>$datosCanciones));
         //return response($songs,200,$datosCanciones);
         //
     }
