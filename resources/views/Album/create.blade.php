@@ -49,29 +49,16 @@
     </nav>
 
     @section('contenido')
-    <a href= "albums/create" class="btn btn-primary">Crear album</a>
-    <table class="table table-dark table-striped mt-4">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nombre Album</th>
-                <th scope="col">Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($albums as $albums)
-            <tr>
-                <td> {{$albums->id}}</td>
-                <td> {{$albums->album_name}}</td>
-                <td>
-                    <a class="btn btn-info">Editar album</a>
-                    <button class="btn btn-danger">Eliminar album</button>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-
-    </table>
+    <h2>Creacion de album</h2>
+    <form action="/albums/store" method="POST">
+        @csrf
+        <div class="mb-3">
+            <label for="" class="from-label">Nombre album</label>
+            <input id="codigo" name="album_name" type="text" class="form-control" tabindex="1"></input>
+        </div>
+        <a href="/albums" class="btn btn-secondary" tabindex="5">Cancelar</a>
+        <button type="submit" class="btn btn-danger" tabindex="4">Guardar</button>
+    </form>
     @endsection
 
 </body>

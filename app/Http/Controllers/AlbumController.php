@@ -14,13 +14,6 @@ class AlbumController extends Controller
      */
     public function index()
     {
-        /*
-       $albums = Album::where('borrado',false)->get();
-        if($albums->isEmpty()){
-            return response()->json(['response'=>'no se encuentran albumes',]);
-        }
-        return view('album/indexAlbum')->with('albums',$albums);
-        */
         $albums = Album::all();
         return view('album.indexAlbum',array('albums'=>$albums));
     }
@@ -32,7 +25,7 @@ class AlbumController extends Controller
      */
     public function create()
     {   
-
+        return view('album.create');
     }
 
     /**
@@ -62,7 +55,7 @@ class AlbumController extends Controller
         $newAlbum->album_name = $request->album_name;
         $newAlbum->borrado = FALSE;
         $newAlbum-> save();
-        return response()->json(['Se ha creado el album'],201);
+        return redirect('/albums');
     }
 
     /**
