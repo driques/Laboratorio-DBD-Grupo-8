@@ -12,7 +12,7 @@ use App\Http\Controllers\PaymentHistoryController;
 use App\Http\Controllers\PlaylistController;
 use App\Http\Controllers\Playlist_groupController;
 use App\Http\Controllers\Like_songController;
-
+use App\Http\Controllers\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -62,8 +62,13 @@ Route::get('/song/admin', function () {
     return view('admin');
 });
 
+<<<<<<< Updated upstream
 
 
+=======
+//Login
+Route::post('/login',[LoginController::class,'authenticate']); 
+>>>>>>> Stashed changes
 //Albums
 Route::get('/albums',[AlbumController::class,'index']); 
 Route::get('/albums/{id}',[AlbumController::class,'show']);
