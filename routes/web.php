@@ -27,7 +27,12 @@ use App\Http\Controllers\Like_songController;
 Route::get('/', function () {
     return view('welcome');
 });
+
 */
+
+Route::get('/albums/edit/{{id}}', function () {
+    return view('album/edit/{{id}}');
+});
 
 Route::get('/albums/create', function () {
     return view('album/create');
@@ -56,6 +61,9 @@ Route::get('/song/song', function () {
 Route::get('/song/admin', function () {
     return view('admin');
 });
+
+
+
 //Albums
 Route::get('/albums',[AlbumController::class,'index']); 
 Route::get('/albums/{id}',[AlbumController::class,'show']);

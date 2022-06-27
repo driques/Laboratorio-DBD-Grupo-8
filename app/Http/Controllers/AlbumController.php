@@ -14,7 +14,7 @@ class AlbumController extends Controller
      */
     public function index()
     {
-        $albums = Album::all();
+        $albums = Album::where('borrado',false)->get();
         return view('album.indexAlbum',array('albums'=>$albums));
     }
 
@@ -81,7 +81,8 @@ class AlbumController extends Controller
      */
     public function edit($id)
     {
-        //
+        $album = Album::find($id);
+        return view('album.edit')->with('album',$album);
     }
 
     /**
@@ -136,10 +137,7 @@ class AlbumController extends Controller
         }
         $album->borrado = true;
         $album->save();
-        return response()->json([
-            'message' => 'El album fue eliminado correctamente',
-            'id' => $album->id,
-        ], 201);
+        return redirect('/albums');
     }
 
     public function destroy($id)
@@ -149,10 +147,7 @@ class AlbumController extends Controller
             return response()->json(['No se encuentra el id ingresado']);
         }
         $album->delete();
-        return response()->json([
-            'message' => 'El album fue destruido con exito',
-            'id' => $album->id,
-        ], 201);
+        return redirect('/albums');
         
     }
 
