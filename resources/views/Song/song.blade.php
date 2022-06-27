@@ -62,7 +62,7 @@
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
-                                                <input type="text" id="form3Example1c" class="form-control" name="nombre_cancion" required/>
+                                                <input type="text" id="form3Example1c" class="form-control" name="nombre_cancion" minlength="3" maxlength="20" required/>
                                                 <label class="form-label" for="form3Example1c">Nombre canción</label>
                                             </div>
                                         </div>
@@ -71,10 +71,12 @@
                                             <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
                                             <p>Restricción etaria:</p>
-                                            <input type="radio" id="no" name="restriccion_etaria" value=1 required>
-                                                <label for="si">Si</label><br>
-                                                <input type="radio" id="no" name="restriccion_etaria" value=0 required>
+                                            <input type="radio" id="no" name="restriccion_etaria" value=0 required>
                                                 <label for="no">No</label><br>
+                                                <input type="radio" id="no" name="restriccion_etaria" value=1 required>
+                                                <label for="+13">+13</label><br>
+                                                <input type="radio" id="+13" name="restriccion_etaria" value=2 required>
+                                                <label for="+18">+18</label><br>
                                             </div>
                                         </div>
 

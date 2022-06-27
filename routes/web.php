@@ -29,6 +29,10 @@ Route::get('/', function () {
 });
 */
 
+Route::get('/album', function () {
+    return view('album/indexAlbum');
+});
+
 Route::get('/home/register', function () {
     return view('home/register');
 });

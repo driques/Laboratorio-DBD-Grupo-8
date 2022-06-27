@@ -14,11 +14,15 @@ class AlbumController extends Controller
      */
     public function index()
     {
-        $albums = Album::where('borrado',false)->get();
+        /*
+       $albums = Album::where('borrado',false)->get();
         if($albums->isEmpty()){
             return response()->json(['response'=>'no se encuentran albumes',]);
         }
-        return response($albums,200);
+        return view('album/indexAlbum')->with('albums',$albums);
+        */
+        $albums = Album::all();
+        return view('albums/indexAlbum',array('albums'=>$albums));
     }
 
     /**
@@ -27,8 +31,8 @@ class AlbumController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {   
+
     }
 
     /**
