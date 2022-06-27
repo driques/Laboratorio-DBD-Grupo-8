@@ -54,7 +54,7 @@ class UserController extends Controller
                 'name' => 'required|min : 2|max : 20',
                 'email' => 'required|min:4|max:256|unique:users',
                 'password' => 'required|min : 8|max : 20',
-                'birth_year' => 'required|date:y-m-d',
+                'birth_year' => 'required|date:Y-m-d',
                 'id_pais' => 'required|integer|exists:countries,id',
             ],
             ['name.required'=>'Se debe ingresar un nombre.',
