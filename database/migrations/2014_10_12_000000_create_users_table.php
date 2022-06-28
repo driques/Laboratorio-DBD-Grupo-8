@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('password');
+            $table->Hash::make(string('password'));
             $table->boolean('plan');
             $table->date('birth_year');
 

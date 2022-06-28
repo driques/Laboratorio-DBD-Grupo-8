@@ -13,6 +13,7 @@ use App\Http\Controllers\PlaylistController;
 use App\Http\Controllers\Playlist_groupController;
 use App\Http\Controllers\Like_songController;
 use App\Http\Controllers\LoginController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,16 +28,9 @@ use App\Http\Controllers\LoginController;
 Route::get('/', function () {
     return view('welcome');
 });
-
 */
 
-Route::get('/albums/edit/{{id}}', function () {
-    return view('album/edit/{{id}}');
-});
 
-Route::get('/albums/create', function () {
-    return view('album/create');
-});
 
 Route::get('/album', function () {
     return view('album/indexAlbum');
@@ -63,7 +57,11 @@ Route::get('/song/admin', function () {
 });
 
 //Login
-Route::post('/auth','App\Http\Controllers\LoginController@authenticate');
+Route::get('/login',[LoginController::class,'show']); 
+Route::post('/login',[LoginController::class,'login']); 
+
+
+
 //Albums
 Route::get('/albums',[AlbumController::class,'index']); 
 Route::get('/albums/{id}',[AlbumController::class,'show']);
@@ -145,10 +143,12 @@ Route::put('/playlist_group/delete/{id}',[Playlist_groupController::class,'delet
 Route::delete('/playlist_group/destroy/{id}',[Playlist_groupController::class,'destroy']);
 
 //Song
-Route::get('/songs',[SongController::class,'index']); 
+//Route::get('/songs',[SongController::class,'index']); 
 Route::get('/songs/{nombre_cancion}',[SongController::class,'show']);
 Route::post('/songs/store',[SongController::class,'store']);
 Route::put('/songs/update/{id}',[SongController::class,'update']);
 Route::put('/songs/delete/{id}',[SongController::class,'delete']);
 Route::delete('/songs/destroy/{id}',[SongController::class,'destroy']);
 Route::get('/songs/search',[SongController::class,'search']);
+
+//Auth::routes();

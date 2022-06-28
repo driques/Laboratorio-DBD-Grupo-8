@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
-{
+{   
+
+    /*
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
@@ -26,10 +29,35 @@ class LoginController extends Controller
         );
         if (Auth::attempt($credentials)) {
             //$request->session()->regenerate();
-            return redirect('/');
+            //return redirect('/');
+            return response()->json(['message' => 'Id existe']);
         }
         
-        return redirect('/home/login2')->withErrors('Los datos ingresados no se encuentran'); 
+        return response()->json(['message' => 'Id nos existe']);
+        //return redirect('/home/login2')->withErrors('Los datos ingresados no se encuentran'); 
+    }*/
+
+    public function show(){
+
+        return view('auth.login');
+    }
+
+    public function login(LoginRequest $request){
+        $credentials = $request->getCredentials();
+    
+        if(Auth::validate($credentials)){
+        
+            $user = Auth::getProvider()->retrieveByCredentials($credentials);
+            Auth::login($user);
+            return $this->authenticated($request,$user);
+
+        }
+        return redirect()->to('/')->withErrors('auth.failed');
+
+    }
+    public function authenticated(Request $request,$user){
+
+        return redirect('/song/player');
     }
 }
     
