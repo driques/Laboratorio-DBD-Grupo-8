@@ -45,9 +45,13 @@ Route::get('/', function () {
 Route::get('/home/login2', function () {
     return view('home/login2');
 })->middleware('guest');
+
 Route::get('/song/player', function () {
     return view('song/player');
-})->middleware('auth');
+
+});
+//->middleware('auth');
+
 Route::get('/song/search',[SongController::class,'search']);
 
 Route::get('/song/register', function () {

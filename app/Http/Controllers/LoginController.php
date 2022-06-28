@@ -45,13 +45,13 @@ class LoginController extends Controller
         
             $user = Auth::getProvider()->retrieveByCredentials($credentials);
             Auth::login($user);
-            return $this->authenticated($request,$user);
+            return $this->authenticated();
 
         }
         return redirect()->to('/')->withErrors('auth.failed');
 
     }
-    public function authenticated(Request $request,$user){
+    public function authenticated(){
 
         return redirect('/song/player');
     }*/

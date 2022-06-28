@@ -84,13 +84,26 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <title>Reproductor DEBEDE</title>
 </head>
 
 <body id="reproductor">
+
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-1">
+        
+        <a href="#" class="nav-link bi bi-chevron-bar-down btn-primary btn" data-bs-toggle="dropdown"></a>
+                            <div class="dropdown-menu">
+                                <a href="#" class="dropdown-item">Mi perfil</a>
+                                <a href="#" class="dropdown-item">Configuraciones</a>
+                                <a href="#" class="dropdown-item">Mis playlists</a>
+                                <div class="dropdown-divider"></div>
+                                <a href="#"class="dropdown-item">Trash</a>
+                            </div>
+        <!--Aqui debe ir la info del user-->
         <img src="{{URL('images/DEBEDE.png')}}" width="40" height="40" class="d-inline-block align-left me-3" alt="">
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">DEBEDE MUSIC</a>
+        
         <div class="col-8">
             <div class="input-group">
                 <input type="text" class="form-control" id="texto" placeholder="Buscar canción">
@@ -98,7 +111,6 @@
             </div>
             <div id="resultados" class="bg-ligh">
                
-
             </div>
         </div>
         <script> window.addEventListener('load',function(){ 
