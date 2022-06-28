@@ -15,14 +15,11 @@ class CountryController extends Controller
      */
     public function index()
     {
-        $countries = Country::where('borrado', false)->get();
-        if ($countries->isEmpty()) {
-            return response()->json([
-                'respuesta' => 'No se encuentran paises'
-            ]);
+        $countries = Country::where('borrado',false)->get();
+        if($countries->isEmpty()){
+            return response()->json(['response'=>'no se encuentran paises registrados',]);
         }
-        return view('home/register', compact('countries'));
-
+        return view('home/register',compact('countries'));
     }
 
     /**
@@ -43,29 +40,26 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
-
+        
         $validator = Validator::make(
-            $request->all(),
-            [
+            $request->all(),[
                 'name_country' => 'required|min : 2|max : 20',
             ],
-            [
-                'name_country.required' => 'Se debe ingresar un pais.',
-                'name_country.min' => 'Ingresar un pais de 2 o mas caracteres.',
-                'name_country.max' => 'Ingresar un pais de 20 o menos caracteres.',
-                'name_country.nullable' => 'Ingresar un pais no nulo. '
-            ]
-        );
+            ['name_country.required'=>'Se debe ingresar un pais.',
+            'name_country.min'=>'Ingresar un pais de 2 o mas caracteres.',
+            'name_country.max'=>'Ingresar un pais de 20 o menos caracteres.',
+            'name_country.nullable'=>'Ingresar un pais no nulo. ']
+            );
         //Se verifica que no falle el ingreso de datos
-        if ($validator->fails()) {
-            return response($validator->errors(), 400);
-        }
-
+        if($validator->fails()){
+                return response($validator->errors(), 400);
+            }
+        
         $newCountry = new Country();
         $newCountry->name_country = $request->name_country;
         $newCountry->borrado = FALSE;
-        $newCountry->save();
-        return response()->json(['Se ha creado el pais'], 201);
+        $newCountry-> save();
+        return response()->json(['Se ha creado el pais'],201);
     }
 
     /**
@@ -77,7 +71,7 @@ class CountryController extends Controller
     public function show($id)
     {
         $country = Country::find($id);
-        if (empty($country) or $country->borrado == true) {
+        if(empty($country) or $country->borrado == true){
             return response()->json(['message' => 'El id no existe.']);
         }
         return response($country, 200);
@@ -114,15 +108,15 @@ class CountryController extends Controller
                 'name_country.max' => 'Debe ser de largo máximo :max'
             ]
         );
-
-        if ($validator->fails()) {
+    
+        if($validator->fails()){
             return response($validator->errors());
         }
         $country = Country::find($id);
-        if (empty($country)) {
+        if(empty($country)){
             return response()->json(['message' => 'El id no existe.']);
         }
-        if ($request->name_country == $country->name_country) {
+        if ($request->name_country == $country->name_country){
             return response()->json([
                 "message" => "Los datos ingresados son iguales a los actuales."
             ], 203);
@@ -136,13 +130,12 @@ class CountryController extends Controller
         ], 201);
     }
 
-    //Cabe destacar que se realizan 2 funciones de borrado, uno para un soft y otro para un hard
+     //Cabe destacar que se realizan 2 funciones de borrado, uno para un soft y otro para un hard
     //delete sera la funcion que se encargara del delete soft, y destroy la encargada del delete hard.
     //Se toma la funcion delete como si fuera un update para el objeto country.
-    public function delete($id)
-    {
+    public function delete($id){
         $country = Country::find($id);
-        if (empty($country) or $country->borrado == true) {
+        if(empty($country) or $country->borrado == true){
             return response()->json(['message' => 'No se encuentra el id ingresado']);
         }
         $country->borrado = true;
@@ -156,7 +149,7 @@ class CountryController extends Controller
     public function destroy($id)
     {
         $country = Country::find($id);
-        if (empty($country)) {
+        if(empty($country)){
             return response()->json(['No se encuentra el id ingresado']);
         }
         $country->delete();
@@ -164,5 +157,6 @@ class CountryController extends Controller
             'message' => 'El nombre del pais fue destruido con exito de la base de datos',
             'id' => $country->id,
         ], 201);
+        
     }
 }

@@ -65,8 +65,7 @@
             </button>
           </div>
         </a>
-
-
+        
       </ul>
     </div>
   </div>
@@ -78,7 +77,8 @@
         </div>
         <h3 class="text-center p-4"style=" color:#ffffff">Inicie sesión para continuar</h3>
         
-        <form action="/login" method="POST" class = " border rounded-4 shadow bg-dark bg-opacity-50 border-dark p-4 fs-5 text-light">
+        <form action="/login2" method="POST" class = " border rounded-4 shadow bg-dark bg-opacity-50 border-dark p-4 fs-5 text-light">
+            @csrf
             <div class="form-group">
                 <label class="mb-2" for="exampleFormControlInput1">Email </label>
                 <input type="email" name="email" class="form-control" id="mailInputLogin" placeholder="nombre@ejemplo.com"  required

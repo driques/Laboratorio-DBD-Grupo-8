@@ -30,8 +30,6 @@ Route::get('/', function () {
 });
 */
 
- 
-
 Route::get('/album', function () {
     return view('album/indexAlbum');
 });
@@ -46,10 +44,10 @@ Route::get('/', function () {
 });
 Route::get('/home/login2', function () {
     return view('home/login2');
-});
+})->middleware('guest');
 Route::get('/song/player', function () {
     return view('song/player');
-});
+})->middleware('auth');
 Route::get('/song/search',[SongController::class,'search']);
 
 Route::get('/song/register', function () {
@@ -59,9 +57,15 @@ Route::get('/song/admin', function () {
     return view('admin');
 });
 
+Route::post('/logout', function(){
+    Auth::logout();
+    request()->session()->invalidate();
+    return redirect('/');
+});
 //Login
-Route::get('/login',[LoginController::class,'show']); 
-Route::post('/login',[LoginController::class,'login']); 
+//Route::get('/login',[LoginController::class,'show']); 
+Route::post('/login',[LoginController::class,'login']);
+Route::post('/login2',[LoginController::class,'authenticate']); 
 //Test
 
 
