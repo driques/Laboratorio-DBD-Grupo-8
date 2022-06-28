@@ -10,6 +10,17 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
+    /**public function country(){
+        return $this->hasOne(country::class);
+    }
+
+    public function follow_user(){
+        return $this->belongsTo(follow_user::class);
+    }
+
+    public function rol(){
+        return $this->hasOne(rol::class);
+    }*/
     use HasApiTokens, HasFactory, Notifiable;
 
     /**

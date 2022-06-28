@@ -82,7 +82,7 @@
                     <div class="d-flex flex-row align-items-center mb-4">
                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
-                        <input type="text" id="name" name="name" class="form-control" />
+                        <input type="text" id="name" name="name" value="" class="form-control" />
                         <label class="form-label" for="name">Tu nombre</label>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                     <div class="d-flex flex-row align-items-center mb-4">
                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
-                        <input type="email" id="email" name="email" class="form-control" />
+                        <input type="email" id="email" name="email" value="" class="form-control" />
                         <label class="form-label" for="email">Tu email</label>
                         </div>
                     </div>
@@ -98,32 +98,26 @@
                     <div class="d-flex flex-row align-items-center mb-4">
                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
-                        <input type="password" id="password" name="password" class="form-control" />
-                        <label class="form-label" for="password">Contrasenna</label>
-                        </div>
-                    </div>
-
-                    <div class="d-flex flex-row align-items-center mb-4">
-                        <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                        <div class="form-outline flex-fill mb-0">
-                        <input type="text" id="form3Example1c" class="form-control" />
-                        <label class="form-label" for="form3Example1c">Tu apellido</label>
+                        <input type="password" id="password" name="password" value="" class="form-control" />
+                        <label class="form-label" for="password">Contraseña</label>
                         </div>
                     </div>
                    
-                    <select class="form-select" name="id" id="id" aria-label="Elige tu país de residencia">
+                    <div class="d-flex flex-row align-items-center mb-4">
+                        <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                        <div class="form-outline flex-fill mb-0">
+                        <input type="date" id="birth_year" name="birth_year" value="" class="form-control" />
+                        <label class="form-label" for="birth_year">fecha de nacimiento</label>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4" method="GET" action='/countries'>
+                    <select class="form-select" name="id_pais" id="id_pais" aria-label="Elige tu país de residencia">
                     @foreach ($countries as $country)
                           <option selected>Open this select menu</option>
-                          <option value=>
+                          <option value="{{$countries->id}}">{{$countries->$name_country}}
                           @endforeach
                     </select>
-
-                    <div class="d-flex flex-row align-items-center mb-4">
-                        <i class="fas fa-key fa-lg me-3 fa-fw"></i>
-                        <div class="form-outline flex-fill mb-0">
-                        <input type="password" id="form3Example4cd" class="form-control" />
-                        <label class="form-label" for="form3Example4cd">Repite tu contrasenna</label>
-                        </div>
                     </div>
 
                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">

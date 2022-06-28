@@ -78,17 +78,17 @@
         </div>
         <h3 class="text-center p-4"style=" color:#ffffff">Inicie sesión para continuar</h3>
         
-        <form action="/auth" method="GET" class = " border rounded-4 shadow bg-dark bg-opacity-50 border-dark p-4 fs-5 text-light">
+        <form action="/auth" method="POST" class = " border rounded-4 shadow bg-dark bg-opacity-50 border-dark p-4 fs-5 text-light">
             <div class="form-group">
                 <label class="mb-2" for="exampleFormControlInput1">Email </label>
-                <input type="email" name="user" class="form-control" id="mailInputLogin" placeholder="nombre@ejemplo.com"  required
+                <input type="email" name="email" class="form-control" id="mailInputLogin" placeholder="nombre@ejemplo.com"  required
                 oninvalid="this.setCustomValidity('Se debe seguir el formato <Texto@Texto.dominio>')"
                 oninput="this.setCustomValidity('')">
             </div>
             <br>
             <div class="form-group">
                 <label class="mb-3" for="inputPassword">Contraseña</label>
-                <input type="password" name="pass" class="form-control" id="passwordInputLogin" placeholder="**********" required>
+                <input type="password" name="password" class="form-control" id="passwordInputLogin" placeholder="**********" required>
             </div>
             <br>
                 <button type="submit" class="btn btn-primary ms-md-5 p-3">

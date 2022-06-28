@@ -9,6 +9,7 @@ use App\Models\Song;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -80,7 +81,7 @@ class UserController extends Controller
         $newUser = new User();
         $newUser->name = $request->name;
         $newUser->email = $request->email;
-        $newUser->password = $request->password;
+        $newUser->password = Hash::make($request->password);
         $newUser->plan = TRUE;
         $newUser->birth_year = $request->birth_year;
         $newUser->id_pais = $request->id_pais;
@@ -90,7 +91,8 @@ class UserController extends Controller
                                 //como hacerlo
         $newUser->borrado = FALSE;
         $newUser-> save();
-        return response()->json(['Se ha creado el usuario'],201);
+        $users = User::where('borrado',false)->get();
+        return view('home/home',compact('users'));
        
     }
 

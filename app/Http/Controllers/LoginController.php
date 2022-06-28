@@ -11,9 +11,10 @@ class LoginController extends Controller
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
-            'email' => ['required|min:4|max:256|unique:users'],
-            'password' => ['required|min : 8|max : 20'],
-        ],[ 
+            'email' => 'required|min:4|max:256|unique:users',
+            'password' => 'required|min : 8|max : 20',
+        ],
+        [ 
         'email.required'=>'Se debe ingresar un email',
         'email.min'=>'Se debe ingresar un email de mas caracteres',
         'email.max'=>'Se debe ingresar un email de menos caracteres',
@@ -21,8 +22,8 @@ class LoginController extends Controller
         'pasword.required'=>'se debe ingresar una contrasenia',
         'pasword.min'=>'se debe ingresar una contrasenia de 8 o mas caracteres',
         'pasword.required'=>'se debe ingresar una contrasenia de menos de 20 caracteres',
-        ]);
-        
+        ]
+        );
         if (Auth::attempt($credentials)) {
             //$request->session()->regenerate();
             return redirect('/');

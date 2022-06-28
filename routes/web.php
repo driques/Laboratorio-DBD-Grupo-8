@@ -63,7 +63,7 @@ Route::get('/song/admin', function () {
 });
 
 //Login
-Route::get('/auth',[LoginController::class,'authenticate']); 
+Route::post('/auth','App\Http\Controllers\LoginController@authenticate');
 //Albums
 Route::get('/albums',[AlbumController::class,'index']); 
 Route::get('/albums/{id}',[AlbumController::class,'show']);

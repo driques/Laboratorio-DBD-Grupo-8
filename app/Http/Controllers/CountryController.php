@@ -19,7 +19,7 @@ class CountryController extends Controller
         if($countries->isEmpty()){
             return response()->json(['response'=>'no se encuentran paises registrados',]);
         }
-        return response($countries,200);
+        return view('register',array('countries'=>$countries));
     }
 
     /**
