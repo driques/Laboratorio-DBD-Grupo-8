@@ -228,5 +228,12 @@ class SongController extends Controller
         ], 201);
         
     }
+    public function search(Request $request){
+        $canciones=Song::where("nombre_cancion",'ilike',$request->texto."%")->take(10)->get();
+        //return array('canciones'=>$canciones);
+        return view("song.nameSong",compact("canciones"));  
+        //return view('/song/search',array('canciones'=>$canciones));
+
+    }
   
 }

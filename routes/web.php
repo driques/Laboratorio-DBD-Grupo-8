@@ -50,8 +50,10 @@ Route::get('/home/login2', function () {
 Route::get('/song/player', function () {
     return view('song/player');
 });
-Route::get('/song/song', function () {
-    return view('song/song');
+Route::get('/song/search',[SongController::class,'search']);
+
+Route::get('/song/register', function () {
+    return view('song/songRegister');
 });
 Route::get('/song/admin', function () {
     return view('admin');
@@ -152,6 +154,6 @@ Route::post('/songs/store',[SongController::class,'store']);
 Route::put('/songs/update/{id}',[SongController::class,'update']);
 Route::put('/songs/delete/{id}',[SongController::class,'delete']);
 Route::delete('/songs/destroy/{id}',[SongController::class,'destroy']);
-Route::get('/songs/search',[SongController::class,'search']);
+
 
 //Auth::routes();

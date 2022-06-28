@@ -61,6 +61,12 @@
             filter: blur(4px);
             z-index: -1;
         }
+        #resultados{
+            background-color: black;
+            color: aliceblue;
+            position: absolute;
+            z-index: 1;
+        }
 
         .image-stack {
             display: grid;
@@ -85,16 +91,34 @@
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-1">
         <img src="{{URL('images/DEBEDE.png')}}" width="40" height="40" class="d-inline-block align-left me-3" alt="">
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">DEBEDE MUSIC</a>
-        <form class="form-inline my-2 my-lg-0" type="get" action="{{url('/songs/search')}}">
-            <input class="form-control form-control-dark w-100" type="search" name="query" placeholder="Buscar canción" aria-label="search">
-        </form>
-        <ul class="navbar-nav px-3">
-            <li class="nav-item text-nowrap">
-                <a href="/">
-                    <button id="controlMusic" type="submit" class="btn btn-secondary btn"><span class="bi bi-box-arrow-right"></span> </button>
-                </a>
-            </li>
-        </ul>
+        <div class="col-8">
+            <div class="input-group">
+                <input type="text" class="form-control" id="texto" placeholder="Buscar canción">
+                <div class="input-group-append"><span class="input-group-text">Buscar</span></div>
+            </div>
+            <div id="resultados" class="bg-ligh">
+               
+
+            </div>
+        </div>
+        <script> window.addEventListener('load',function(){ 
+            document.getElementById("texto").addEventListener("keyup",()=>{
+            if((document.getElementById("texto").value.length)>=1)
+            fetch(`/song/search?texto=${document.getElementById("texto").value}`,{method:'get'})
+            .then(response =>response.text())
+            .then(html => {document.getElementById("resultados").innerHTML=html})
+            else
+            document.getElementById("resultados").innerHTML=""
+            })
+            });
+        </script>
+            <ul class="navbar-nav px-3">
+                <li class="nav-item text-nowrap">
+                    <a href="/">
+                        <button id="controlMusic" type="submit" class="btn btn-secondary btn"><span class="bi bi-box-arrow-right"></span> </button>
+                    </a>
+                </li>
+            </ul>
     </nav>
     <div>
 
@@ -105,20 +129,46 @@
 
             </div>
         </div>
-
+        <div id="clear">
+        </div>
 
     </div>
     <script>
+
+        function getSong(nombreCancion){
+            document.getElementById("tituloCancion").innerHTML = nombreCancion;
+        }
+
+        var urlMusic = null;
+        var music = null;
+
+        function getUrl(newUrl){
+            urlMusic = newUrl;
+            var audioElem = new Audio(newUrl);
+            music = audioElem;
+            console.log(urlMusic);
+
             
-            const music = new Audio("//www.mboxdrive.com/Eminem_-_Without_Me_47829431.mp3");
-            function playMusic(){
-                music.play();
-            }
-            function stopMusic(){
+        }
+        function limpiar() {
+            document.getElementById("texto").value = "";
+            document.getElementById("resultados").value=document.getElementById("clear").value;
+}
+        
+
+        function playMusic() {
+            music.play();
+           
+        }
+
+        function stopMusic() {
                 music.pause();
-               
-            }
-        </script>
+            
+        }
+          
+
+       
+    </script>
     <h1 id="tituloCancion">
         Sin reproducción
     </h1>
@@ -139,10 +189,10 @@
         <!-- Grid column -->
         <div class="col-auto p-2 text-center">
             <!-- Content -->
-            
+
             <button id="controlMusic" type="submit" class="btn btn-primary btn"><span class="bi-arrow-left"></span>
             </button>
-            <button id="controlMusic" type="submit" class="btn btn-primary btn-lg" onclick="playMusic()" ><span class="bi-play"></span></button>
+            <button id="controlMusic" type="submit" class="btn btn-primary btn-lg" onclick="playMusic()"><span class="bi-play"></span></button>
             <button id="controlMusic" type="submit" class="btn btn-secondary btn-lg" onclick="stopMusic()"><span class="bi-pause"></span></button>
             <button id="controlMusic" type="submit" class="btn btn-primary btn"><span class="bi-arrow-right"></span></button>
             </button>
