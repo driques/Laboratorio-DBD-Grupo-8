@@ -92,7 +92,8 @@ class SongController extends Controller
         $newSong->borrado = FALSE;
         $newSong->url_cancion=$request->url_cancion;
         $newSong-> save();
-        return response()->json(['Se ha creado la canción'],201);
+        $songs = Song::where('borrado',false)->get();
+        return view('home/home',compact('songs'));
         //
     }
 

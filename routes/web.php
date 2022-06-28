@@ -39,6 +39,7 @@ Route::get('/album', function () {
 Route::get('/home/register', function () {
     return view('home/register');
 });
+Route::get('/home/register', [CountryController::class,'index']);
 
 Route::get('/', function () {
     return view('home/home');
@@ -59,6 +60,8 @@ Route::get('/song/admin', function () {
 //Login
 Route::get('/login',[LoginController::class,'show']); 
 Route::post('/login',[LoginController::class,'login']); 
+//Test
+
 
 
 
