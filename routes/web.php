@@ -30,7 +30,7 @@ Route::get('/', function () {
 });
 */
 
-
+ 
 
 Route::get('/album', function () {
     return view('album/indexAlbum');

@@ -92,7 +92,7 @@ class UserController extends Controller
         $newUser->borrado = FALSE;
         $newUser-> save();
         $users = User::where('borrado',false)->get();
-        return view('home/home',compact('users'));
+        return view('home/register',compact('users'));
        
     }
 
