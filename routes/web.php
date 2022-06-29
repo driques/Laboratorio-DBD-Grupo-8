@@ -41,6 +41,8 @@ Route::get('/playlists', function () {
 Route::get('/users', function () {
     return view('user/index');
 });
+Route::get('/song/search',[SongController::class,'search']);
+Route::get('/song/searchNavbar',[SongController::class,'searchNavbar']);
 
 Route::get('/albums/{id}/edit', function () {
     return view('album/edit');
@@ -70,7 +72,7 @@ Route::get('/song/player', function () {
     return view('song/player');
 })->middleware('auth');
 
-Route::get('/song/search',[SongController::class,'search']);
+
 
 Route::get('/song/register', function () {
     return view('song/songRegister');

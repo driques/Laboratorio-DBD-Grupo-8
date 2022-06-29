@@ -109,7 +109,7 @@
                 <input type="text" class="form-control" id="texto" placeholder="Buscar canción">
                 <div class="input-group-append"><span class="input-group-text">Buscar</span></div>
             </div>
-            <div id="resultados" class="bg-ligh">
+            <div id="resultados" class="bg ">
                
             </div>
         </div>
@@ -146,10 +146,24 @@
 
     </div>
     <script>
-
-        function getSong(nombreCancion){
+         function getSong(nombreCancion){
             document.getElementById("tituloCancion").innerHTML = nombreCancion;
         }
+        //Request.Querystring("urlsong");
+        //Request.Querystring("namesong");
+        //const urltest = new URLSearchParams();
+        let params=(new URL(document.location)).searchParams;
+        let namesong=params.get("namesong");
+        console.log("estoy aqui");
+        //console.log(namesong);
+        //getSong(namesong);
+        if(namesong!=null){
+            alert(namesong);
+            console.log("diego toro");
+            getSong(namesong);
+            //document.getElementById("tituloCancion").innerHTML = namesong;
+        }
+       
 
         var urlMusic = null;
         var music = null;

@@ -235,5 +235,11 @@ class SongController extends Controller
         //return view('/song/search',array('canciones'=>$canciones));
 
     }
-  
+    public function searchNavbar(Request $request){
+        $canciones=Song::where("nombre_cancion",'ilike',$request->texto."%")->take(10)->get();
+        //return array('canciones'=>$canciones);
+        return view("song.navSong",compact("canciones"));  
+        //return view('/song/search',array('canciones'=>$canciones));
+
+    }
 }

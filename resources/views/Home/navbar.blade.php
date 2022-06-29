@@ -1,4 +1,12 @@
 
+        <style>
+        #resultados{
+            background-color: black;
+            color: aliceblue;
+            position: absolute;
+            z-index: 4;
+        }
+        </style>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">
@@ -21,13 +29,18 @@
         <script> window.addEventListener('load',function(){ 
             document.getElementById("texto").addEventListener("keyup",()=>{
             if((document.getElementById("texto").value.length)>=1)
-            fetch(`/song/search?texto=${document.getElementById("texto").value}`,{method:'get'})
+            fetch(`/song/searchNavbar?texto=${document.getElementById("texto").value}`,{method:'get'})
             .then(response =>response.text())
             .then(html => {document.getElementById("resultados").innerHTML=html})
             else
             document.getElementById("resultados").innerHTML=""
             })
             });
+        </script>
+        <script>
+          function redirect(namesong,urlsong){
+            window.location.href="/song/player?namesong="+namesong+"&urlsong="+urlsong;
+          } 
         </script>
          <button type="submit" class="btn btn-primary pl-auto me-3 ">Buscar </button>
       @endauth

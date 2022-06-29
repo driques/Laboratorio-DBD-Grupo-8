@@ -33,33 +33,6 @@
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     </head>
     <body id="grid1">
-      
-<!-- Cracion de navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/">
-      <img src="{{URL('images/DEBEDE.png')}}" width="50" height="50" class="d-inline-block align-left me-3" alt="">
-      DEBEDE Music
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-    <ul class="navbar-nav right">
-        
-        <li class="nav-item justify-content-end">
-          <a class="nav-link" aria-current="page" href="#">¿Quiénes somos?</a>
-        </li>
-        <li class="nav-item justify-content-end">
-          <a class="nav-link" href="#">Ayuda</a>
-        </li>
-        
-        <body style="background-color:rgb(33, 37, 41);">
-        </ul>
-    </div>
-  </div>
-
-</nav>
 <div class="container">
       <div class="row text-center">
         <div class="col ">
