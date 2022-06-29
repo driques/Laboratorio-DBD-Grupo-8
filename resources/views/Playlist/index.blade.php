@@ -30,7 +30,7 @@
     </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>DBD music - Albumes</title>
+    <title>DBD music - Admin->Playlists</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
 
@@ -39,6 +39,7 @@
     @include('home.navbar')
 
     @section('contenido')
+    <a href= "playlists/create" class="btn btn-primary">Crear playlist</a>
     <table class="table table-dark table-striped mt-4">
         <thead>
             <tr>

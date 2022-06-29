@@ -30,6 +30,10 @@ Route::get('/', function () {
 });
 */
 
+Route::get('/playlists/create', function () {
+    return view('playlist/create');
+});
+
 Route::get('/playlists', function () {
     return view('playlist/index');
 });

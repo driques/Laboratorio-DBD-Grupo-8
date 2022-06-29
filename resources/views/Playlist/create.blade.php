@@ -49,33 +49,20 @@
     </nav>
 
     @section('contenido')
-    <a href= "albums/create" class="btn btn-primary">Crear album</a>
-    <table class="table table-dark table-striped mt-4">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nombre Album</th>
-                <th scope="col">Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($albums as $album)
-            <tr>
-                <td> {{$album->id}}</td>
-                <td> {{$album->album_name}}</td>
-                <td>
-                <form action="albums/delete/{{$album->id}}" method = "POST">
-                        <a href="album/{$album->id}/edit" class="btn btn-info">Editar album</a>
-                        @csrf
-                        @method('PUT')
-                        <button type="submit" class="btn btn-danger">Eliminar album</button>
-                </form>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-
-    </table>
+    <h2>Creacion de playlist</h2>
+    <form action="/playlists/store" method="POST">
+        @csrf
+        <div class="mb-3">
+            <label for="" class="from-label">Nombre playlist</label>
+            <input id="nombre_playlist" name="nombre_playlist" type="text" class="form-control" tabindex="1" value=""></input>
+        </div>
+        <div class="mb-3">
+            <label for="" class="from-label">Creador de la playlist</label>
+            <input id="playlist_creator" name="playlist_creator" type="text" class="form-control" tabindex="1" value=""></input>
+        </div>
+        <a href="/albums" class="btn btn-secondary" tabindex="5">Cancelar</a>
+        <button type="submit" class="btn btn-danger" tabindex="4">Guardar</button>
+    </form>
     @endsection
 
 </body>

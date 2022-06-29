@@ -31,7 +31,7 @@ class PlaylistController extends Controller
      */
     public function create()
     {
-        //
+        return view('playlist.create');
     }
 
     /**
@@ -68,12 +68,7 @@ class PlaylistController extends Controller
         $newPlaylist->likes_playlist = 0;
         $newPlaylist->save();
 
-        return response()->json([
-            'message' => 'Playlist creada con exito',
-            'nombre_playlist'=> $newPlaylist->nombre_playlist,
-            'likes_playlist' =>$newPlaylist->likes_playlist,
-            'id' => $newPlaylist->id,
-        ], 201);
+        return redirect('/playlists');
     }
 
     /**
@@ -158,10 +153,7 @@ class PlaylistController extends Controller
         }
         $playlist->borrado = true;
         $playlist->save();
-        return response()->json([
-            'message' => 'La playlist fue eliminada correctamente(soft delete)',
-            'id' => $playlist->id,
-        ], 201);
+        return redirect('/playlists');
     }
 
     /**
