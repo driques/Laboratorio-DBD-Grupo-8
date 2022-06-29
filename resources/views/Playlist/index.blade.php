@@ -59,10 +59,10 @@
                 <td> {{$playlist->playlist_creator}}</td>
                 <td>
                 <form action="playlists/delete/{{$playlist->id}}" method = "POST">
-                        <a href="album/{$album->id}/edit" class="btn btn-info">Editar Usuario</a>
+                        <a href="playlists/{{$playlist->id}}/edit" class="btn btn-info">Editar playlist</a>
                         @csrf
                         @method('PUT')
-                        <button type="submit" class="btn btn-danger">Eliminar Usuario</button>
+                        <button type="submit" class="btn btn-danger">Eliminar playlist</button>
                 </form>
                 </td>
             </tr>

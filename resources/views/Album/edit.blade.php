@@ -49,17 +49,27 @@
     </nav>
 
     @section('contenido')
+   
     <h2>Edicion de album</h2>
-    <form action="{{ route('albums.update', $album->id) }}" method="POST">
+   
+    <form method="post" action="{{ route('album.update', $album->id)}}">
+        
         @method('PATCH')
         @csrf
+
         <div class="mb-3">
-            <label for="" class="from-label">Nombre album</label>
-            <input id="codigo" name="album_name" type="text" class="form-control" tabindex="1" value="{{ $album->album_name }}"></input>
+
+            <label for="album_name" class="from-label">Nombre album</label>
+            <input id="album_name" name="album_name" type="text" class="form-control" tabindex="1" value="{{ $album->album_name }}"></input>
+       
         </div>
+        
         <a href="/albums" class="btn btn-secondary" tabindex="5">Cancelar</a>
+       
         <button type="submit" class="btn btn-danger" tabindex="4">Guardar cambios</button>
+    
     </form>
+    
     @endsection
 
 </body>

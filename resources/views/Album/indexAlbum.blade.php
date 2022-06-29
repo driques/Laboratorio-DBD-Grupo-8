@@ -55,7 +55,8 @@
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Nombre Album</th>
-                <th scope="col">Acciones</th>
+                <th scope="col">Accion 1</th>
+                <th scope="col">Accion 2</th>
             </tr>
         </thead>
         <tbody>
@@ -63,9 +64,9 @@
             <tr>
                 <td> {{$album->id}}</td>
                 <td> {{$album->album_name}}</td>
+                <td><a href="albums/{{$album->id}}/edit" class="btn btn-info">Editar album</a></td>
                 <td>
                 <form action="albums/delete/{{$album->id}}" method = "POST">
-                        <a href="album/{$album->id}/edit" class="btn btn-info">Editar album</a>
                         @csrf
                         @method('PUT')
                         <button type="submit" class="btn btn-danger">Eliminar album</button>

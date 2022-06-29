@@ -30,8 +30,17 @@ Route::get('/', function () {
 });
 */
 
+
+Route::get('/crudmenu', function () {
+    return view('crudmenu/index');
+});
+
 Route::get('/playlists/create', function () {
     return view('playlist/create');
+});
+
+Route::get('/playlists/{id}/edit', function ($id) {
+    return view('playlist/index',compact('id'));
 });
 
 Route::get('/playlists', function () {
@@ -100,7 +109,7 @@ Route::post('/login2',[LoginController::class,'authenticate']);
 Route::get('/albums',[AlbumController::class,'index']); 
 Route::get('/albums/{id}',[AlbumController::class,'show']);
 Route::post('/albums/store',[AlbumController::class,'store']);
-Route::get('/stocks/{stock}/edit',[AlbumController::class,'edit']);
+Route::get('/albums/{stock}/edit',[AlbumController::class,'edit']);
 Route::put('/albums/update/{id}',[AlbumController::class,'update']);
 Route::put('/albums/delete/{id}',[AlbumController::class,'delete']);
 Route::delete('/albums/destroy/{id}',[AlbumController::class,'destroy']);

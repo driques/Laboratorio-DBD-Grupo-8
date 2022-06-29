@@ -30,39 +30,108 @@
     </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>DBD music - Albumes</title>
+    <title>DBD music - Admin->Playlists</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
 
 <body id="grid1">
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{{url('/')}}">
-                <img src="{{URL('images/DEBEDE.png')}}" width="50" height="50" class="d-inline-block align-left me-3" alt="">
-                DEBEDE Music
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-    </nav>
+    @include('home.navbar')
 
     @section('contenido')
-    <h2>Creacion de playlist</h2>
-    <form action="/playlists/store" method="POST">
-        @csrf
-        <div class="mb-3">
-            <label for="" class="from-label">Nombre playlist</label>
-            <input id="nombre_playlist" name="nombre_playlist" type="text" class="form-control" tabindex="1" value=""></input>
+
+    <div>
+        <label>Menu de CRUD para administrador</label>
+    </div>
+
+    <div class="container">
+        <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+            
+            <div class="col">
+                <div class="text-center bg-dark bg-gradient p-3 borderless">
+                    <a href="playlists" class="btn btn-primary center" >Playlists</a>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="text-center bg-dark bg-gradient p-3 borderless">
+                    <a href="songs" class="btn btn-primary center" >Cancipnes</a>
+                </div>
+            </div>
+    
+            <div class="col">
+                <div class="text-center bg-dark bg-gradient p-3 borderless">
+                    <a href="albums" class="btn btn-primary center" >Albums</a>
+                </div>
+            </div>
+    
+            <div class="col">
+                <div class="text-center bg-dark bg-gradient p-3 borderless">
+                     <a href="users" class="btn btn-primary center" >Usuarios</a>
+                </div>
+            </div>
+    
+            <div class="col">
+                <div class="text-center bg-dark bg-gradient p-3 borderless">
+                    <a href="genres" class="btn btn-primary center" >Generos</a>
+                </div>
+            </div>
         </div>
-        <div class="mb-3">
-            <label for="" class="from-label">Creador de la playlist</label>
-            <input id="playlist_creator" name="playlist_creator" type="text" class="form-control" tabindex="1" value=""></input>
+    </div>
+
+    <div class="container">
+        <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+            
+            <div class="col">
+                <div class="text-center bg-dark bg-gradient p-3 borderless">
+                    <a href="countries" class="btn btn-primary center" >Paises</a>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="text-center bg-dark bg-gradient p-3 borderless">
+                    <a href="paymentHistories" class="btn btn-primary center" >Pagos</a>
+                </div>
+            </div>
+    
+            <div class="col">
+                <div class="text-center bg-dark bg-gradient p-3 borderless">
+                    <a href="like_song" class="btn btn-primary center" >Canciones gustadas</a>
+                </div>
+            </div>
+    
+            <div class="col">
+                <div class="text-center bg-dark bg-gradient p-3 borderless">
+                     <a href="roles" class="btn btn-primary center" >Roles de usuario</a>
+                </div>
+            </div>
+    
+            <div class="col">
+                <div class="text-center bg-dark bg-gradient p-3 borderless">
+                    <a href="follow_users" class="btn btn-primary center" >Usuarios seguidos</a>
+                </div>
+            </div>
         </div>
-        <a href="/playlists" class="btn btn-secondary" tabindex="5">Cancelar</a>
-        <button type="submit" class="btn btn-danger" tabindex="4">Guardar</button>
-    </form>
+    </div>
+
+    <div class="container">
+        <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+            
+            <div class="col">
+                <div class="text-center bg-dark bg-gradient p-3 borderless">
+                    <a href="playlist_group" class="btn btn-primary center" >Canciones de playlists</a>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="text-center bg-dark bg-gradient p-3 borderless">
+                    <a href="paymentHistories" class="btn btn-primary center" >Restricciones de canciones por paises</a>
+                </div>
+            </div>
+    
+            
+        </div>
+    </div>
     @endsection
 
 </body>
