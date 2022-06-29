@@ -13,6 +13,8 @@ use App\Http\Controllers\PlaylistController;
 use App\Http\Controllers\Playlist_groupController;
 use App\Http\Controllers\Like_songController;
 use App\Http\Controllers\LoginController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Middleware\Authenticate;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +31,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 */
-
+Route::get('/profile', function () {
+    return view('user/profile');
+})->middleware('auth');
 
 Route::get('/crudmenu', function () {
     return view('crudmenu/index');
@@ -109,13 +113,6 @@ Route::post('/login2',[LoginController::class,'authenticate']);
 Route::get('/albums',[AlbumController::class,'index']); 
 Route::get('/albums/{id}',[AlbumController::class,'show']);
 Route::post('/albums/store',[AlbumController::class,'store']);
-<<<<<<< Updated upstream
-Route::get('/albums/{stock}/edit',[AlbumController::class,'edit']);
-=======
-
-Route::get('/stocks/{stock}/edit',[AlbumController::class,'edit']);
-
->>>>>>> Stashed changes
 Route::put('/albums/update/{id}',[AlbumController::class,'update']);
 
 
