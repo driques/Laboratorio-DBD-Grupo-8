@@ -179,8 +179,6 @@
        //console.log(namesong);
        //getSong(namesong);
        if(namesong!=null){
-           
-           console.log("diego toro");
            getSong(namesong);
            getUrl(urlSong);
            //document.getElementById("tituloCancion").innerHTML = namesong;
@@ -193,14 +191,46 @@
        
 
        function playMusic() {
-           music.play();
+        music.play();
           
        }
 
        function stopMusic() {
+            
                music.pause();
            
        }
+       function rewindAudio() {
+           
+            if (window.HTMLAudioElement) {
+                try {
+                   
+                    music.currentTime -= 15.0; //Aquí se establece el tiempo a retroceder
+                }
+                catch (e) {
+                  
+                     if(window.console && console.error("Error:" + e));
+                }
+            }
+        }
+
+             // Adelanta el audio 30 segundos
+
+        function forwardAudio() {
+
+           
+            if (window.HTMLAudioElement) {
+                try {
+                   
+                    music.currentTime += 15.0;  
+                }
+                catch (e) {
+                   
+                     if(window.console && console.error("Error:" + e));
+                }
+            }
+        }
+
          
 
       
@@ -223,11 +253,11 @@
         <div class="col-auto p-2 text-center">
             <!-- Content -->
 
-            <button id="controlMusic" type="submit" class="btn btn-primary btn"><span class="bi-arrow-left"></span>
+            <button id="controlMusic" type="submit" class="btn btn-primary btn"><span onclick="rewindAudio()" class="bi bi-skip-backward-circle"> -15Seg</span>
             </button>
             <button id="controlMusic" type="submit" class="btn btn-primary btn-lg" onclick="playMusic()"><span class="bi-play"></span></button>
             <button id="controlMusic" type="submit" class="btn btn-secondary btn-lg" onclick="stopMusic()"><span class="bi-pause"></span></button>
-            <button id="controlMusic" type="submit" class="btn btn-primary btn"><span class="bi-arrow-right"></span></button>
+            <button id="controlMusic" type="submit" class="btn btn-primary btn"><span onclick="forwardAudio()"class="bi bi-skip-forward-circle"> +15Seg</span></button>
             </button>
             <!-- Grid column -->
             <div class="col  ">

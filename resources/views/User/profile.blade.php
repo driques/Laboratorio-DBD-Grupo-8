@@ -66,7 +66,7 @@
                     <label for="password" class="form-label">Contraseña</label>
                     <div class="input-group mb-2">
                         <span class="input-group-text" id="basic-addon1">Contraseña</span>
-                        <input type="text" id="password" class="form-control" placeholder="Ingresa tu nueva contraseña" aria-label="password" aria-describedby="basic-addon1">
+                        <input type="password" id="password" class="form-control" placeholder="Ingresa tu nueva contraseña" aria-label="password" aria-describedby="basic-addon1">
                     </div>
                     <label class="form-label">Fecha de nacimiento actual</label>
                     <span class="d-block p-2 bg-white border rounded">{{auth()->user()->birth_year}}</span>

@@ -181,4 +181,26 @@ class Follow_userController extends Controller
         ], 201);
         
     }
+    public function searchFollowsUser(Request $request){
+            $followsUser=Follow_user::where("follower",$request->texto)->where('borrado',false)->get();
+            //return array('followsUser'=>$followsUser,count($followsUser));
+
+            return count($followsUser);
+            //return array('followsUser'=>$followsUser,count($followsUser));
+
+            //return view("song.nameSong",compact("followsUser"));  
+            //return view('/song/search',array('canciones'=>$canciones));
+    
+        
+    }
+    public function searchFollowerUser(Request $request){
+        $followerUser=Follow_user::where("following",$request->texto)->where('borrado',false)->get();
+        return count($followerUser);
+        //return array('followerUser'=>$followerUser,count($followerUser));
+
+        //return view("song.nameSong",compact("followsUser"));  
+        //return view('/song/search',array('canciones'=>$canciones));
+
+    
+}
 }

@@ -63,7 +63,7 @@
 
       <div class="col-8">
         <div class="input-group">
-          <input type="text" class="form-control" id="texto" placeholder="Buscar canción">
+          <input type="text" class="form-control" id="texto" placeholder="Buscar canción o usuario">
         </div>
         <div id="resultados" class="bg-ligh">
 

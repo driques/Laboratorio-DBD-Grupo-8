@@ -229,16 +229,17 @@ class SongController extends Controller
         
     }
     public function search(Request $request){
-        $canciones=Song::where("nombre_cancion",'ilike',$request->texto."%")->take(10)->get();
+        $canciones=Song::where("nombre_cancion",'ilike',$request->texto."%")->where('borrado',false)->take(10)->get();
         //return array('canciones'=>$canciones);
         return view("song.nameSong",compact("canciones"));  
         //return view('/song/search',array('canciones'=>$canciones));
 
     }
     public function searchNavbar(Request $request){
-        $canciones=Song::where("nombre_cancion",'ilike',$request->texto."%")->take(10)->get();
+        $canciones=Song::where("nombre_cancion",'ilike',$request->texto."%")->where('borrado',false)->take(10)->get();
+        $usuarios=User::where("name",'ilike',$request->texto."%")->where('borrado',false)->take(10)->get();
         //return array('canciones'=>$canciones);
-        return view("song.navSong",compact("canciones"));  
+        return view("song.navSong",compact("canciones"),compact("usuarios"));  
         //return view('/song/search',array('canciones'=>$canciones));
 
     }

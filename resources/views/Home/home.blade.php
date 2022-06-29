@@ -316,6 +316,7 @@
   </div>
   @auth
   <h1 style="box-sizing:border-box; display:block; font-size: 80px; text-align: center; color:#bbb; ">Ranking DEBEDE</h1>
+  
   @endauth
 
   </br>

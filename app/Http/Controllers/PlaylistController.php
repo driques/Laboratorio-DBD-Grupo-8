@@ -174,4 +174,13 @@ class PlaylistController extends Controller
             'id' => $playlist->id,
         ], 201);
     }
+
+    public function searchPlaylistByOwner(Request $request){
+
+        $playlistUser=Playlist::where("playlist_creator",$request->texto)->where('borrado',false)->get();
+        return count($playlistUser);
+
+
+
+    }
 }
