@@ -42,7 +42,7 @@ Route::get('/users', function () {
     return view('user/index');
 });
 
-Route::get('/myprofile', function () {
+Route::get('user/profile', function () {
     return view('user/myprofile');
 });
 Route::get('/song/search',[SongController::class,'search']);
