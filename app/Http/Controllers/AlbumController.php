@@ -55,7 +55,7 @@ class AlbumController extends Controller
         $newAlbum->album_name = $request->album_name;
         $newAlbum->borrado = FALSE;
         $newAlbum-> save();
-        return redirect('/playlists');
+        return redirect('/albums');
     }
 
     /**

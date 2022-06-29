@@ -145,59 +145,66 @@
         </div>
 
     </div>
-    <script>
-         function getSong(nombreCancion){
-            document.getElementById("tituloCancion").innerHTML = nombreCancion;
-        }
-        //Request.Querystring("urlsong");
-        //Request.Querystring("namesong");
-        //const urltest = new URLSearchParams();
-        let params=(new URL(document.location)).searchParams;
-        let namesong=params.get("namesong");
-        console.log("estoy aqui");
-        //console.log(namesong);
-        //getSong(namesong);
-        if(namesong!=null){
-            alert(namesong);
-            console.log("diego toro");
-            getSong(namesong);
-            //document.getElementById("tituloCancion").innerHTML = namesong;
-        }
-       
-
-        var urlMusic = null;
-        var music = null;
-
-        function getUrl(newUrl){
-            urlMusic = newUrl;
-            var audioElem = new Audio(newUrl);
-            music = audioElem;
-            console.log(urlMusic);
-
-            
-        }
-        function limpiar() {
-            document.getElementById("texto").value = "";
-            document.getElementById("resultados").value=document.getElementById("clear").value;
-}
-        
-
-        function playMusic() {
-            music.play();
-           
-        }
-
-        function stopMusic() {
-                music.pause();
-            
-        }
-          
-
-       
-    </script>
+    
     <h1 id="tituloCancion">
         Sin reproducción
     </h1>
+
+
+    <script>
+
+
+
+       var urlMusic = null;
+       var music = null;
+
+        function getSong(nombreCancion){
+           document.getElementById("tituloCancion").innerHTML = nombreCancion;
+       }
+       function getUrl(newUrl){
+           urlMusic = newUrl;
+           var audioElem = new Audio(newUrl);
+           music = audioElem;
+           console.log(urlMusic);
+
+           
+       }
+       //Request.Querystring("urlsong");
+       //Request.Querystring("namesong");
+       //const urltest = new URLSearchParams();
+       let params=(new URL(document.location)).searchParams;
+       let namesong=params.get("namesong");
+       let urlSong = params.get("urlsong");
+       console.log("estoy aqui");
+       //console.log(namesong);
+       //getSong(namesong);
+       if(namesong!=null){
+           
+           console.log("diego toro");
+           getSong(namesong);
+           getUrl(urlSong);
+           //document.getElementById("tituloCancion").innerHTML = namesong;
+       }
+      
+       function limpiar() {
+           document.getElementById("texto").value = "";
+           document.getElementById("resultados").value=document.getElementById("clear").value;
+}
+       
+
+       function playMusic() {
+           music.play();
+          
+       }
+
+       function stopMusic() {
+               music.pause();
+           
+       }
+         
+
+      
+   </script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
