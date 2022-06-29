@@ -120,11 +120,7 @@ class AlbumController extends Controller
         }
         $album->album_name = $request->album_name;
         $album->save();
-        return response()->json([
-            'message' => 'Se cambio el nombre del album',
-            'id' => $album->id,
-            'nombre_album' => $album->album_name
-        ], 201);
+        return redirect('/albums')->with('success', 'Albums updated.'); 
 
     }
     //Cabe destacar que se realizan 2 funciones de borrado, uno para un soft y otro para un hard

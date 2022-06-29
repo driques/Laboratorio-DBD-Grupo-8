@@ -12,7 +12,9 @@
       font-family: 'Roboto',
         sans-serif;
     }
-
+    #carousel-images{
+      z-index: 0;
+    }
     #grid1 {
       /*width: 1200px;*/
       min-height: 720px;
@@ -179,7 +181,7 @@
 <!-- Cracion de navbar -->
 @include('home.navbar')
 <div id="grid1" >
-  <h1 style="color: white; text-align:center;" >Más escuchados en Julio</h1>
+  <h1 style="color: white; text-align:center;" ></h1>
 
   <div id="carousel-images" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
@@ -308,14 +310,19 @@
       </div>
 
     </div>
+    
 
 
   </div>
+  @auth
+  <h1 style="box-sizing:border-box; display:block; font-size: 80px; text-align: center; color:#bbb; ">Ranking DEBEDE</h1>
+  @endauth
+
+  </br>
+  @guest
   <h1 style="box-sizing:border-box; display:block; font-size: 80px; text-align: center; ">Todos tus gustos. </h1>
   <h1 style="font-size: 80px; text-align: center;">La musica que amas. </h1>
   <h1 style="font-size: 80px; text-align: center; color:#bbb;">Al mejor precio.</h1>
-  </br>
-  @guest
   <div class="col text-center">
     <a href="/home/register"
     <button class="btn btn-lg btn-primary rounded-pill">Registrate aquí</button>
