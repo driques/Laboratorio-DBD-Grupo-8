@@ -59,7 +59,7 @@ class CountryController extends Controller
         $newCountry->name_country = $request->name_country;
         $newCountry->borrado = FALSE;
         $newCountry-> save();
-        return response()->json(['Se ha creado el pais'],201);
+        return redirect('/countries');
     }
 
     /**
@@ -123,11 +123,7 @@ class CountryController extends Controller
         }
         $country->name_country = $request->name_country;
         $country->save();
-        return response()->json([
-            'message' => 'Se cambio el nombre del pais',
-            'id' => $country->id,
-            'name_country' => $country->name_country
-        ], 201);
+        return redirect('/countries');
     }
 
      //Cabe destacar que se realizan 2 funciones de borrado, uno para un soft y otro para un hard
@@ -140,10 +136,7 @@ class CountryController extends Controller
         }
         $country->borrado = true;
         $country->save();
-        return response()->json([
-            'message' => 'El pais fue eliminado correctamente',
-            'id' => $country->id,
-        ], 201);
+        return redirect('/countries');
     }
 
     public function destroy($id)

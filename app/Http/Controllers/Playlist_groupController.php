@@ -21,7 +21,7 @@ class Playlist_groupController extends Controller
             return response()->json([
                 'respuesta' => 'No se encuentra la agrupacion de canciones asociada']);
         }
-        return response($playlist_group, 200);
+        return view('playlist_group.index', compact('playlist_group'));
     }
 
     /**

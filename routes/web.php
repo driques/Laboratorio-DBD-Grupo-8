@@ -34,6 +34,14 @@ Route::get('/playlists/create', function () {
     return view('playlist/create');
 });
 
+Route::get('/playlists/{id}/edit', function ($id) {
+    return view('playlist/index',compact('id'));
+});
+
+Route::get('/playlist_group', function () {
+    return view('playlistgroup/index');
+});
+
 Route::get('/playlists', function () {
     return view('playlist/index');
 });
