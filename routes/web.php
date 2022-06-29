@@ -47,7 +47,7 @@ Route::get('/albums/create', function () {
 Route::get('/home/register', function () {
     return view('home/register');
 })->middleware('guest');
-Route::get('/home/register', [CountryController::class,'index'])->middleware('guest');;
+Route::get('/home/register', [CountryController::class,'index'])->middleware('guest');
 
 Route::get('/', function () {
     return view('home/home');
@@ -74,6 +74,7 @@ Route::post('/logout', function(){
     request()->session()->invalidate();
     return redirect('/');
 });
+
 //Login
 //Route::get('/login',[LoginController::class,'show']); 
 //Route::post('/login',[LoginController::class,'login']);
