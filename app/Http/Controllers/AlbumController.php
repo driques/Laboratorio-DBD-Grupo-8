@@ -82,7 +82,7 @@ class AlbumController extends Controller
     public function edit($id)
     {
         $album = Album::find($id);
-        return view('album.edit')->with('album',$album);
+        return view('album.edit', compact('album'));
     }
 
     /**

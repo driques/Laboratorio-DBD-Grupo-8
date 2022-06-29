@@ -54,7 +54,7 @@
         @csrf
         <div class="mb-3">
             <label for="" class="from-label">Nombre album</label>
-            <input id="codigo" name="album_name" type="text" class="form-control" tabindex="1"></input>
+            <input id="album_name" name="album_name" type="text" class="form-control" tabindex="1" value=""></input>
         </div>
         <a href="/albums" class="btn btn-secondary" tabindex="5">Cancelar</a>
         <button type="submit" class="btn btn-danger" tabindex="4">Guardar</button>

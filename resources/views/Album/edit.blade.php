@@ -49,13 +49,13 @@
     </nav>
 
     @section('contenido')
-    <h2>Creacion de album</h2>
-    <form action="/albums/update/{{$album->id}}" method="POST">
-        @method('PUT')
+    <h2>Edicion de album</h2>
+    <form action="{{ route('albums.update', $album->id) }}" method="POST">
+        @method('PATCH')
         @csrf
         <div class="mb-3">
             <label for="" class="from-label">Nombre album</label>
-            <input id="codigo" name="album_name" type="text" class="form-control" tabindex="1" value="{{$album->album_name}}"></input>
+            <input id="codigo" name="album_name" type="text" class="form-control" tabindex="1" value="{{ $album->album_name }}"></input>
         </div>
         <a href="/albums" class="btn btn-secondary" tabindex="5">Cancelar</a>
         <button type="submit" class="btn btn-danger" tabindex="4">Guardar cambios</button>

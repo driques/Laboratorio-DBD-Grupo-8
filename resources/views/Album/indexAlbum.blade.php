@@ -65,7 +65,7 @@
                 <td> {{$album->album_name}}</td>
                 <td>
                 <form action="albums/delete/{{$album->id}}" method = "POST">
-                        <a href="/albums/update/{{$album->id}}" class="btn btn-info">Editar album</a>
+                        <a href="album/{$album->id}/edit" class="btn btn-info">Editar album</a>
                         @csrf
                         @method('PUT')
                         <button type="submit" class="btn btn-danger">Eliminar album</button>

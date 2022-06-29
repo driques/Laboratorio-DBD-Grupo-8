@@ -30,8 +30,18 @@ Route::get('/', function () {
 });
 */
 
-Route::get('/album', function () {
+
+
+Route::get('/albums/{id}/edit', function () {
+    return view('album/edit');
+});
+
+Route::get('/albums', function () {
     return view('album/indexAlbum');
+});
+
+Route::get('/albums/create', function () {
+    return view('album/create');
 });
 
 Route::get('/home/register', function () {
@@ -77,6 +87,7 @@ Route::post('/login2',[LoginController::class,'authenticate']);
 Route::get('/albums',[AlbumController::class,'index']); 
 Route::get('/albums/{id}',[AlbumController::class,'show']);
 Route::post('/albums/store',[AlbumController::class,'store']);
+Route::get('/stocks/{stock}/edit',[AlbumController::class,'edit']);
 Route::put('/albums/update/{id}',[AlbumController::class,'update']);
 Route::put('/albums/delete/{id}',[AlbumController::class,'delete']);
 Route::delete('/albums/destroy/{id}',[AlbumController::class,'destroy']);
