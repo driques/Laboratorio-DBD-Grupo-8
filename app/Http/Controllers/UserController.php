@@ -24,7 +24,7 @@ class UserController extends Controller
         if($users->isEmpty()){
             return response()->json(['response'=>'no se encuentran usuarios registrados',]);
         }
-        return response($users,200);
+        return view('user.index',compact('users'));
         
     }
 
@@ -192,10 +192,7 @@ class UserController extends Controller
         }
         $user->borrado = true;
         $user->save();
-        return response()->json([
-            'message' => 'El user fue eliminado correctamente',
-            'id' => $user->id,
-        ], 201);
+        return redirect('/users');
     }
 
 

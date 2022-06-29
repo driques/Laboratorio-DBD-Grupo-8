@@ -30,7 +30,13 @@ Route::get('/', function () {
 });
 */
 
+Route::get('/playlists', function () {
+    return view('playlist/index');
+});
 
+Route::get('/users', function () {
+    return view('user/index');
+});
 
 Route::get('/albums/{id}/edit', function () {
     return view('album/edit');
@@ -150,12 +156,12 @@ Route::put('/like_song/delete/{id}',[Like_songController::class,'delete']);
 Route::delete('/like_song/destroy/{id}',[Like_songController::class,'destroy']);
 
 //Playlist
-Route::get('/playlist',[PlaylistController::class,'index']); 
-Route::get('/playlist/{id}',[PlaylistController::class,'show']);
-Route::post('/playlist/store',[PlaylistController::class,'store']);
-Route::put('/playlist/update/{id}',[PlaylistController::class,'update']);
-Route::put('/playlist/delete/{id}',[PlaylistController::class,'delete']);
-Route::delete('/playlist/destroy/{id}',[PlaylistController::class,'destroy']);
+Route::get('/playlists',[PlaylistController::class,'index']); 
+Route::get('/playlists/{id}',[PlaylistController::class,'show']);
+Route::post('/playlists/store',[PlaylistController::class,'store']);
+Route::put('/playlists/update/{id}',[PlaylistController::class,'update']);
+Route::put('/playlists/delete/{id}',[PlaylistController::class,'delete']);
+Route::delete('/playlists/destroy/{id}',[PlaylistController::class,'destroy']);
 
 //Playlist_group
 Route::get('/playlist_group',[Playlist_groupController::class,'index']); 

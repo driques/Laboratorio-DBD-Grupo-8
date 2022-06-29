@@ -16,12 +16,12 @@ class PlaylistController extends Controller
      */
     public function index()
     {
-        $playlist = Playlist::where('borrado',false)->get();
-        if($playlist->isEmpty()){
+        $playlists = Playlist::where('borrado',false)->get();
+        if($playlists->isEmpty()){
             return response()->json([
                 'respuesta' => 'No se encuentran playlist']);
         }
-        return response($playlist, 200);
+        return view('playlist.index',compact('playlists'));
     }
 
     /**
