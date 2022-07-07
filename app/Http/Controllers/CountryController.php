@@ -22,6 +22,15 @@ class CountryController extends Controller
         return view('home/register',compact('countries'));
     }
 
+    //Ojo con esto
+    public function index2()
+    {
+        $countries = Country::where('borrado',false)->get();
+        if($countries->isEmpty()){
+            return response()->json(['response'=>'no se encuentran paises registrados',]);
+        }
+        return view('/user/editProfile',compact('countries')); //Acá es la ruta real
+    }
     /**
      * Show the form for creating a new resource.
      *

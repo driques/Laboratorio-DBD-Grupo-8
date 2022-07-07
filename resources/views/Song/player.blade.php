@@ -94,15 +94,15 @@
         
         <a href="#" class="nav-link bi bi-chevron-bar-down btn-primary btn" data-bs-toggle="dropdown"></a>
                             <div class="dropdown-menu">
-                                <a href="#" class="dropdown-item">Mi perfil</a>
-                                <a href="#" class="dropdown-item">Configuraciones</a>
+                                <a href="/profile" class="dropdown-item">Mi perfil</a>
+                                <!--<a href="#" class="dropdown-item">Configuraciones</a>-->
                                 <a href="#" class="dropdown-item">Mis playlists</a>
                                 <div class="dropdown-divider"></div>
                                 <a href="#"class="dropdown-item">Trash</a>
                             </div>
         <!--Aqui debe ir la info del user-->
         <img src="{{URL('images/DEBEDE.png')}}" width="40" height="40" class="d-inline-block align-left me-3" alt="">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">DEBEDE MUSIC</a>
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">DEBEDE MUSIC</a>
         
         <div class="col-8">
             <div class="input-group">

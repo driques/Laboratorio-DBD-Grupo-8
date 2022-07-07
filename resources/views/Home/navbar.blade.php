@@ -45,7 +45,8 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="/song/player">Player</a>
-          <a class="dropdown-item" href="/profile">Editar mi usuario</a>
+          <a class="dropdown-item" href="/profile">Mi perfil</a>
+          <a class="dropdown-item" href="/edit/profile">Editar mi usuario</a>
 
         </div>
       </li>

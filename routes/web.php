@@ -13,7 +13,7 @@ use App\Http\Controllers\PlaylistController;
 use App\Http\Controllers\Playlist_groupController;
 use App\Http\Controllers\Like_songController;
 use App\Http\Controllers\LoginController;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,6 +29,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 */
+Route::get('/edit/profile', function () {
+    return view('user/editProfile');
+})->middleware('auth');
+Route::get('/edit/profile', [CountryController::class,'index2']);
+
+Route::get('/crudmenu', function () {
+    return view('crudmenu/index');
+});
+Route::get('/profile', function () {
+    return view('user/myProfile');
+});
+Route::get('/', function () {
+    return view('crudmenu/index');
+});
 
 Route::get('/playlists/create', function () {
     return view('playlist/create');
@@ -151,6 +165,9 @@ Route::get('/users',[UserController::class,'index']);
 Route::get('/users/{id}',[UserController::class,'show']);
 Route::post('/users/store',[UserController::class,'store']);
 Route::put('/users/update/{id}',[UserController::class,'update']);
+Route::get('/users/update/{id}', function () {
+    return view('user/editProfile');
+})->middleware('auth');
 Route::put('/users/delete/{id}',[UserController::class,'delete']);
 Route::delete('/users/destroy/{id}',[UserController::class,'destroy']);
 

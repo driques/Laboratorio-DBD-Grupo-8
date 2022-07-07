@@ -55,7 +55,7 @@
 
             <div class="col">
                 <div class="text-center bg-dark bg-gradient p-3 borderless">
-                    <a href="songs" class="btn btn-primary center" >Cancipnes</a>
+                    <a href="songs" class="btn btn-primary center" >Canciones</a>
                 </div>
             </div>
     

@@ -21,7 +21,7 @@ class UserFactory extends Factory
         return [
             'name' => $this->faker->name,
             'email' => $this->faker->safeEmail,
-            'password' =>$this->faker->password,
+            'password' =>Hash::make($this->faker->password),
             'plan' =>  $this->faker->boolean,
             'birth_year' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
             'borrado' => $this->faker->boolean,

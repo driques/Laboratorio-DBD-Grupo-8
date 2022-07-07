@@ -170,16 +170,18 @@ class UserController extends Controller
         }
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = $request->password;
+        $user->password = Hash::make($request->password);
         $user->birth_year= $request->birth_year;
         $user->id_pais=$request->id_pais;
 
         $user->save();
-        return response()->json([
+        dd($user);
+        return view('user/editProfile',compact('user'));
+        /*return response()->json([
             'message' => 'Se actualizaron los datos',
             'id' => $user->id,
             'name' => $user->name
-        ], 200);
+        ], 200);*/
     }
 
     //Cabe destacar que se realizan 2 funciones de borrado, uno para un soft y otro para un hard
