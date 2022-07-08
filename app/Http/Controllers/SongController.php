@@ -20,13 +20,13 @@ class SongController extends Controller
 
     public function index()
     {
-        /*
+        
         $songs = Song::where('borrado',false)->get();
         if($songs->isEmpty()){
             return response()->json(['response'=>'no se encuentran canciones registradas',]);
-        }*/
+        }
         $datosCanciones=Song::all(); 
-        return view('admin',array('datosCanciones'=>$datosCanciones));
+        return view('song/index',array('datosCanciones'=>$datosCanciones));
         //return response($songs,200,$datosCanciones);
         //
     }
@@ -121,7 +121,8 @@ class SongController extends Controller
      */
     public function edit($id)
     {
-        //
+        $song = Song::find($id);
+        return view('song.edit',array('song'=>$song));
     }
 
     /**
@@ -145,6 +146,7 @@ class SongController extends Controller
                 'id_genre' => 'required|integer|exists:genres,id',
                 'id_artist' => 'required|integer|exists:users,id',
                 'song_duration' => 'required|integer',
+                'url_cancion' => 'required',
  
             ],['nombre_cancion.required'=>'Se debe ingresar un nombre.',
             'nombre_cancion.min'=>'Se debe ingresar un nombre de mas caracteres.',
@@ -167,16 +169,14 @@ class SongController extends Controller
             ]
             );
         if($validator->fails()){
-            return response($validator->errors());
+            return redirect("/song/edit?error=3");
         }
         $song = Song::find($id);
         if(empty($song)){
-            return response()->json(['message' => 'El id no existe.']);
+            return redirect("/song/edit?error=2");
         }
         if ($request->nombre_cancion == $song->nombre_cancion){
-            return response()->json([
-                "message" => "Los datos ingresados son iguales a los actuales."
-            ], 203);
+            return redirect("/song/edit?error=1");
         }
         $song->nombre_cancion = $request->nombre_cancion;
         $song->restriccion_etaria = $request->restriccion_etaria;
@@ -186,13 +186,9 @@ class SongController extends Controller
         $song->id_genre = $request->id_genre;
         $song->id_artist = $request->id_artist;
         $song->song_duration= $request->song_duration;
-
+        $song->url_cancion= $request->url_cancion;
         $song->save();
-        return response()->json([
-            'message' => 'Se actualizaron los datos',
-            'id' => $song->id,
-            'nombre_cancion' => $song->nombre_cancion
-        ], 200);
+        return redirect("/song/edit?pass=1");
         //
     }
 
@@ -209,10 +205,7 @@ class SongController extends Controller
         }
         $song->borrado = true;
         $song->save();
-        return response()->json([
-            'message' => 'la cancion fue eliminado correctamente',
-            'id' => $song->id,
-        ], 201);
+        return redirect('/song/edit');
     }
 
     public function destroy($id)

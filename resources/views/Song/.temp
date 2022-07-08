@@ -1,54 +1,34 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div class="m-4">
-        <nav class="navbar navbar-expand-sm navbar-light bg-light">
-            <div class="container-fluid">
-                <a href="#" class="navbar-brand">Brand</a>
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div id="navbarCollapse" class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">Profile</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Messages</a>
-                            <div class="dropdown-menu">
-                                <a href="#" class="dropdown-item">Inbox</a>
-                                <a href="#" class="dropdown-item">Drafts</a>
-                                <a href="#" class="dropdown-item">Sent Items</a>
-                                <div class="dropdown-divider"></div>
-                                <a href="#"class="dropdown-item">Trash</a>
-                            </div>
-                        </li>
-                    </ul>
-                    <ul class="nav navbar-nav ms-auto">
-                        <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Admin</a>
-                            <div class="dropdown-menu dropdown-menu-end">
-                                <a href="#" class="dropdown-item">Reports</a>
-                                <a href="#" class="dropdown-item">Settings</a>
-                                <div class="dropdown-divider"></div>
-                                <a href="#" class="dropdown-item">Logout</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>    
-    </div>
-    
-</body>
-</html>
+<table class="table table-light">
+    <thead class="thead-light">
+        <tr>
+            <th>#</th>
+            <th>Cancion</th>
+            <th>Likes</th>
+            <th>Reproducciones</th>
+            <th>Restriccion</th>
+            <th>Duracion</th>
+            <th>Id Album</th>
+            <th>Id Genero</th>
+            <th>Borrado</th>
+            <th>Url</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($datosCanciones as $datosCanciones)
+        <tr>
+            <td>{{$datosCanciones->id}}</td>
+            <td>{{$datosCanciones->nombre_cancion}}</td>
+            <td>{{$datosCanciones->likes}}</td>
+            <td>{{$datosCanciones->reproduciones}}/td>
+            <td>{{$datosCanciones->restriccion_etaria}}</td>
+            <td>{{$datosCanciones->id_album}}</td>
+            <td>{{$datosCanciones->id_genre}}</td>
+            <td>{{$datosCanciones->id_artist}}</td>
+            <td>{{$datosCanciones->borrado}}</td>
+            <td>{{$datosCanciones->url_cancion}}</td>
+            <td>Editar | Borrar | Escuchar</td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>

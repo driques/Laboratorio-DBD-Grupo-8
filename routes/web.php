@@ -81,6 +81,16 @@ Route::get('user/profile', function () {
 Route::get('/song/search',[SongController::class,'search']);
 Route::get('/song/searchNavbar',[SongController::class,'searchNavbar']);
 
+Route::get('/albums/{id}/edit', function () {
+    return view('album/edit');
+});
+
+Route::get('/songs/{id}/edit', function () {
+    return view('song/edit');
+});
+Route::get('/songs/edit/{id}',[SongController::class,'edit']);
+
+
 Route::get('/albums', function () {
     return view('album/indexAlbum');
 });
@@ -105,14 +115,16 @@ Route::get('/song/player', function () {
     return view('song/player');
 })->middleware('auth');
 
+Route::get('/admin', function () {
+    return view('CrudMenu/index');
+});
 
 
 Route::get('/song/register', function () {
     return view('song/songRegister');
 });
-Route::get('/song/admin', function () {
-    return view('admin');
-});
+
+Route::get('/song/edit', [SongController::class,'index']);
 
 Route::post('/logout', function(){
     Auth::logout();
