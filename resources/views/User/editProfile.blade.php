@@ -58,54 +58,61 @@
                     <form action="{{ url('users/update/'.auth()->user()->id) }}" method="POST">
                         @csrf
                         @method('PUT')
-                    <h1>Editar perfil</h1>
-                    <label for="name" class="form-label">Nombre</label>
-                    <div class="input-group mb-2">
-                        <span class="input-group-text" id="basic-addon1">{{auth()->user()->name}}</span>
-                        <input type="text" id="name" class="form-control" placeholder="Ingresa tu nuevo nombre" name="name" aria-label="name" aria-describedby="basic-addon1">
-                    </div>
-                    <label for="email" class="form-label">Email</label>
-                    <div class="input-group mb-2">
-                        <span class="input-group-text" id="basic-addon1">{{auth()->user()->email}}</span>
-                        <input type="text" id="email" class="form-control" placeholder="Ingresa tu nuevo email" name="email" aria-label="email" aria-describedby="basic-addon1">
-                    </div>
-                    <label for="password" class="form-label">Contraseña</label>
-                    <div class="input-group mb-2">
-                        <span class="input-group-text" id="basic-addon1">Contraseña</span>
-                        <input type="password" id="password" class="form-control" placeholder="Ingresa tu nueva contraseña" name="password" aria-label="password" aria-describedby="basic-addon1">
-                    </div>
-                    <label class="form-label">Fecha de nacimiento actual</label>
-                    <span class="d-block p-2 bg-white border rounded">{{auth()->user()->birth_year}}</span>
-                    <div class="d-flex flex-row mb-2">
-                        <div class="form-outline flex-fill">
-                            <label class="form-label" for="birth_year">Fecha de nacimiento nueva</label>
-                            <input type="date" id="birth_year" value="{{auth()->user()->birth_year}}" name="birth_year" class="form-control" />
+                        <h1>Editar perfil</h1>
+                        <label for="name" class="form-label">Nombre</label>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text" id="basic-addon1">{{auth()->user()->name}}</span>
+                            <input type="text" id="name" class="form-control" placeholder="Ingresa tu nuevo nombre" name="name" aria-label="name" aria-describedby="basic-addon1">
                         </div>
-                    </div>
-                    <?php
-                    use App\Models\Country;
-                    $pais = Country::find(auth()->user()->id_pais);
-                    ?>
-                    <label for="password" class="form-label">País de residencia actual</label>
-                    <span class="d-block p-2 bg-white border rounded">{{$pais->name_country}}</span>
-                    <div class="mb-3">
-                        <label for="id_pais" class="form-label">País de residencia nueva</label>
-                        <select class="form-select " id="id_pais" name="id_pais" aria-label="Seleccione un país:">
-                            <option selected>Seleccione su país de residencia</option>
-                            @foreach ($countries as $country)
-                            <option value="{{$country->id}}">{{$country->name_country}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="row gutters">
-                        <div class="col ">
-                            <br>
-                            <div class="d-grid gap-2 d-flex justify-content-md-end">
-                                <!--<button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>-->
-                                <button href='user/editProfile' type="submit" id="submit" name="submit" class="btn btn-primary">Update</button>
+                        <label for="email" class="form-label">Email</label>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text" id="basic-addon1">{{auth()->user()->email}}</span>
+                            <input type="text" id="email" class="form-control" placeholder="Ingresa tu nuevo email" name="email" aria-label="email" aria-describedby="basic-addon1">
+                        </div>
+                        <label for="password" class="form-label">Contraseña</label>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text" id="basic-addon1">Contraseña</span>
+                            <input type="password" id="password" class="form-control" placeholder="Ingresa tu nueva contraseña" name="password" aria-label="password" aria-describedby="basic-addon1">
+                        </div>
+                        <label class="form-label">Fecha de nacimiento actual</label>
+                        <span class="d-block p-2 bg-white border rounded">{{auth()->user()->birth_year}}</span>
+                        <div class="d-flex flex-row mb-2">
+                            <div class="form-outline flex-fill">
+                                <label class="form-label" for="birth_year">Fecha de nacimiento nueva</label>
+                                <input type="date" id="birth_year" value="{{auth()->user()->birth_year}}" name="birth_year" class="form-control" />
                             </div>
                         </div>
-                    </div>
+                        <?php
+
+                        use App\Models\Country;
+
+                        $pais = Country::find(auth()->user()->id_pais);
+                        ?>
+                        <label for="password" class="form-label">País de residencia actual</label>
+                        <span class="d-block p-2 bg-white border rounded">{{$pais->name_country}}</span>
+                        <div class="mb-3">
+                            <label for="id_pais" class="form-label">País de residencia nueva</label>
+                            <select class="form-select " id="id_pais" name="id_pais" aria-label="Seleccione un país:">
+                                <option selected>Seleccione su país de residencia</option>
+                                @foreach ($countries as $country)
+                                <option value="{{$country->id}}">{{$country->name_country}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="row gutters">
+                            <div class="col ">
+                                <br>
+                               <!-- <script>
+                                    function redirect() {
+                                        window.location.href = "/home/home/&popup=true";
+                                    }
+                                </script>-->
+                                <div class="d-grid gap-2 d-flex justify-content-md-end">
+                                    <!--<button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>-->
+                                    <button type="submit" id="submit" name="submit" class="btn btn-primary">Update</button>
+                                </div>
+                            </div>
+                        </div>
                 </div>
             </div>
         </div>

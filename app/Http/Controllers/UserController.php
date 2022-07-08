@@ -47,7 +47,6 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $countries = Country::where('borrado', false)->get();
-        $myRol = Rol::where('borrado',false)->where('rol', 0)->get();
        
         $users = User::where('borrado', false)->where('id_rol', 0)->get();
         $validator = Validator::make(
@@ -175,7 +174,61 @@ class UserController extends Controller
         $user->id_pais=$request->id_pais;
 
         $user->save();
-        dd($user);
+        //dd($user);
+        return view('/home/home');
+        /*return response()->json([
+            'message' => 'Se actualizaron los datos',
+            'id' => $user->id,
+            'name' => $user->name
+        ], 200);*/
+    }
+    public function update2(Request $request, $id)
+    {
+        $validator = Validator::make(
+            $request->all(),[
+                'name' => 'required|min : 2|max : 20',
+                'email' => 'required|min:4|max:256|unique:users',
+                'password' => 'required|min : 8|max : 20',
+                'birth_year' => 'required|date:y-m-d',
+                'id_pais' => 'required|integer|exists:countries,id',
+            ],
+            ['name.required'=>'Se debe ingresar un nombre.',
+            'name.min'=>'Se debe ingresar un nombre de mas caracteres.',
+            'name.max'=>'Se debe ingresar un nombre de menos caracteres.',
+            'email.required'=>'Se debe ingresar un email',
+            'email.min'=>'Se debe ingresar un email de mas caracteres',
+            'email.max'=>'Se debe ingresar un email de menos caracteres',
+            'email.unique'=>'Se debe ingresar un email que no este en uso',
+            'pasword.required'=>'se debe ingresar una contrasenia',
+            'pasword.min'=>'se debe ingresar una contrasenia de 8 o mas caracteres',
+            'pasword.required'=>'se debe ingresar una contrasenia de menos de 20 caracteres',
+            'birth_year.required'=>'se debe ingresar una fecha de nacimiento',
+            'birth_year.required'=>'se debe ingresar una fecha de nacimiento formato d-m-y',
+            'id_pais.integer' => 'El id del pais debe ser un integer.',
+            'id_pais.exists' => 'No se encuentra el id del pais',
+            ]
+        );
+    
+        if($validator->fails()){
+            return response($validator->errors());
+        }
+        $user = User::find($id);
+        if(empty($user)){
+            return response()->json(['message' => 'El id no existe.']);
+        }
+        if ($request->name == $user->name){
+            return response()->json([
+                "message" => "Los datos ingresados son iguales a los actuales."
+            ], 203);
+        }
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->birth_year= $request->birth_year;
+        $user->id_pais=$request->id_pais;
+
+        $user->save();
+        //dd($user);
         return view('user/editProfile',compact('user'));
         /*return response()->json([
             'message' => 'Se actualizaron los datos',
