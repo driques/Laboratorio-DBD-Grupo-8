@@ -127,7 +127,7 @@
                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                       <button type="submit" class="btn btn-primary btn-lg">Registrate!</button>
                     </div>
-
+                    <input type="hidden" name="id_rol" value="2">
                   </form>
 
                 </div>

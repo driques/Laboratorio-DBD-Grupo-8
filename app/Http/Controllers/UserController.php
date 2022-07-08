@@ -84,6 +84,7 @@ class UserController extends Controller
         $newUser->plan = TRUE;
         $newUser->birth_year = $request->birth_year;
         $newUser->id_pais = $request->id_pais;
+        $newUser->id_rol = $request->id_rol;
        // $newUser->id_rol = $myRol[0]->rol;
         //Esta variable hay que sacarla directamente de la tabla
                                 //de roles, o dejara el error de que falta una llave foranea, pero aun no cacho
