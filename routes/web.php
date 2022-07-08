@@ -35,8 +35,20 @@ Route::get('/follow_users', function () {
     return view('followuser/index');
 });
 
+Route::get('/user/profile/songs',[SongController::class,'getSongsByUser']);
+
+
+Route::get('/user/profile', function () {
+    return view('user/profile');
+});
+
+
 Route::get('/follow_users/create', function () {
     return view('followuser/create');
+});
+
+Route::get('/home/ranking', function () {
+    return view('home/ranking');
 });
 
 Route::get('/genres/create', function () {
@@ -75,11 +87,13 @@ Route::get('/users', function () {
     return view('user/index');
 });
 
-Route::get('user/profile', function () {
+Route::get('user/myprofile', function () {
     return view('user/myprofile');
 });
 Route::get('/song/search',[SongController::class,'search']);
 Route::get('/song/searchNavbar',[SongController::class,'searchNavbar']);
+Route::get('/song/ranking',[SongController::class,'ranking']);
+
 
 Route::get('/albums/{id}/edit', function () {
     return view('album/edit');

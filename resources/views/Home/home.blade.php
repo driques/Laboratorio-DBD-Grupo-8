@@ -329,6 +329,11 @@
   @auth
 
   <h1 style="box-sizing:border-box; display:block; font-size: 80px; text-align: center; color:#bbb; ">Ranking DEBEDE</h1>
+  <div style="  text-align: center; ">
+    <a href="/song/ranking" <button class="btn btn-lg btn-primary rounded-pill">Ve el top 10</button>
+    </a>
+  </div>
+
   @endauth
 
   </br>

@@ -116,7 +116,7 @@ class AlbumController extends Controller
         if ($request->album_name == $album->album_name){
             return response()->json([
                 "message" => "Los datos ingresados son iguales a los actuales."
-            ], 203);
+            ]);
         }
         $album->album_name = $request->album_name;
         $album->save();

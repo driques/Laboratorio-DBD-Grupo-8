@@ -85,10 +85,11 @@
               document.getElementById("resultados").innerHTML = ""
           })
         });
-      </script>
-      <script>
         function redirect(namesong, urlsong) {
           window.location.href = "/song/player?namesong=" + namesong + "&urlsong=" + urlsong;
+        }
+        function redirectToProfile(idProfile,name) {
+          window.location.href = "/user/profile?id=" + idProfile+"&name="+name;
         }
       </script>
 

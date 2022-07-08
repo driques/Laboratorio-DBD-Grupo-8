@@ -30,6 +30,17 @@ class SongController extends Controller
         //return response($songs,200,$datosCanciones);
         //
     }
+    public function ranking()
+    {
+        
+        $ranking = Song::where('borrado',false)->orderBy('reproducciones', 'desc')->limit(10)->get();
+        if($ranking->isEmpty()){
+            return response()->json(['response'=>'no se encuentran canciones registradas',]);
+        }
+    
+        return view('home/ranking',array('ranking'=>$ranking));
+        //
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -234,6 +245,11 @@ class SongController extends Controller
         //return array('canciones'=>$canciones);
         return view("song.navSong",compact("canciones"),compact("usuarios"));  
         //return view('/song/search',array('canciones'=>$canciones));
+
+    }
+    public function getSongsByUser(Request $request){
+        $canciones=Song::where("id_artist","=",strval($request->id_user))->get();
+        return view('user.songsUser',array('cancionesUser'=>$canciones));
 
     }
 }

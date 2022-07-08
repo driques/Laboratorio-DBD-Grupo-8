@@ -8,7 +8,7 @@
     @foreach($usuarios as $item)
     <p class ="p-2 border-bottom" >
         {{'Usuario '.$item->id.'-'.$item->name}}
-        <button onclick="redirect('{{$item->nombre_cancion}}','{{$item->url_cancion}}')">Ir al perfil</button>
+        <button onclick="redirectToProfile('{{$item->id}}','{{$item->name}}')">Ir al perfil</button>
     </p>
     @endforeach
     @endif
