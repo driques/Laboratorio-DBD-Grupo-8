@@ -15,12 +15,8 @@ class GenreController extends Controller
      */
     public function index()
     {
-        //
-        $genres= Genre::all();//where('borrado',false)->get();
-        if($genres->isEmpty()){
-            return response()->json(['response'=>'No se encuentran generos',],204);
-        }
-        return response($genres,200);
+       $genres = Genre::where('borrado',false)->get();
+        return view('genre.index',compact('genres'));
     }
 
     /**
@@ -30,8 +26,7 @@ class GenreController extends Controller
      */
     public function create()
     {
-        
-        //
+        return view('genre.create');
     }
 
     /**
@@ -56,9 +51,9 @@ class GenreController extends Controller
             }
         $newGenre = new Genre();
         $newGenre->genre_name = $request->genre_name;
+        $newGenre->borrado = false;
         $newGenre->save();
-        return response()->json(['Se ha creado el genero'],201);
-        //
+        return redirect('/genres');
     }
 
     /**
@@ -160,10 +155,7 @@ class GenreController extends Controller
         }
         $genre->borrado = true;
         $genre->save();
-        return response()->json([
-            'message' => 'El genero fue eliminado correctamente',
-            'id' => $genre->id,
-        ], 201);
+        return redirect('/genres');
     }
     
 }

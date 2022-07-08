@@ -50,13 +50,13 @@
 
     @section('contenido')
     <a href= "albums/create" class="btn btn-primary">Crear album</a>
+    <a href= "crudmenu" class="btn btn-primary">Volver al menu CRUD</a>
     <table class="table table-dark table-striped mt-4">
         <thead>
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Nombre Album</th>
-                <th scope="col">Accion 1</th>
-                <th scope="col">Accion 2</th>
+                <th scope="col">Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -64,7 +64,6 @@
             <tr>
                 <td> {{$album->id}}</td>
                 <td> {{$album->album_name}}</td>
-                <td><a href="albums/{{$album->id}}/edit" class="btn btn-info">Editar album</a></td>
                 <td>
                 <form action="albums/delete/{{$album->id}}" method = "POST">
                         <a href="albums/edit/{{$album->id}}" class="btn btn-info">Editar album</a>

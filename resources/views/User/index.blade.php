@@ -38,7 +38,11 @@
 
     @include('home.navbar')
 
+    
+
     @section('contenido')
+    <a href= "users/create" class="btn btn-primary">Crear usuario</a>
+    <a href= "crudmenu" class="btn btn-primary">Volver al menu CRUD</a>
     <table class="table table-dark table-striped mt-4">
         <thead>
             <tr>

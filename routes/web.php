@@ -29,6 +29,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 */
+
+
+Route::get('/follow_users', function () {
+    return view('followuser/index');
+});
+
+Route::get('/follow_users/create', function () {
+    return view('followuser/create');
+});
+
+Route::get('/genres/create', function () {
+    return view('genre/create');
+});
+Route::get('/genres', 'GenreController@index');
+
 Route::get('/edit/profile', function () {
     return view('user/editProfile');
 })->middleware('auth');
@@ -48,16 +63,12 @@ Route::get('/playlists/create', function () {
     return view('playlist/create');
 });
 
-Route::get('/playlists/{id}/edit', function ($id) {
-    return view('playlist/index',compact('id'));
+Route::get('/playlists', function () {
+    return view('playlist/index');
 });
 
 Route::get('/playlist_group', function () {
     return view('playlistgroup/index');
-});
-
-Route::get('/playlists', function () {
-    return view('playlist/index');
 });
 
 Route::get('/users', function () {
@@ -69,10 +80,6 @@ Route::get('user/profile', function () {
 });
 Route::get('/song/search',[SongController::class,'search']);
 Route::get('/song/searchNavbar',[SongController::class,'searchNavbar']);
-
-Route::get('/albums/{id}/edit', function () {
-    return view('album/edit');
-});
 
 Route::get('/albums', function () {
     return view('album/indexAlbum');
@@ -140,6 +147,7 @@ Route::delete('/albums/destroy/{id}',[AlbumController::class,'destroy']);
 Route::get('/genres',[GenreController::class,'index']);
 Route::get('/genres/{id}',[GenreController::class,'show']);
 Route::post('/genres/store',[GenreController::class,'store']);
+Route::get('genres/create',[GenreController::class,'create']);
 Route::put('/genres/update/{id}',[GenreController::class,'update']);
 Route::put('/genres/delete/{id}',[GenreController::class,'delete']);
 Route::delete('/genres/destroy/{id}',[GenreController::class,'destroy']);
@@ -172,9 +180,11 @@ Route::put('/users/delete/{id}',[UserController::class,'delete']);
 Route::delete('/users/destroy/{id}',[UserController::class,'destroy']);
 
 //Follow_users
-Route::get('/follow_users',[Follow_userController::class,'index']); 
+Route::get('/follow_users',[Follow_userController::class,'index']);
 Route::get('/follow_users/{id}',[Follow_userController::class,'show']);
 Route::post('/follow_users/store',[Follow_userController::class,'store']);
+Route::post('/follow_users/create',[Follow_userController::class,'create']);
+Route::get('follow_users/edit/{id}',[Follow_userController::class,'edit']);
 Route::put('/follow_users/update/{id}',[Follow_userController::class,'update']);
 Route::put('/follow_users/delete/{id}',[Follow_userController::class,'delete']);
 Route::delete('/follow_users/destroy/{id}',[Follow_userController::class,'destroy']);
@@ -204,6 +214,7 @@ Route::delete('/like_song/destroy/{id}',[Like_songController::class,'destroy']);
 Route::get('/playlists',[PlaylistController::class,'index']); 
 Route::get('/playlists/{id}',[PlaylistController::class,'show']);
 Route::post('/playlists/store',[PlaylistController::class,'store']);
+Route::get('/playlists/edit/{id}',[PlaylistController::class,'edit']);
 Route::put('/playlists/update/{id}',[PlaylistController::class,'update']);
 Route::put('/playlists/delete/{id}',[PlaylistController::class,'delete']);
 Route::delete('/playlists/destroy/{id}',[PlaylistController::class,'destroy']);

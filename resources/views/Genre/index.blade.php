@@ -30,40 +30,46 @@
     </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>DBD music - Admin->Playlists</title>
+    <title>DBD music - genrees</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
 
 <body id="grid1">
 
-    @include('home.navbar')
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{url('/')}}">
+                <img src="{{URL('images/DEBEDE.png')}}" width="50" height="50" class="d-inline-block align-left me-3" alt="">
+                DEBEDE Music
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+    </nav>
 
     @section('contenido')
-    <a href= "playlists/create" class="btn btn-primary">Crear playlist</a>
+    <a href= "genres/create" class="btn btn-primary">Crear genre</a>
     <a href= "crudmenu" class="btn btn-primary">Volver al menu CRUD</a>
     <table class="table table-dark table-striped mt-4">
         <thead>
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Nombre playlist</th>
-                <th scope="col">Likes totales</th>
-                <th scope="col">Id del creador</th>
+                <th scope="col">Nombre genro</th>
                 <th scope="col">Acciones</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($playlists as $playlist)
+            @foreach($genres as $genre)
             <tr>
-                <td> {{$playlist->id}}</td>
-                <td> {{$playlist->nombre_playlist}}</td>
-                <td> {{$playlist->likes_playlist}}</td>
-                <td> {{$playlist->playlist_creator}}</td>
+                <td> {{$genre->id}}</td>
+                <td> {{$genre->genre_name}}</td>
                 <td>
-                <form action="playlists/delete/{{$playlist->id}}" method = "POST">
-                        <a href="playlists/edit/{{$playlist->id}}" class="btn btn-info">Editar playlist</a>
+                <form action="genres/delete/{{$genre->id}}" method = "POST">
+                        <a href="genres/edit/{{$genre->id}}" class="btn btn-info">Editar genero</a>
                         @csrf
                         @method('PUT')
-                        <button type="submit" class="btn btn-danger">Eliminar playlist</button>
+                        <button type="submit" class="btn btn-danger">Eliminar genero</button>
                 </form>
                 </td>
             </tr>

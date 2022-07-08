@@ -17,10 +17,6 @@ class PlaylistController extends Controller
     public function index()
     {
         $playlists = Playlist::where('borrado',false)->get();
-        if($playlists->isEmpty()){
-            return response()->json([
-                'respuesta' => 'No se encuentran playlist']);
-        }
         return view('playlist.index',compact('playlists'));
     }
 
@@ -95,7 +91,8 @@ class PlaylistController extends Controller
      */
     public function edit($id)
     {
-        //
+        $playlist = Playlist::find($id);
+        return view('playlist.edit',array('playlist'=>$playlist));
     }
 
     /**
@@ -107,8 +104,8 @@ class PlaylistController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $updatePlaylist = Playlist::find($id);
-        if(empty($updatePlaylist)){
+        $playlist = Playlist::find($id);
+        if(empty($playlist)){
             return response()->json(['message' => 'Id no existe']);
         }
 
@@ -117,12 +114,17 @@ class PlaylistController extends Controller
             [
                 'nombre_playlist' => 'required|string',
                 'likes_playlist' => 'required|integer',
+                'playlist_creator' => 'required|integer|exists:users,id',
             ],
             [
                 'nombre_playlist.required' => 'Ingresa el nombre de la playlist',
                 'nombre_playlist.integer' => 'El id del seguidor debe ser un string',
                 'likes_playlist.required' => 'Ingrese la cantidad de likes actualizada',
                 'likes_playlist.integer' => 'Debe ser un integer',
+                'playlist_creator.required' => 'Ingresa el id del creador de la playlist',
+                'playlist_creator.integer' => 'El id del creador debe ser integer',
+                'playlist_creator.exists' => 'El id del creador no existe',
+                
             ]
         );
         if($validator->fails()){
@@ -130,20 +132,17 @@ class PlaylistController extends Controller
         }
 
         //Faltan las validaciones para saber si el update no se repite
-        if ( ($request->nombre_playlist == $updatePlaylist->nombre_playlist)&
-            ($request->likes_playlist == $updatePlaylist->likes_playlist)){
+        if ( ($request->nombre_playlist == $playlist->nombre_playlist)&
+            ($request->likes_playlist == $playlist->likes_playlist)){
             return response()->json([
                 "mensaje" => "Los datos ingresados son iguales a los actuales."
             ], 203);
         }
 
-        $updatePlaylist->nombre_playlist = $request->nombre_playlist;
-        $updatePlaylist->likes_playlist = $request->likes_playlist;
-        $updatePlaylist->save();
-        return response()->json([
-                'mensaje' => 'Se modifico la playlist',
-                'id' => $updatePlaylist->id,
-            ], 201);
+        $playlist->nombre_playlist = $request->nombre_playlist;
+        $playlist->likes_playlist = $request->likes_playlist;
+        $playlist->save();
+        return redirect('/playlists');
     }
 
     public function delete($id){

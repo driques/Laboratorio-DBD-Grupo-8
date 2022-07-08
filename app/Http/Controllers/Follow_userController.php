@@ -15,12 +15,8 @@ class Follow_userController extends Controller
      */
     public function index()
     {
-        $active_follow = Follow_user::where('borrado',false)->get();
-        if($active_follow->isEmpty()){
-            return response()->json([
-                'respuesta' => 'No se encuentra los follows']);
-        }
-        return response($active_follow, 200);
+        $follow_users = Follow_user::where('borrado',false)->get();
+        return view('followuser.index',compact('follow_users'));
     }
 
     /**
@@ -30,7 +26,7 @@ class Follow_userController extends Controller
      */
     public function create()
     {
-        //
+        return view('followuser.create');
     }
 
     /**
@@ -67,12 +63,7 @@ class Follow_userController extends Controller
         $newFollow->borrado = false;
         $newFollow->save();
 
-        return response()->json([
-            'message' => 'El usuario a seguido al otro',
-            'follower'=> $newFollow->follower,
-            'following' =>$newFollow->following,
-            'id' => $newFollow->id,
-        ], 201);
+        return redirect('/follow_users');
     }
 
     /**
@@ -99,7 +90,8 @@ class Follow_userController extends Controller
      */
     public function edit($id)
     {
-        //
+        $follow_user = Follow_user::find($id);
+        return view('followuser.edit',array('follow_user'=>$follow_user));
     }
 
     /**
@@ -111,11 +103,13 @@ class Follow_userController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $follow_user = Follow_user::find($id);
         $validator = Validator::make(
             $request->all(),
             [
                 'follower' => 'required|integer|exists:users,id',
                 'following' => 'required|integer|exists:users,id',
+                'borrado' => 'required|boolean',
             ],
             [
                 'follower.required' => 'Ingresa el id del seguidor',
@@ -124,31 +118,26 @@ class Follow_userController extends Controller
                 'following.required' => 'Ingresa el id del seguido',
                 'following.integer' => 'El id del seguido debe ser integer',
                 'following.exists' => 'El id del seguido no existe',
+                'borrado.required' => 'Ingresa el estado del borrado',
             ]
         );
         if($validator->fails()){
             return response($validator->errors(), 400);
         }
 
-        $updateFollow = Follow_user::find($id);
-        if(empty($updateFollow)){
-            return response()->json(['message' => 'Id no existe']);
-        }
         //Faltan las validaciones para saber si el update no se repite
-        if ( ($request->follower == $updateFollow->follower)|
-            ($request->following == $updateFollow->following)){
+        if ( ($request->follower == $follow_user->follower)&
+            ($request->following == $follow_user->following)){
             return response()->json([
                 "mensaje" => "Los datos ingresados son iguales a los actuales."
             ], 203);
         }
 
-        $updateFollow->follower = $request->follower;
-        $updateFollow->following = $request->following;
-        $updateFollow->save();
-        return response()->json([
-                'mensaje' => 'Se modifico follow',
-                'id' => $updateFollow->id,
-            ], 201);       
+        $follow_user->follower = $request->follower;
+        $follow_user->following = $request->following;
+        $follow_user->borrado = $request->borrado;
+        $follow_user->save();
+        return redirect('/follow_users');    
           
     }
 
@@ -162,10 +151,7 @@ class Follow_userController extends Controller
         }
         $follow->borrado = true;
         $follow->save();
-        return response()->json([
-            'message' => 'El user fue eliminado correctamente',
-            'id' => $follow->id,
-        ], 201);
+        return redirect('/follow_users');
     }
 
     public function destroy($id)
