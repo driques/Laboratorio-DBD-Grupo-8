@@ -90,9 +90,9 @@ Route::get('/users', function () {
 Route::get('user/myprofile', function () {
     return view('user/myprofile');
 });
-Route::get('/song/search',[SongController::class,'search']);
-Route::get('/song/searchNavbar',[SongController::class,'searchNavbar']);
-Route::get('/song/ranking',[SongController::class,'ranking']);
+Route::get('/home/search',[SongController::class,'search']);
+Route::get('/home/searchNavbar',[SongController::class,'searchNavbar']);
+Route::get('/home/ranking',[SongController::class,'ranking']);
 
 
 Route::get('/albums/{id}/edit', function () {
