@@ -4,6 +4,17 @@
 <html lang="es">
 
 <head>
+
+    @auth
+        <p style="display:none;" id="id_rol">{{auth()->user()->id_rol}}</p>
+        <script>
+            role = document.getElementById("id_rol").innerHTML;
+            if (role == 2) {
+            window.location.href = "/errors/404";
+            };
+        </script>
+    @endauth
+
     <style>
         #rellenarimg {
             object-fit: fill;
@@ -55,7 +66,7 @@
 
             <div class="col">
                 <div class="text-center bg-dark bg-gradient p-3 borderless">
-                    <a href="songs" class="btn btn-primary center" >Canciones</a>
+                    <a href="songs2" class="btn btn-primary center" >Canciones</a>
                 </div>
             </div>
     
@@ -84,7 +95,7 @@
             
             <div class="col">
                 <div class="text-center bg-dark bg-gradient p-3 borderless">
-                    <a href="countries" class="btn btn-primary center" >Paises</a>
+                    <a href="countries3" class="btn btn-primary center" >Paises</a>
                 </div>
             </div>
 
@@ -96,7 +107,7 @@
     
             <div class="col">
                 <div class="text-center bg-dark bg-gradient p-3 borderless">
-                    <a href="like_song" class="btn btn-primary center" >Canciones gustadas</a>
+                    <a href="like_songs" class="btn btn-primary center" >Canciones gustadas</a>
                 </div>
             </div>
     
@@ -119,13 +130,13 @@
             
             <div class="col">
                 <div class="text-center bg-dark bg-gradient p-3 borderless">
-                    <a href="playlist_group" class="btn btn-primary center" >Canciones de playlists</a>
+                    <a href="playlistGroups" class="btn btn-primary center" >Canciones de playlists</a>
                 </div>
             </div>
 
             <div class="col">
                 <div class="text-center bg-dark bg-gradient p-3 borderless">
-                    <a href="paymentHistories" class="btn btn-primary center" >Restricciones de canciones por paises</a>
+                    <a href="restrictions" class="btn btn-primary center" >Restricciones de canciones por paises</a>
                 </div>
             </div>
     

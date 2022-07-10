@@ -39,14 +39,14 @@
     @include('home.navbar')
 
     @section('contenido')
-    <a href= "playlists/create" class="btn btn-primary">Crear playlist</a>
+    <a href= "playlistGroups/create" class="btn btn-primary">Crear relacion de cancion/playlist</a>
+    <a href= "crudmenu" class="btn btn-primary">Volver al menu CRUD</a>
     <table class="table table-dark table-striped mt-4">
         <thead>
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Nombre playlist</th>
-                <th scope="col">Likes totales</th>
-                <th scope="col">Id del creador</th>
+                <th scope="col">ID cancion</th>
+                <th scope="col">ID de playlist totales</th>
                 <th scope="col">Acciones</th>
             </tr>
         </thead>
@@ -57,11 +57,11 @@
                 <td> {{$playlist_group->id_cancion}}</td>
                 <td> {{$playlist_group->id_playlist}}</td>
                 <td>
-                <form action="playlist_group/delete/{{$playlist_group->id}}" method = "POST">
-                        <a href="playlist_group/{{$playlist_group->id}}/edit" class="btn btn-info">Editar playlist</a>
+                <form action="playlistGroups/delete/{{$playlist_group->id}}" method = "POST">
+                        <a href="playlistGroups/edit/{{$playlist_group->id}}" class="btn btn-info">Editar relacion</a>
                         @csrf
                         @method('PUT')
-                        <button type="submit" class="btn btn-danger">Eliminar playlist</button>
+                        <button type="submit" class="btn btn-danger">Eliminar relacion</button>
                 </form>
                 </td>
             </tr>

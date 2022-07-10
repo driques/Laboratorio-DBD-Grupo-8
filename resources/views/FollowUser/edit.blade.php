@@ -50,7 +50,7 @@
 
     @section('contenido')
    
-    <h2>Edicion de album</h2>
+    <h2>Edicion de relacion seguidor/seguido</h2>
     <form method="post" action="{{URL('/follow_users/update/'.strval($follow_user->id))}}" >
         @method('put') 
         @csrf

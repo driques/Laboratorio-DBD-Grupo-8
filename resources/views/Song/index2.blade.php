@@ -4,6 +4,17 @@
 <html lang="es">
 
 <head>
+
+      @auth
+      <p style="display:none;" id="id_rol">{{auth()->user()->id_rol}}</p>
+      <script>
+        role = document.getElementById("id_rol").innerHTML;
+        if (role == 2) {
+          window.location.href = "/home";
+        };
+      </script>
+      @endauth
+
     <style>
         #rellenarimg {
             object-fit: fill;
@@ -30,39 +41,59 @@
     </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>DBD music - Albumes</title>
+    <title>DBD music - Admin->songs</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
 
 <body id="grid1">
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{{url('/')}}">
-                <img src="{{URL('images/DEBEDE.png')}}" width="50" height="50" class="d-inline-block align-left me-3" alt="">
-                DEBEDE Music
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-    </nav>
+    @include('home.navbar')
 
     @section('contenido')
-    <h2>Crear relacion cancion/playlist</h2>
-    <form action="/playlistGroups/store" method="POST">
-        @csrf
-        <div class="mb-3">
-            <label for="" class="from-label">ID de cancion</label>
-            <input id="id_cancion" name="id_cancion" type="text" class="form-control" tabindex="1" value=""></input>
-        </div>
-        <div class="mb-3">
-            <label for="" class="from-label">ID de playlist</label>
-            <input id="id_playlist" name="id_playlist" type="text" class="form-control" tabindex="2" value=""></input>
-        </div>
-        <a href="/playlistGroups" class="btn btn-secondary" tabindex="5">Cancelar</a>
-        <button type="submit" class="btn btn-danger" tabindex="4">Guardar</button>
-    </form>
+    <a href= "song2/create" class="btn btn-primary">Crear cancion</a>
+    <a href= "crudmenu" class="btn btn-primary">Volver al menu CRUD</a>
+    <table class="table table-dark table-striped mt-4">
+        <thead>
+            <tr>
+                <th scope="col">ID de cancion</th>
+                <th scope="col">Nombre cancion</th>
+                <th scope="col">Likes totales</th>
+                <th scope="col">Reproducciones totales</th>
+                <th scope="col">Restriccion etaria</th>
+                <th scope="col">Duracion de cancion (segundos)</th>
+                <th scope="col">ID de album</th>
+                <th scope="col">ID de genero</th>
+                <th scope="col">ID del creador</th>
+                <th scope="col">URL de la cancion</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($songs as $song)
+            <tr>
+                <td> {{$song->id}}</td>
+                <td> {{$song->nombre_cancion}}</td>
+                <td> {{$song->likes}}</td>
+                <td> {{$song->reproducciones}}</td>
+                <td> {{$song->restriccion_etaria}}</td>
+                <td> {{$song->song_duration}}</td>
+                <td> {{$song->id_album}}</td>
+                <td> {{$song->id_genre}}</td>
+                <td> {{$song->id_artist}}</td>
+                <td> {{$song->url_cancion}}</td>
+                <td>
+                <form action="songs/delete/{{$song->id}}" method = "POST">
+                        <a href="songs/edit/{{$song->id}}" class="btn btn-info">Editar cancion</a>
+                        @csrf
+                        @method('PUT')
+                        <button type="submit" class="btn btn-danger">Eliminar cancion</button>
+                </form>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+
+    </table>
     @endsection
 
 </body>

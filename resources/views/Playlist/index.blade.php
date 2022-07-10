@@ -4,6 +4,17 @@
 <html lang="es">
 
 <head>
+
+      @auth
+      <p style="display:none;" id="id_rol">{{auth()->user()->id_rol}}</p>
+      <script>
+        role = document.getElementById("id_rol").innerHTML;
+        if (role == 2) {
+          window.location.href = "/home";
+        };
+      </script>
+      @endauth
+
     <style>
         #rellenarimg {
             object-fit: fill;

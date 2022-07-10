@@ -13,6 +13,7 @@ use App\Http\Controllers\PlaylistController;
 use App\Http\Controllers\Playlist_groupController;
 use App\Http\Controllers\Like_songController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\CountrySongRestrictionController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,46 @@ Route::get('/', function () {
     return view('welcome');
 });
 */
+
+Route::get('/users/create', function () {
+    return view('user.create');
+})->middleware('auth');
+
+Route::get('/restrictions/create', function () {
+    return view('restriction.create');
+})->middleware('auth');
+
+Route::get('/restrictions', function () {
+    return view('restriction.index');
+})->middleware('auth');
+
+Route::get('/playlistGroups/create', function () {
+    return view('playlistgroup.create');
+})->middleware('auth');
+
+Route::get('/playlistGroups', function () {
+    return view('playlistgroup.index');
+})->middleware('auth');
+
+Route::get('/countries3/create', function () {
+    return view('country/create');
+})->middleware('auth');
+
+Route::get('/countries3', function () {
+    return view('country/index');
+})->middleware('auth');
+
+Route::get('/paymentHistories/create', function () {
+    return view('payment/create');
+})->middleware('auth');
+
+Route::get('/songs2', function () {
+    return view('song/index2');
+})->middleware('auth');
+
+Route::get('/like_songs/create', function () {
+    return view('likesong.create');
+})->middleware('auth');
 
 
 Route::get('/follow_users', function () {
@@ -66,7 +107,7 @@ Route::get('/edit/profile', [CountryController::class,'index2']);
 
 Route::get('/crudmenu', function () {
     return view('crudmenu/index');
-});
+})->middleware('auth');
 Route::get('/profile', function () {
     return view('user/myProfile');
 });
@@ -191,13 +232,18 @@ Route::get('genres/create',[GenreController::class,'create']);
 Route::put('/genres/update/{id}',[GenreController::class,'update']);
 Route::put('/genres/delete/{id}',[GenreController::class,'delete']);
 Route::delete('/genres/destroy/{id}',[GenreController::class,'destroy']);
+Route::get('/genres/edit/{id}',[GenreController::class,'edit']);
 
 //Country
-Route::get('/countries',[CountryController::class,'index']); 
+Route::get('/countries',[CountryController::class,'index']);
+Route::get('/countries3',[CountryController::class,'index3']);
 Route::get('/countries/{id}',[CountryController::class,'show']);
 Route::post('/countries/store',[CountryController::class,'store']);
+Route::get('/countries3/edit/{id}',[CountryController::class,'edit']);
 Route::put('/countries/update/{id}',[CountryController::class,'update']);
+Route::put('/countries3/update3/{id}',[CountryController::class,'update3']);
 Route::put('/countries/delete/{id}',[CountryController::class,'delete']);
+Route::put('/countries3/delete/{id}',[CountryController::class,'delete2']);
 Route::delete('/countries/destroy/{id}',[CountryController::class,'destroy']);
 
 //Roles
@@ -209,13 +255,16 @@ Route::put('/roles/delete/{id}',[RolController::class,'delete']);
 Route::delete('/roles/destroy/{id}',[RolController::class,'destroy']);
 
 //Users
-Route::get('/users',[UserController::class,'index']); 
+Route::get('/users',[UserController::class,'index']);
+Route::get('/users/edit/{id}',[UserController::class,'edit']);  
 Route::get('/users/{id}',[UserController::class,'show']);
 
 Route::get('/users/test',[UserController::class,'store']);
 
 Route::post('/users/store',[UserController::class,'store']);
+Route::post('/users/store2',[UserController::class,'store2']);
 Route::put('/users/update/{id}',[UserController::class,'update']);
+Route::put('/users/update2/{id}',[UserController::class,'update3']);
 Route::get('/users/update/{id}', function () {
     return view('user/editProfile');
 })->middleware('auth');
@@ -242,16 +291,18 @@ Route::get('/paymentHistories',[PaymentHistoryController::class,'index']);
 Route::get('/paymentHistories/{id}',[PaymentHistoryController::class,'show']);
 Route::post('/paymentHistories/store',[PaymentHistoryController::class,'store']);
 Route::put('/paymentHistories/update/{id}',[PaymentHistoryController::class,'update']);
+Route::get('/paymentHistories/edit/{id}',[PaymentHistoryController::class,'edit']);
 Route::put('/paymentHistories/delete/{id}',[PaymentHistoryController::class,'delete']);
 Route::delete('/paymentHistories/destroy/{id}',[PaymentHistoryController::class,'destroy']);
 
 //Like_song
-Route::get('/like_song',[Like_songController::class,'index']); 
-Route::get('/like_song/{id}',[Like_songController::class,'show']);
-Route::post('/like_song/store',[Like_songController::class,'store']);
-Route::put('/like_song/update/{id}',[Like_songController::class,'update']);
-Route::put('/like_song/delete/{id}',[Like_songController::class,'delete']);
-Route::delete('/like_song/destroy/{id}',[Like_songController::class,'destroy']);
+Route::get('/like_songs',[Like_songController::class,'index']); 
+Route::get('/like_songs/{id}',[Like_songController::class,'show']);
+Route::post('/like_songs/store',[Like_songController::class,'store']);
+Route::get('like_songs/edit/{id}',[Like_songController::class,'edit']);
+Route::put('/like_songs/update/{id}',[Like_songController::class,'update']);
+Route::put('/like_songs/delete/{id}',[Like_songController::class,'delete']);
+Route::delete('/like_songs/destroy/{id}',[Like_songController::class,'destroy']);
 
 //Playlist
 Route::get('/playlists',[PlaylistController::class,'index']); 
@@ -265,12 +316,13 @@ Route::delete('/playlists/destroy/{id}',[PlaylistController::class,'destroy']);
 Route::get('/playlist/searchPlaylistByOwner',[PlaylistController::class,'searchPlaylistByOwner']);
 
 //Playlist_group
-Route::get('/playlist_group',[Playlist_groupController::class,'index']); 
-Route::get('/playlist_group/{id}',[Playlist_groupController::class,'show']);
-Route::post('/playlist_group/store',[Playlist_groupController::class,'store']);
-Route::put('/playlist_group/update/{id}',[Playlist_groupController::class,'update']);
-Route::put('/playlist_group/delete/{id}',[Playlist_groupController::class,'delete']);
-Route::delete('/playlist_group/destroy/{id}',[Playlist_groupController::class,'destroy']);
+Route::get('/playlistGroups',[Playlist_groupController::class,'index']); 
+Route::get('/playlistGroups/edit/{id}',[Playlist_groupController::class,'edit']); 
+Route::get('/playlistGroups/{id}',[Playlist_groupController::class,'show']);
+Route::post('/playlistGroups/store',[Playlist_groupController::class,'store']);
+Route::put('/playlistGroups/update/{id}',[Playlist_groupController::class,'update']);
+Route::put('/playlistGroups/delete/{id}',[Playlist_groupController::class,'delete']);
+Route::delete('/playlistGroups/destroy/{id}',[Playlist_groupController::class,'destroy']);
 
 //Song
 //Route::get('/songs',[SongController::class,'index']); 
@@ -279,8 +331,18 @@ Route::post('/songs/store',[SongController::class,'store']);
 Route::put('/songs/update/{id}',[SongController::class,'update']);
 Route::put('/songs/delete/{id}',[SongController::class,'delete']);
 Route::delete('/songs/destroy/{id}',[SongController::class,'destroy']);
+Route::get('/songs2',[SongController::class,'index2']);
+
 
 Route::put('/songs/playquantity/{id}',[SongController::class,'playQuantity']);
 
+//Country_restrictions
+Route::get('/restrictions/{nombre_cancion}',[CountrySongRestrictionController::class,'show']);
+Route::post('/restrictions/store',[CountrySongRestrictionController::class,'store']);
+Route::put('/restrictions/update/{id}',[CountrySongRestrictionController::class,'update']);
+Route::get('/restrictions/edit/{id}',[CountrySongRestrictionController::class,'edit']);
+Route::put('/restrictions/delete/{id}',[CountrySongRestrictionController::class,'delete']);
+Route::delete('/restrictions/destroy/{id}',[CountrySongRestrictionController::class,'destroy']);
+Route::get('/restrictions',[CountrySongRestrictionController::class,'index']);
 
 //Auth::routes();

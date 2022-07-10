@@ -60,7 +60,7 @@
             <label for="" class="from-label">Id seguido</label>
             <input id="following" name="following" type="text" class="form-control" tabindex="2" value=""></input>
         </div>
-        <a href="/albums" class="btn btn-secondary" tabindex="5">Cancelar</a>
+        <a href="/follow_users" class="btn btn-secondary" tabindex="5">Cancelar</a>
         <button type="submit" class="btn btn-danger" tabindex="4">Guardar</button>
     </form>
     @endsection

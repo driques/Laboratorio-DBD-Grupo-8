@@ -14,11 +14,8 @@ class RolController extends Controller
      */
     public function index()
     {
-        $roles = Rol::where('borrado',false)->get();
-        if($roles->isEmpty()){
-            return response()->json(['response'=>'no se encuentran roles registrados',]);
-        }
-        return response($roles,200);
+        $rols = Rol::where('borrado',false)->get();
+        return view('rol.index',compact('rols'));
     }
 
     /**
@@ -57,7 +54,7 @@ class RolController extends Controller
         $newRol->rol = $request->rol;
         $newRol->borrado = FALSE;
         $newRol-> save();
-        return response()->json(['Se ha creado el rol correctamente'],201);
+        return redirect('/rols');
     }
 
     /**

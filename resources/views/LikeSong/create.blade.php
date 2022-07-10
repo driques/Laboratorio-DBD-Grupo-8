@@ -49,18 +49,18 @@
     </nav>
 
     @section('contenido')
-    <h2>Crear relacion cancion/playlist</h2>
-    <form action="/playlistGroups/store" method="POST">
+    <h2>Creacion de relacion gusta/cancion</h2>
+    <form action="/like_songs/store" method="POST">
         @csrf
         <div class="mb-3">
-            <label for="" class="from-label">ID de cancion</label>
-            <input id="id_cancion" name="id_cancion" type="text" class="form-control" tabindex="1" value=""></input>
+            <label for="" class="from-label">Id de cancion gustada</label>
+            <input id="id_song" name="liked" type="text" class="form-control" tabindex="1" value=""></input>
         </div>
         <div class="mb-3">
-            <label for="" class="from-label">ID de playlist</label>
-            <input id="id_playlist" name="id_playlist" type="text" class="form-control" tabindex="2" value=""></input>
+            <label for="" class="from-label">Id de usuario que gusta cancion</label>
+            <input id="user_like" name="liker" type="text" class="form-control" tabindex="2" value=""></input>
         </div>
-        <a href="/playlistGroups" class="btn btn-secondary" tabindex="5">Cancelar</a>
+        <a href="/like_songs" class="btn btn-secondary" tabindex="5">Cancelar</a>
         <button type="submit" class="btn btn-danger" tabindex="4">Guardar</button>
     </form>
     @endsection

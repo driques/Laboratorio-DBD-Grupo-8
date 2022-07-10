@@ -22,6 +22,12 @@ class CountryController extends Controller
         return view('home/register',compact('countries'));
     }
 
+    public function index3()
+    {
+        $countries = Country::where('borrado',false)->get();
+        return view('country/index',compact('countries'));
+    }
+
     //Ojo con esto
     public function index2()
     {
@@ -68,7 +74,7 @@ class CountryController extends Controller
         $newCountry->name_country = $request->name_country;
         $newCountry->borrado = FALSE;
         $newCountry-> save();
-        return redirect('/countries');
+        return redirect('/countries3');
     }
 
     /**
@@ -94,7 +100,8 @@ class CountryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $country = Country::find($id);
+        return view('country.edit',compact('country'));
     }
 
     /**
@@ -135,6 +142,37 @@ class CountryController extends Controller
         return redirect('/countries');
     }
 
+    public function update3(Request $request, $id)
+    {
+        $validator = Validator::make(
+            $request->only(['name_country']),
+            [
+                'name_country' => 'required|min:2|max:20',
+            ],
+            [
+                'name_country.required' => 'Se debe ingresar un nombre para actualizar el pais.',
+                'name_country.min' => 'Debe ser de largo mínimo :min',
+                'name_country.max' => 'Debe ser de largo máximo :max'
+            ]
+        );
+    
+        if($validator->fails()){
+            return response($validator->errors());
+        }
+        $country = Country::find($id);
+        if(empty($country)){
+            return response()->json(['message' => 'El id no existe.']);
+        }
+        if ($request->name_country == $country->name_country){
+            return response()->json([
+                "message" => "Los datos ingresados son iguales a los actuales."
+            ], 203);
+        }
+        $country->name_country = $request->name_country;
+        $country->save();
+        return redirect('/countries3');
+    }
+
      //Cabe destacar que se realizan 2 funciones de borrado, uno para un soft y otro para un hard
     //delete sera la funcion que se encargara del delete soft, y destroy la encargada del delete hard.
     //Se toma la funcion delete como si fuera un update para el objeto country.
@@ -146,6 +184,16 @@ class CountryController extends Controller
         $country->borrado = true;
         $country->save();
         return redirect('/countries');
+    }
+
+    public function delete2($id){
+        $country = Country::find($id);
+        if(empty($country) or $country->borrado == true){
+            return response()->json(['message' => 'No se encuentra el id ingresado']);
+        }
+        $country->borrado = true;
+        $country->save();
+        return redirect('/countries3');
     }
 
     public function destroy($id)

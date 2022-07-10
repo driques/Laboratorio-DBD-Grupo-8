@@ -62,7 +62,7 @@
                 <td> {{$user->birth_year}}</td>
                 <td>
                 <form action="users/delete/{{$user->id}}" method = "POST">
-                        <a href="album/{$album->id}/edit" class="btn btn-info">Editar Usuario</a>
+                        <a href="users/edit/{{$user->id}}" class="btn btn-info">Editar Usuario</a>
                         @csrf
                         @method('PUT')
                         <button type="submit" class="btn btn-danger">Eliminar Usuario</button>

@@ -76,7 +76,7 @@
                 <label for="" class="from-label">Url canción</label>
                 <input id="url_cancion" name="url_cancion" type="text" class="form-control" tabindex="1" value="{{ $song->url_cancion}}"></input>
             </div>
-            <a href="/song/edit" class="btn btn-secondary" tabindex="5">Cancelar</a>
+            <a href="/songs2" class="btn btn-secondary" tabindex="5">Cancelar</a>
             <button type="submit" class="btn btn-danger" tabindex="4">Guardar cambios</button>
     </form>
 

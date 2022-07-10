@@ -50,20 +50,24 @@
 
     @section('contenido')
    
-    <h2>Editar relacion cancion/playlist</h2>
-    <form method="post" action="{{URL('/playlistGroups/update/'.strval($playlist_group->id))}}" >
+    <h2>Editar pago</h2>
+    <form method="post" action="{{URL('/paymentHistories/update/'.strval($payment->id))}}" >
         @method('put') 
         @csrf
         <div class="form-group">
             <div class="mb-3">
-                <label for="" class="from-label">Id cancion</label>
-                <input id="id_cancion" name="id_cancion" type="text" class="form-control" tabindex="1" value="{{ $playlist_group->id_cancion }}"></input>
+                <label for="" class="from-label">Monto</label>
+                <input id="codigo" name="monto" type="text" class="form-control" tabindex="1" value="{{ $payment->monto }}"></input>
             </div>
             <div class="mb-3">
-                <label for="" class="from-label">Id cancion</label>
-                <input id="id_playlist" name="id_playlist" type="text" class="form-control" tabindex="1" value="{{ $playlist_group->id_playlist }}"></input>
+                <label for="" class="from-label">Metodo de pago</label>
+                <input id="codigo" name="metodo_pago" type="text" class="form-control" tabindex="2" value="{{ $payment->metodo_pago }}"></input>
             </div>
-            <a href="/playlistGroups" class="btn btn-secondary" tabindex="5">Cancelar</a>
+            <div class="mb-3">
+                <label for="" class="from-label">ID del usuario</label>
+                <input id="codigo" name="user_pay" type="text" class="form-control" tabindex="2" value="{{ $payment->user_pay }}"></input>
+            </div>
+            <a href="/paymentHistories" class="btn btn-secondary" tabindex="5">Cancelar</a>
             <button type="submit" class="btn btn-danger" tabindex="4">Guardar cambios</button>
     </form>
 

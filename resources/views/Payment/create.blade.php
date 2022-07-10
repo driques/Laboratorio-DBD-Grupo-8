@@ -49,18 +49,22 @@
     </nav>
 
     @section('contenido')
-    <h2>Crear relacion cancion/playlist</h2>
-    <form action="/playlistGroups/store" method="POST">
+    <h2>Crear pago</h2>
+    <form action="/paymentHistories/store" method="POST">
         @csrf
         <div class="mb-3">
-            <label for="" class="from-label">ID de cancion</label>
-            <input id="id_cancion" name="id_cancion" type="text" class="form-control" tabindex="1" value=""></input>
+            <label for="" class="from-label">Monto cancelado</label>
+            <input id="monto" name="monto" type="text" class="form-control" tabindex="1" value=""></input>
         </div>
         <div class="mb-3">
-            <label for="" class="from-label">ID de playlist</label>
-            <input id="id_playlist" name="id_playlist" type="text" class="form-control" tabindex="2" value=""></input>
+            <label for="" class="from-label">Metodo de pago</label>
+            <input id="metodo_pago" name="metodo_pago" type="text" class="form-control" tabindex="2" value=""></input>
         </div>
-        <a href="/playlistGroups" class="btn btn-secondary" tabindex="5">Cancelar</a>
+        <div class="mb-3">
+            <label for="" class="from-label">Usuario que cancela</label>
+            <input id="user_pay" name="user_pay" type="text" class="form-control" tabindex="3" value=""></input>
+        </div>
+        <a href="/paymentHistories" class="btn btn-secondary" tabindex="5">Cancelar</a>
         <button type="submit" class="btn btn-danger" tabindex="4">Guardar</button>
     </form>
     @endsection

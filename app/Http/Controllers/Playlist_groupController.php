@@ -16,12 +16,12 @@ class Playlist_groupController extends Controller
      */
     public function index()
     {
-        $playlist_group = Playlist_group::where('borrado',false)->get();
-        if($playlist_group->isEmpty()){
+        $playlist_groups = Playlist_group::where('borrado',false)->get();
+        if($playlist_groups->isEmpty()){
             return response()->json([
                 'respuesta' => 'No se encuentra la agrupacion de canciones asociada']);
         }
-        return view('playlist_group.index', compact('playlist_group'));
+        return view('playlistGroup.index', compact('playlist_groups'));
     }
 
     /**
@@ -68,12 +68,7 @@ class Playlist_groupController extends Controller
         $newPlaylistGroup->borrado = false;
         $newPlaylistGroup->save();
 
-        return response()->json([
-            'message' => 'Cancion agregada a la playlist',
-            'id_cancion'=> $newPlaylistGroup->id_cancion,
-            'playlist' =>$newPlaylistGroup->id_playlist,
-            'id' => $newPlaylistGroup->id,
-        ], 201);
+        return redirect('/playlistGroups');
     }
 
     /**
@@ -100,7 +95,8 @@ class Playlist_groupController extends Controller
      */
     public function edit($id)
     {
-        //
+        $playlist_group = Playlist_group::find($id);
+        return view('playlistGroup.edit', compact('playlist_group'));
     }
 
     /**
@@ -149,10 +145,7 @@ class Playlist_groupController extends Controller
         $updatePlaylistGroup->id_playlist = $request->id_playlist;
         $updatePlaylistGroup->save();
 
-        return response()->json([
-            'message' => 'Grupo de playlist modificado con exito',
-            'id' => $updatePlaylistGroup->id,
-        ], 201);
+        return redirect('/playlistGroups');
     }
 
     public function delete($id){
@@ -162,10 +155,7 @@ class Playlist_groupController extends Controller
         }
         $playlist_group->borrado = true;
         $playlist_group->save();
-        return response()->json([
-            'message' => 'El user fue eliminado correctamente(soft delete)',
-            'id' => $playlist_group->id,
-        ], 201);
+        return redirect('/playlistGroups');
     }
 
     /**

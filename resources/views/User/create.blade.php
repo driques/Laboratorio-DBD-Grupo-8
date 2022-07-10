@@ -49,18 +49,34 @@
     </nav>
 
     @section('contenido')
-    <h2>Crear relacion cancion/playlist</h2>
-    <form action="/playlistGroups/store" method="POST">
+    <h2>Crear usuario</h2>
+    <form action="/users/store2" method="POST">
         @csrf
         <div class="mb-3">
-            <label for="" class="from-label">ID de cancion</label>
-            <input id="id_cancion" name="id_cancion" type="text" class="form-control" tabindex="1" value=""></input>
+            <label for="" class="from-label">Nombre de usuario</label>
+            <input id="name" name="name" type="text" class="form-control" tabindex="1" value=""></input>
         </div>
         <div class="mb-3">
-            <label for="" class="from-label">ID de playlist</label>
-            <input id="id_playlist" name="id_playlist" type="text" class="form-control" tabindex="2" value=""></input>
+            <label for="" class="from-label">email</label>
+            <input id="email" name="email" type="text" class="form-control" tabindex="2" value=""></input>
         </div>
-        <a href="/playlistGroups" class="btn btn-secondary" tabindex="5">Cancelar</a>
+        <div class="mb-3">
+            <label for="" class="from-label">password</label>
+            <input id="password" name="password" type="text" class="form-control" tabindex="3" value=""></input>
+        </div>
+        <div class="mb-3">
+            <label for="" class="from-label">plan</label>
+            <input id="plan" name="plan" type="text" class="form-control" tabindex="4" value=""></input>
+        </div>
+        <div class="mb-3">
+            <label for="" class="from-label">ano de nacimiento</label>
+            <input id="birth_year" name="birth_year" type="text" class="form-control" tabindex="5" value="dd-mm-yyyy"></input>
+        </div>
+        <div class="mb-3">
+            <label for="" class="from-label">id_rol</label>
+            <input id="id_pais" name="id_pais" type="text" class="form-control" tabindex="6" value=""></input>
+        </div>
+        <a href="/users" class="btn btn-secondary" tabindex="5">Cancelar</a>
         <button type="submit" class="btn btn-danger" tabindex="4">Guardar</button>
     </form>
     @endsection

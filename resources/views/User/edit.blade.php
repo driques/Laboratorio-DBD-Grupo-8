@@ -50,20 +50,40 @@
 
     @section('contenido')
    
-    <h2>Editar relacion cancion/playlist</h2>
-    <form method="post" action="{{URL('/playlistGroups/update/'.strval($playlist_group->id))}}" >
+    <h2>Editar restriccion</h2>
+    <form method="post" action="{{URL('/users/update2/'.strval($user->id))}}" >
         @method('put') 
         @csrf
         <div class="form-group">
-            <div class="mb-3">
-                <label for="" class="from-label">Id cancion</label>
-                <input id="id_cancion" name="id_cancion" type="text" class="form-control" tabindex="1" value="{{ $playlist_group->id_cancion }}"></input>
-            </div>
-            <div class="mb-3">
-                <label for="" class="from-label">Id cancion</label>
-                <input id="id_playlist" name="id_playlist" type="text" class="form-control" tabindex="1" value="{{ $playlist_group->id_playlist }}"></input>
-            </div>
-            <a href="/playlistGroups" class="btn btn-secondary" tabindex="5">Cancelar</a>
+        <div class="mb-3">
+            <label for="" class="from-label">Nombre de usuario</label>
+            <input id="name" name="name" type="text" class="form-control" tabindex="1" value="{{$user->name}}"></input>
+        </div>
+        <div class="mb-3">
+            <label for="" class="from-label">email</label>
+            <input id="email" name="email" type="text" class="form-control" tabindex="2" value="{{$user->email}}"></input>
+        </div>
+        <div class="mb-3">
+            <label for="" class="from-label">password</label>
+            <input id="password" name="password" type="text" class="form-control" tabindex="3" value="{{$user->password}}"></input>
+        </div>
+        <div class="mb-3">
+            <label for="" class="from-label">plan</label>
+            <input id="plan" name="plan" type="text" class="form-control" tabindex="4" value="{{$user->plan}}"></input>
+        </div>
+        <div class="mb-3">
+            <label for="" class="from-label">ano de nacimiento</label>
+            <input id="birth_year" name="birth_year" type="text" class="form-control" tabindex="5" value="{{$user->birth_year}}"></input>
+        </div>
+        <div class="mb-3">
+            <label for="" class="from-label">id_rol</label>
+            <input id="id_rol" name="id_rol" type="text" class="form-control" tabindex="6" value="{{$user->id_rol}}"></input>
+        </div>
+        <div class="mb-3">
+            <label for="" class="from-label">id_rol</label>
+            <input id="id_pais" name="id_pais" type="text" class="form-control" tabindex="6" value="{{$user->id_pais}}"></input>
+        </div>
+            <a href="/users" class="btn btn-secondary" tabindex="5">Cancelar</a>
             <button type="submit" class="btn btn-danger" tabindex="4">Guardar cambios</button>
     </form>
 

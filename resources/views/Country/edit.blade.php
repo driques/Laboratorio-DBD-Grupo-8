@@ -50,20 +50,16 @@
 
     @section('contenido')
    
-    <h2>Editar relacion cancion/playlist</h2>
-    <form method="post" action="{{URL('/playlistGroups/update/'.strval($playlist_group->id))}}" >
+    <h2>Editar pais</h2>
+    <form method="post" action="{{URL('/countries3/update3/'.strval($country->id))}}" >
         @method('put') 
         @csrf
         <div class="form-group">
             <div class="mb-3">
-                <label for="" class="from-label">Id cancion</label>
-                <input id="id_cancion" name="id_cancion" type="text" class="form-control" tabindex="1" value="{{ $playlist_group->id_cancion }}"></input>
+                <label for="" class="from-label">Nombre pais</label>
+                <input id="name_country" name="name_country" type="text" class="form-control" tabindex="1" value="{{ $country->name_country }}"></input>
             </div>
-            <div class="mb-3">
-                <label for="" class="from-label">Id cancion</label>
-                <input id="id_playlist" name="id_playlist" type="text" class="form-control" tabindex="1" value="{{ $playlist_group->id_playlist }}"></input>
-            </div>
-            <a href="/playlistGroups" class="btn btn-secondary" tabindex="5">Cancelar</a>
+            <a href="/countries3" class="btn btn-secondary" tabindex="5">Cancelar</a>
             <button type="submit" class="btn btn-danger" tabindex="4">Guardar cambios</button>
     </form>
 

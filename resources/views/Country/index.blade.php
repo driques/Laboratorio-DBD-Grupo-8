@@ -30,7 +30,7 @@
     </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>DBD music - Albumes</title>
+    <title>DBD music - genrees</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
 
@@ -49,20 +49,34 @@
     </nav>
 
     @section('contenido')
-    <h2>Crear relacion cancion/playlist</h2>
-    <form action="/playlistGroups/store" method="POST">
-        @csrf
-        <div class="mb-3">
-            <label for="" class="from-label">ID de cancion</label>
-            <input id="id_cancion" name="id_cancion" type="text" class="form-control" tabindex="1" value=""></input>
-        </div>
-        <div class="mb-3">
-            <label for="" class="from-label">ID de playlist</label>
-            <input id="id_playlist" name="id_playlist" type="text" class="form-control" tabindex="2" value=""></input>
-        </div>
-        <a href="/playlistGroups" class="btn btn-secondary" tabindex="5">Cancelar</a>
-        <button type="submit" class="btn btn-danger" tabindex="4">Guardar</button>
-    </form>
+    <a href= "countries3/create" class="btn btn-primary">Crear pais</a>
+    <a href= "crudmenu" class="btn btn-primary">Volver al menu CRUD</a>
+    <table class="table table-dark table-striped mt-4">
+        <thead>
+            <tr>
+                <th scope="col">ID pais</th>
+                <th scope="col">Nombre pais</th>
+                <td>Acciones</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($countries as $country)
+            <tr>
+                <td> {{$country->id}}</td>
+                <td> {{$country->name_country}}</td>
+                <td>
+                <form action="countries3/delete/{{$country->id}}" method = "POST">
+                        <a href="countries3/edit/{{$country->id}}" class="btn btn-info">Editar relacion</a>
+                        @csrf
+                        @method('PUT')
+                        <button type="submit" class="btn btn-danger">Eliminar relacion</button>
+                </form>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+
+    </table>
     @endsection
 
 </body>

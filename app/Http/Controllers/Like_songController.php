@@ -15,12 +15,8 @@ class Like_songController extends Controller
      */
     public function index()
     {
-        $active_like_song = Like_song::where('borrado',false)->get();
-        if($active_like_song->isEmpty()){
-            return response()->json([
-                'respuesta' => 'No se encuentra ningun like a cancion activo']);
-        }
-        return response($active_like_song, 200);
+        $like_songs = Like_song::where('borrado',false)->get();
+        return view('likesong.index', compact('like_songs'));
     }
 
     /**
@@ -48,7 +44,7 @@ class Like_songController extends Controller
                 'liked' => 'required|integer|exists:songs,id',
             ],
             [
-                'liker.required' => 'Ingresa el id del usuario que gusta de la',
+                'liker.required' => 'Ingresa el id del usuario que gusta de la cancion',
                 'liker.integer' => 'El id del que gusta de la cancion debe ser integer',
                 'liker.exists' => 'El id del que gusta de la cancion no existe',
                 'liked.required' => 'Ingresa el id de la cancion gustada',
@@ -67,12 +63,7 @@ class Like_songController extends Controller
         $newLike->borrado = false;
         $newLike->save();
 
-        return response()->json([
-            'message' => 'El usuario a gustado de la cancion',
-            'liker'=> $newLike->user_like,
-            'liked' =>$newLike->id_song,
-            'id' => $newLike->id,
-        ], 201);
+        return redirect('/like_songs');
     }
 
     /**
@@ -99,7 +90,8 @@ class Like_songController extends Controller
      */
     public function edit($id)
     {
-        //
+        $like_song = Like_song::find($id);
+        return view('likesong.edit', compact('like_song'));
     }
 
     /**
@@ -145,10 +137,7 @@ class Like_songController extends Controller
         $updateLike->liker = $request->liker;
         $updateLike->liked = $request->liked;
         $updateLike->save();
-        return response()->json([
-                'mensaje' => 'Se modifico Like',
-                'id' => $updateLike->id,
-            ], 201);
+        return redirect('/like_songs');
     }
 
     public function delete($id){
@@ -158,10 +147,7 @@ class Like_songController extends Controller
         }
         $like->borrado = true;
         $like->save();
-        return response()->json([
-            'message' => 'El user fue eliminado correctamente(soft delete)',
-            'id' => $like->id,
-        ], 201);
+        return redirect('/like_songs');
     }
 
     /**

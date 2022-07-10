@@ -69,10 +69,10 @@
                 
                 <td>
                 <form action="follow_users/delete/{{$follow_user->id}}" method = "POST">
-                        <a href="follow_users/edit/{{$follow_user->id}}" class="btn btn-info">Editar genero</a>
+                        <a href="follow_users/edit/{{$follow_user->id}}" class="btn btn-info">Editar relacion</a>
                         @csrf
                         @method('PUT')
-                        <button type="submit" class="btn btn-danger">Eliminar genero</button>
+                        <button type="submit" class="btn btn-danger">Eliminar relacion</button>
                 </form>
                 </td>
             </tr>

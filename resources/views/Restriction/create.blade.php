@@ -49,18 +49,18 @@
     </nav>
 
     @section('contenido')
-    <h2>Crear relacion cancion/playlist</h2>
-    <form action="/playlistGroups/store" method="POST">
+    <h2>Crear restriccion</h2>
+    <form action="/restrictions/store" method="POST">
         @csrf
         <div class="mb-3">
             <label for="" class="from-label">ID de cancion</label>
-            <input id="id_cancion" name="id_cancion" type="text" class="form-control" tabindex="1" value=""></input>
+            <input id="id_song" name="id_song" type="text" class="form-control" tabindex="1" value=""></input>
         </div>
         <div class="mb-3">
-            <label for="" class="from-label">ID de playlist</label>
-            <input id="id_playlist" name="id_playlist" type="text" class="form-control" tabindex="2" value=""></input>
+            <label for="" class="from-label">ID de pais</label>
+            <input id="id_country" name="id_country" type="text" class="form-control" tabindex="2" value=""></input>
         </div>
-        <a href="/playlistGroups" class="btn btn-secondary" tabindex="5">Cancelar</a>
+        <a href="/restrictions" class="btn btn-secondary" tabindex="5">Cancelar</a>
         <button type="submit" class="btn btn-danger" tabindex="4">Guardar</button>
     </form>
     @endsection

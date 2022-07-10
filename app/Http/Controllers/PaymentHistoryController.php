@@ -15,12 +15,8 @@ class PaymentHistoryController extends Controller
      */
     public function index()
     {
-        //    //
-        $paymentHistories= Payment_History::all();//where('borrado',false)->get();
-        if($paymentHistories->isEmpty()){
-            return response()->json(['response'=>'No se encuentran canciones',],204);
-        }
-        return response($paymentHistories,200);
+        $paymentHistories= Payment_History::where('borrado',false)->get();
+        return view('payment.index',compact('paymentHistories'));
     }
 
     /**
@@ -67,8 +63,7 @@ class PaymentHistoryController extends Controller
         $newPaymentHistory->user_pay=$request->user_pay;
         $newPaymentHistory->borrado = FALSE;
         $newPaymentHistory-> save();
-        return response()->json(['Se ha creado el pago'],201);
-        //
+        return redirect('/paymentHistories');
     }
 
     /**
@@ -94,7 +89,8 @@ class PaymentHistoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $payment = Payment_History::find($id);
+        return view('payment.edit',compact('payment'));
     }
 
     /**
@@ -135,11 +131,7 @@ class PaymentHistoryController extends Controller
         $paymentHistory->user_pay = $request->user_pay;
 
         $paymentHistory->save();
-        return response()->json([
-            'message' => 'Se actualizaron los datos',
-            'id' => $paymentHistory->id,
-            'name' => $paymentHistory->name
-        ], 200);
+        return redirect('/paymentHistories');
     }
 
     public function delete($id){
@@ -149,10 +141,7 @@ class PaymentHistoryController extends Controller
         }
         $paymentHistory->borrado = true;
         $paymentHistory->save();
-        return response()->json([
-            'message' => 'El pago fue eliminado correctamente',
-            'id' => $paymentHistory->id,
-        ], 201);
+        return redirect('/paymentHistories');
     }
     /**
      * Remove the specified resource from storage.

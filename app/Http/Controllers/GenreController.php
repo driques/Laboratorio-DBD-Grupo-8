@@ -80,7 +80,8 @@ class GenreController extends Controller
      */
     public function edit($id)
     {
-        //
+        $genre = Genre::find($id);
+        return view('genre.edit',compact('genre'));
     }
 
     /**
@@ -117,12 +118,7 @@ class GenreController extends Controller
         }
         $genre->genre_name = $request->genre_name;
         $genre->save();
-        return response()->json([
-            'message' => 'Se cambio el nombre del genero',
-            'id' => $genre->id,
-            'nombre_genre' => $genre->genre_name
-        ], 200);
-        //
+        return redirect('/genres');
     }
 
     /**

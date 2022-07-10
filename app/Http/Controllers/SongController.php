@@ -17,6 +17,12 @@ class SongController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function index2()
+    {
+        $songs = Song::where('borrado',false)->get();
+        return view('song.index2',compact('songs'));
+    }
+
 
     public function index()
     {
@@ -216,7 +222,7 @@ class SongController extends Controller
         }
         $song->borrado = true;
         $song->save();
-        return redirect('/song/edit');
+        return redirect('/songs2');
     }
 
     public function destroy($id)

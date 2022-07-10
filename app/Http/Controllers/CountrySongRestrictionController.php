@@ -19,11 +19,8 @@ class CountrySongRestrictionController extends Controller
      */
     public function index()
     {
-        $restrictions = CountrySongRestriction::where('borrado',false)->get();
-        if($restrictions->isEmpty()){
-            return response()->json(['response'=>'no se encuentran restricciones registradas',]);
-        }
-        return response($restrictions,200);//
+        $country_song_restrictions = CountrySongRestriction::where('borrado',false)->get();
+        return view('restriction.index', compact('country_song_restrictions'));
     }
 
     /**
@@ -72,7 +69,7 @@ class CountrySongRestrictionController extends Controller
         $newRestriction->id_country = $request->id_country;
         $newRestriction->borrado = FALSE;
         $newRestriction-> save();
-        return response()->json(['Se ha creado el pais'],201);
+        return redirect('/restrictions');
     }
 
     /**
@@ -99,7 +96,8 @@ class CountrySongRestrictionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $restriction = CountrySongRestriction::find($id);
+        return view('restriction.edit', compact('restriction'));
     }
 
     /**
@@ -153,12 +151,9 @@ class CountrySongRestrictionController extends Controller
         $restriction->id_country = $id_country;
 
         $restriction->save();
-        return response()->json([
-            'message' => 'Se actualizaron los datos',
-            'id_song' => $restriction->id_song,
-            'id_country' => $restriction->id_country
-        ], 200);
+        return redirect('/restrictions');
     }
+
     public function delete($id){
         $restriction = CountrySongRestriction::find($id);
         if(empty($restriction) or $restriction->borrado == true){
@@ -166,10 +161,7 @@ class CountrySongRestrictionController extends Controller
         }
         $restriction->borrado = true;
         $restriction->save();
-        return response()->json([
-            'message' => 'la restriccion fue eliminada correctamente (SOFT DELETE)',
-            'id' => $restriction->id,
-        ], 201);
+        return redirect('/restrictions');
     }
     /**
      * Remove the specified resource from storage.
