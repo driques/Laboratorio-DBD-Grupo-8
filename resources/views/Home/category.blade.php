@@ -78,6 +78,7 @@
                 <th>Likes</th>
                 <th>Reproducciones</th>
                 <th>Id Género</th>
+                <th>Escuchar</th>
             </tr>
         </thead>
         <tbody>
@@ -90,6 +91,13 @@
                 <td>{{$song->likes}}</td>
                 <td>{{$song->reproducciones}}</td>
                 <td>{{$song->id_genre}}</td>
+                <td>
+                    <a href="/song/player?namesong={{$song->nombre_cancion}}&urlsong={{$song->url_cancion}}" class="btn btn-info">Escuchar</a>
+                    @csrf
+                    @method('POST')
+
+                </td>
+
             
             </tr>
             @endforeach
