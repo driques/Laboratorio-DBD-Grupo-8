@@ -50,6 +50,9 @@ Route::get('/follow_users/create', function () {
 Route::get('/home/ranking', function () {
     return view('home/ranking');
 });
+Route::get('/home/category', function () {
+    return view('home/category');
+});
 
 Route::get('/genres/create', function () {
     return view('genre/create');
@@ -92,7 +95,15 @@ Route::get('user/myprofile', function () {
 });
 Route::get('/home/search',[SongController::class,'search']);
 Route::get('/home/searchNavbar',[SongController::class,'searchNavbar']);
+
+
 Route::get('/home/ranking',[SongController::class,'ranking']);
+
+
+Route::get('/home/category',[SongController::class,'category']);
+
+
+Route::get('/home/categorySearch',[SongController::class,'getSongsByGenre']);
 
 
 Route::get('/albums/{id}/edit', function () {
@@ -197,6 +208,9 @@ Route::delete('/roles/destroy/{id}',[RolController::class,'destroy']);
 //Users
 Route::get('/users',[UserController::class,'index']); 
 Route::get('/users/{id}',[UserController::class,'show']);
+
+Route::get('/users/test',[UserController::class,'store']);
+
 Route::post('/users/store',[UserController::class,'store']);
 Route::put('/users/update/{id}',[UserController::class,'update']);
 Route::get('/users/update/{id}', function () {
@@ -262,6 +276,8 @@ Route::post('/songs/store',[SongController::class,'store']);
 Route::put('/songs/update/{id}',[SongController::class,'update']);
 Route::put('/songs/delete/{id}',[SongController::class,'delete']);
 Route::delete('/songs/destroy/{id}',[SongController::class,'destroy']);
+
+Route::put('/songs/playquantity/{id}',[SongController::class,'playQuantity']);
 
 
 //Auth::routes();

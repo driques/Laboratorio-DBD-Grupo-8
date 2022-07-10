@@ -96,14 +96,7 @@
         </div>
 
 
-        <!-- Aqui debo mostrar las playlists-->
-        <div class="col">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h1 id="barUser">Playlists públicas</h1>
-                    <h1>1 1 1 </h1>
-            </div>
-        </div>
+        
         <br><br>
     </div>
 </body>

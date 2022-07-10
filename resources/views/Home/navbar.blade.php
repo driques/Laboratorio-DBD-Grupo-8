@@ -74,7 +74,7 @@
         window.addEventListener('load', function() {
           document.getElementById("texto").addEventListener("keyup", () => {
             if ((document.getElementById("texto").value.length) >= 1)
-              fetch(`/song/searchNavbar?texto=${document.getElementById("texto").value}`, {
+              fetch(`/home/searchNavbar?texto=${document.getElementById("texto").value}`, {
                 method: 'get'
               })
               .then(response => response.text())
@@ -85,8 +85,9 @@
               document.getElementById("resultados").innerHTML = ""
           })
         });
-        function redirect(namesong, urlsong) {
-          window.location.href = "/song/player?namesong=" + namesong + "&urlsong=" + urlsong;
+        function redirect(namesong, urlsong,id) {
+
+          window.location.href = "/song/player?namesong=" + namesong + "&urlsong=" + urlsong+"&id="+id;
         }
         function redirectToProfile(idProfile,name) {
           window.location.href = "/user/profile?id=" + idProfile+"&name="+name;

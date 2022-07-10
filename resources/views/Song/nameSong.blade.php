@@ -3,7 +3,7 @@
         <p class ="p-2 border-bottom" >
             {{$item->id.'-'.$item->nombre_cancion}}
 
-            <button onclick="getSong('{{$item->nombre_cancion}}'); limpiar(); getUrl('{{$item->url_cancion}}');">Reproducir</button>
+            <button onclick="getSong('{{$item->nombre_cancion}}'); limpiar(); getUrl('{{$item->url_cancion}}','{{$item->id}}');">Reproducir</button>
         </p>
         @endforeach
     @endif

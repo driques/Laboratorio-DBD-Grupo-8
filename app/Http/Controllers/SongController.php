@@ -248,8 +248,29 @@ class SongController extends Controller
 
     }
     public function getSongsByUser(Request $request){
-        $canciones=Song::where("id_artist","=",strval($request->id_user))->get();
+        $canciones=Song::where("id_artist","=",strval($request->id_artist))->where('borrado',false)->get();
         return view('user.songsUser',array('cancionesUser'=>$canciones));
+
+    }
+    public function playQuantity($id){
+        $song = Song::find($id);
+        $song->reproducciones = $song->reproducciones+1;
+        $song->save();
+        return response()->json(["message"=>$song->reproducciones]);
+    }
+    public function category(){
+        $song = Song::where('borrado',false)->get();
+        $category = Genre::where('borrado',false)->get();
+        return view('home/category',compact("song"),compact('category'));
+    }
+
+    public function getSongsByGenre(Request $request){
+        $song = Song::where('borrado',false)->where('id_genre','=',strval($request->id_genre))->get();
+        $category = Genre::where('borrado',false)->get();
+        return view('home/category',compact("song"),compact('category'));
+
+
+
 
     }
 }

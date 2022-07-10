@@ -46,8 +46,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $countries = Country::where('borrado', false)->get();
-       
+        //$countries = Country::where('borrado', false)->get();
+        $rol = Rol::where('borrado',false)->get();
         $users = User::where('borrado', false)->where('id_rol', 0)->get();
         $validator = Validator::make(
             $request->all(),[
@@ -85,12 +85,11 @@ class UserController extends Controller
         $newUser->birth_year = $request->birth_year;
         $newUser->id_pais = $request->id_pais;
         $newUser->id_rol = $request->id_rol;
-       // $newUser->id_rol = $myRol[0]->rol;
-        //Esta variable hay que sacarla directamente de la tabla
-                                //de roles, o dejara el error de que falta una llave foranea, pero aun no cacho
-                                //como hacerlo
+        //El rol con id 2 es un usuario normal, el con id 1 es admin
+        $newUser->id_rol = $rol[1]->id;
         $newUser->borrado = FALSE;
         $newUser-> save();
+        echo '<script>alert("Usuario creado con exito!")</script>';
         $users = User::where('borrado',false)->get();
         return view('home/home',compact('users'));
        

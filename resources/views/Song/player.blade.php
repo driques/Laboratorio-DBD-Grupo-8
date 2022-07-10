@@ -116,7 +116,7 @@
         <script> window.addEventListener('load',function(){ 
             document.getElementById("texto").addEventListener("keyup",()=>{
             if((document.getElementById("texto").value.length)>=1)
-            fetch(`/song/search?texto=${document.getElementById("texto").value}`,{method:'get'})
+            fetch(`/home/search?texto=${document.getElementById("texto").value}`,{method:'get'})
             .then(response =>response.text())
             .then(html => {document.getElementById("resultados").innerHTML=html})
             else
@@ -161,7 +161,11 @@
         function getSong(nombreCancion){
            document.getElementById("tituloCancion").innerHTML = nombreCancion;
        }
-       function getUrl(newUrl){
+       function getUrl(newUrl,id){
+           fetch(`/songs/playquantity/`+id,{method:'put'})
+           .then(response => response.json())
+            .then(data => console.log(data));
+           console.log('holiwis');
            urlMusic = newUrl;
            var audioElem = new Audio(newUrl);
            music = audioElem;
@@ -175,12 +179,14 @@
        let params=(new URL(document.location)).searchParams;
        let namesong=params.get("namesong");
        let urlSong = params.get("urlsong");
+       let idSong = params.get("id");
        console.log("estoy aqui");
        //console.log(namesong);
        //getSong(namesong);
        if(namesong!=null){
+           console.log(idSong,"aquiid");
            getSong(namesong);
-           getUrl(urlSong);
+           getUrl(urlSong,idSong);
            //document.getElementById("tituloCancion").innerHTML = namesong;
        }
       

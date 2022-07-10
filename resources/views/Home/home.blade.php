@@ -333,6 +333,11 @@
     <a href="/home/ranking" <button class="btn btn-lg btn-primary rounded-pill">Ve el top 10</button>
     </a>
   </div>
+  <h1 style="box-sizing:border-box; display:block; font-size: 80px; text-align: center; color:#bbb; ">Canciones</h1>
+  <div style="  text-align: center; ">
+    <a href="/home/category" <button class="btn btn-lg btn-primary rounded-pill">Ver categorias</button>
+    </a>
+  </div>
 
   @endauth
 
