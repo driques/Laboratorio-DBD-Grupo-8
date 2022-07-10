@@ -338,6 +338,16 @@
     <a href="/home/category" <button class="btn btn-lg btn-primary rounded-pill">Ver categorias</button>
     </a>
   </div>
+  <h1 style="box-sizing:border-box; display:block; font-size: 80px; text-align: center; color:#bbb; ">Filtrar por likes</h1>
+  <div style="  text-align: center; ">
+    <a href="/home/orderlikes" <button class="btn btn-lg btn-primary rounded-pill">Ver canciones por likes</button>
+    </a>
+  </div>
+  <h1 style="box-sizing:border-box; display:block; font-size: 80px; text-align: center; color:#bbb; ">Filtrar por nombres</h1>
+  <div style="  text-align: center; ">
+    <a href="/home/ordername" <button class="btn btn-lg btn-primary rounded-pill">Ver canciones por nombre</button>
+    </a>
+  </div>
 
   @endauth
 

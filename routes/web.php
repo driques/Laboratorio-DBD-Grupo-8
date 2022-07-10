@@ -105,6 +105,9 @@ Route::get('/home/category',[SongController::class,'category']);
 
 Route::get('/home/categorySearch',[SongController::class,'getSongsByGenre']);
 
+Route::get('/home/orderlikes',[SongController::class,'getSongsByLikes']);
+Route::get('/home/ordername',[SongController::class,'getSongsByName']);
+
 
 Route::get('/albums/{id}/edit', function () {
     return view('album/edit');

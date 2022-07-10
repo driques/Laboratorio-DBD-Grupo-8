@@ -268,9 +268,15 @@ class SongController extends Controller
         $song = Song::where('borrado',false)->where('id_genre','=',strval($request->id_genre))->get();
         $category = Genre::where('borrado',false)->get();
         return view('home/category',compact("song"),compact('category'));
-
-
-
-
+    }
+    public function getSongsByLikes(){
+        $song = Song::where('borrado',false)->orderBy('likes', 'desc')->get();
+        return view('home/orderByLikes',compact("song"));
+    }
+    public function getSongsByName(){
+        $song = Song::where('borrado',false)->orderBy('nombre_cancion', 'asc')->get();
+        return view('home/orderByName',compact("song"));
     }
 }
+
+
