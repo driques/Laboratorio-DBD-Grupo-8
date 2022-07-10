@@ -254,7 +254,8 @@ Route::put('/roles/update/{id}',[RolController::class,'update']);
 Route::put('/roles/delete/{id}',[RolController::class,'delete']);
 Route::delete('/roles/destroy/{id}',[RolController::class,'destroy']);
 
-//Users
+//User
+Route::get('/usersongsrest',[UserController::class,'indexSongs']);
 Route::get('/users',[UserController::class,'index']);
 Route::get('/users/edit/{id}',[UserController::class,'edit']);  
 Route::get('/users/{id}',[UserController::class,'show']);

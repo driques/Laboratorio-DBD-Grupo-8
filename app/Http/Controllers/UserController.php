@@ -7,6 +7,8 @@ use App\Models\Like_song;
 use App\Models\Rol;
 use App\Models\Song;
 use App\Models\User;
+use App\Models\Album;
+use App\Models\Genre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
@@ -26,6 +28,16 @@ class UserController extends Controller
         }
         return view('user.index',compact('users'));
         
+    }
+
+    public function indexSongs()
+    {
+        $users = User::where('borrado',false)->get();
+        $albums = Album::where('borrado',false)->get();
+        $genres = Genre::where('borrado',false)->get();
+        $songs = Song::where('borrado',false)->get();
+        //return response()->json(['response'=>$users,'response2'=>$albums,'response3'=>$genres,'response4'=>$songs]);
+        return view('user.showSongRest',compact('users','albums','genres','songs'));
     }
 
     /**
@@ -83,6 +95,13 @@ class UserController extends Controller
         $newUser->password = Hash::make($request->password);
         $newUser->plan = TRUE;
         $newUser->birth_year = $request->birth_year;
+        $birthDate = $request->birth_year;
+        $birthDate = explode("-", $birthDate);
+         //get age from date or birthdate
+        $age = (date("md", date("U", mktime(0, 0, 0, $birthDate[2], $birthDate[1], $birthDate[0]))) > date("md")
+        ? ((date("Y") - $birthDate[0]) - 1)
+        : (date("Y") - $birthDate[0]));
+        $newUser->edad = $age;
         $newUser->id_pais = $request->id_pais;
         $newUser->id_rol = $request->id_rol;
         //El rol con id 2 es un usuario normal, el con id 1 es admin

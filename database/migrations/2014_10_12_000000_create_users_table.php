@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('password');
             $table->boolean('plan');
             $table->date('birth_year');
+            $table->integer('edad')->nullable();
 
             $table->unsignedBigInteger('id_pais')->nullable();
             $table->foreign('id_pais')->references('id')->on('countries');
