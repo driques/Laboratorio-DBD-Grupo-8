@@ -34,7 +34,7 @@ _ PostgreSQL 14.3_
 * **Diego Riquelme**
 * **Ian Rickmers**
 * **Alen Galindo**
-* **Andrea Cosio**
+
 
 ## Licencia 📄
 
