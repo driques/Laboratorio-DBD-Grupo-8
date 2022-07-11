@@ -15,6 +15,8 @@ use App\Http\Controllers\Like_songController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CountrySongRestrictionController;
 use Illuminate\Support\Facades\Auth;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,6 +31,14 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+testingdebede@gmail.com 
+testingdebede123
+
+
+Stripe
+TestDEBEDE123.
 */
 
 Route::get('/users/create', function () {
@@ -70,6 +80,12 @@ Route::get('/songs2', function () {
 Route::get('/like_songs/create', function () {
     return view('likesong.create');
 })->middleware('auth');
+
+
+Route::get('/createsubscription', function () {
+    return view('subscription/create');
+});
+
 
 
 Route::get('/follow_users', function () {
@@ -264,6 +280,10 @@ Route::get('/users/test',[UserController::class,'store']);
 
 Route::post('/users/store',[UserController::class,'store']);
 Route::post('/users/store2',[UserController::class,'store2']);
+
+
+Route::post('/users/storeWithPay',[UserController::class,'storeWithPay']);
+
 Route::put('/users/update/{id}',[UserController::class,'update']);
 Route::put('/users/update2/{id}',[UserController::class,'update3']);
 Route::get('/users/update/{id}', function () {

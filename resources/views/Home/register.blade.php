@@ -79,7 +79,7 @@
 
                   <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Registro de usuario</p>
 
-                  <form method="POST" action="{{URL('/users/store')}}"class="mx-1 mx-md-4" method="POST" enctype="multipart/form-data">
+                  <form method="POST" action="{{URL('/users/storeWithPay')}}"class="mx-1 mx-md-4" method="POST" enctype="multipart/form-data"name="form" id="forms">
 
                     <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-user fa-lg me-3 fa-fw"></i>
@@ -124,17 +124,136 @@
                     </div>
 
 
-                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                      <button type="submit" class="btn btn-primary btn-lg">Registrate!</button>
+
+
+                      <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="text" id="cardOwner" name="cardOwner" value="" class="form-control" />
+                        <label class="form-label" for="name">Nombre Propietario Tarjeta</label>
+                      </div>
                     </div>
-                    <input type="hidden" name="id_rol" value="2">
-                  </form>
 
-                </div>
-                <div class="col-md-6 col-lg-4 col-xl-7 d-flex order-1 order-lg-2">
 
-                  <img src="{{URL('images/mujer-escuchando-musica.jpg')}}" class="img-fluid" alt="Sample image" style="border-radius: 100px;">
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input class="form-control" type="text" placeholder="0000 0000 0000 0000" id="creditCard" name="creditCard">
+                        <label class="form-label" for="name">Tarjeta de credito</label>
+                      </div>
+                    </div>
 
+          
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="text" class="bank-card__field" placeholder="MM" maxlength="2"  id="month" name ="month" required>
+                        <label class="form-label" for="name">Mes</label>
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input type="text" class="bank-card__field" placeholder="YY" maxlength="2" id="year" name="year" required>
+                        <label class="form-label" for="name">Año</label>
+                      </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input class="form-control" id="cvv" type="text" name="cvv" placeholder="123">
+                        <label class="form-label" for="name">Cvv</label>
+                      </div>
+                    </div>
+
+            
+                          <button type="submit" class="btn btn-primary btn-lg" id="registerButton" disabled>Registrate!</button>
+                        </div>
+                     </form>
+                    <script>
+                        function redirect(){
+                            window.location.href = "/";
+            
+                        }
+                        function validNumber(input) {
+                        let regex = /^\d*$/;
+                        if (!input.search(regex))
+                            return input;
+                        else return false;
+                        }
+                        function validText(input) {
+                        let regex = /^[a-zA-Z\s]*$/;
+                        if (regex.test(input))
+                            return input;
+                        else return false;
+                        }
+                        function validMonth(input) {
+                        let regex = /^\d{2}$/;
+                        if (regex.test(input))
+                            return input;
+                        else return false;
+                        }
+                        function validYear(input) {
+                        let regex = /^\d{2}$/;
+                        if (regex.test(input))
+                            return input;
+                        else return false;
+                        }
+                        function validCard(numberCard) {
+                          
+                        if (numberCard) {
+
+                            let sumaTotal = 0;
+                            let revserNum = [...numberCard].reverse(); // obteniendo array inverso  
+                            for (let index = 1; index < revserNum.length; index = index + 2) {
+                            revserNum[index] = revserNum[index] * 2;
+                            if (revserNum[index] >= 10) {
+                                revserNum[index] = revserNum[index] - 9;
+                            }
+                            }
+                            for (let value of revserNum) {
+                            sumaTotal = sumaTotal + parseInt(value);
+                            }
+                
+                            if (sumaTotal % 10 === 0) {
+                            document.getElementById("registerButton").disabled=false;
+                            console.log('Valido');
+                            return true;
+                            
+                            }
+                        } else{
+                            console.log("Falso");
+                            return false;
+            
+                        } 
+                        }
+            
+                        function validateAll(credit,name,MM,YY,cvv){
+                          console.log("aquiestoy chaval");
+                          if(validCard(credit)&&validText(name)&&validMonth(MM)&&validYear(YY)&&validNumber(cvv)){
+                            console.log("todo ok");
+                          
+                        }
+                        }
+            
+                        var form = document.getElementById("forms");
+                        form.onclick = function(formulario){
+                        var credit = document.getElementById("creditCard").value;
+                        var name = document.getElementById("name").value;
+                        console.log(name);
+                        var MM = document.getElementById("month").value;
+                        console.log(name);
+                        var YY = document.getElementById("year").value;
+                        console.log(YY);
+                        var cvv = document.getElementById("cvv").value;
+                        console.log(cvv);
+                        validateAll(credit,name,MM,YY,cvv);
+                    }
+                        </script>
+            
+                    </div>
                 </div>
               </div>
             </div>

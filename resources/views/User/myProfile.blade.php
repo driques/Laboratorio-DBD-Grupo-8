@@ -7,7 +7,7 @@
         h1 {text-align: center;}
         #grid1 {
             /*width: 1200px;*/
-            min-height: 1000px;
+            min-height: 100vh;
             height: auto;
             /*margin: 80px auto 0px auto;*/
             background-image: linear-gradient(to bottom, rgb(138, 199, 245), rgb(57, 88, 149), rgb(31, 33, 37));
@@ -91,10 +91,9 @@
                 document.getElementById("playlists").innerHTML = html
               })
 
-              
             </script>
         </div>
-
+       
 
         
         <br><br>

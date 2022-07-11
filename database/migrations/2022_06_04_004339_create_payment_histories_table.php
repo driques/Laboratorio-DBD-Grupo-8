@@ -15,10 +15,16 @@ return new class extends Migration
     {
         Schema::create('payment_histories', function (Blueprint $table) {
             $table->id();
-            $table->integer('monto');
+            $table->unsignedBigInteger('creditCard');
+            $table->integer('cvv');
+            $table->integer('month');
+            $table->integer('year');
             $table->string('metodo_pago');
-            $table->unsignedBigInteger('user_pay')->nullable();
-            $table->foreign('user_pay')->references('id')->on('users');
+            $table->string('cardOwner');
+          
+            $table->string('user_pay');
+
+
             $table->boolean('borrado');
             $table->timestamps();
         });

@@ -1,0 +1,88 @@
+
+
+
+
+
+
+       <form class="payment-card  col-sm-10 col-md-10 col-lg-7" name="form" id="forms">
+       <div class="padding">
+            <div class="row">
+            <div class="col-sm-6">
+            <div class="card">
+            <div class="card-header">
+            <strong>Tarjeta de credito</strong>
+            <small>Ingresa tus datos</small>
+            </div>
+            <div class="card-body">
+            <div class="row">
+            <div class="col-sm-12">
+            <div class="form-group">
+                
+            
+                
+            <label for="name">Nombre</label>
+            <input class="form-control" id="name" type="text" placeholder="Ingresa tu nombre">
+            </div>
+            </div>
+            </div>
+            
+            <div class="row">
+            <div class="col-sm-12">
+            <div class="form-group">
+            <label for="credit-card">Número de tarjeta de crédtio</label>
+            
+            
+            <div class="input-group">
+            <input class="form-control" type="text" placeholder="0000 0000 0000 0000">
+            <div class="input-group-append">
+            </span>
+            </div>
+            </div> 
+            </div>
+            </div>
+            </div>
+            
+            <div class="row">
+            <div class="form-group col-sm-4">
+            <label for="ccmonth">Mes</label>
+            <select class="form-control" id="MM">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+            <option>11</option>
+            <option>12</option>
+            </select>
+            </div>
+            <div class="form-group col-sm-4">
+            <label class="bank-card__label bank-card__year">
+                <span class="bank-card__hint">Año</span>
+                <input type="text" class="bank-card__field" placeholder="YY" maxlength="2" name="year-card" id="YY" required>
+              </label>
+            </div>
+            <div class="col-sm-6">
+           
+            <label for="cvv">CVV/CVC</label>
+            <input class="form-control" id="cvv" type="text" placeholder="123">
+          
+            </div>
+            </div>
+            
+            </div>
+            <div class="card-footer">
+            <button class="btn btn-sm btn-success float-right" type="submit">
+            <i class="mdi mdi-gamepad-circle"></i> Continuar</button>
+            <button class="btn btn-sm btn-danger" type="reset">
+            <i class="mdi mdi-lock-reset"></i> Reset</button>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+        </form>

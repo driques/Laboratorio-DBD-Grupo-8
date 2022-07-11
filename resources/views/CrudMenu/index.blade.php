@@ -134,12 +134,14 @@
                 </div>
             </div>
 
+            
             <div class="col">
                 <div class="text-center bg-dark bg-gradient p-3 borderless">
-                    <a href="restrictions" class="btn btn-primary center" >Restricciones de canciones por paises</a>
+                    <a href='/song/edit' class="btn btn-primary center" >Editar canciones</a>
                 </div>
             </div>
-    
+
+        
             
         </div>
     </div>

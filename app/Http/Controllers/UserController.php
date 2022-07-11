@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Country;
 use App\Models\Like_song;
+use App\Models\Payment_history;
 use App\Models\Rol;
 use App\Models\Song;
 use App\Models\User;
@@ -113,6 +114,79 @@ class UserController extends Controller
         return view('home/home',compact('users'));
        
     }
+
+
+
+    public function storeWithPay(Request $request)
+    {
+        //$countries = Country::where('borrado', false)->get();
+        $rol = Rol::where('borrado',false)->get();
+        $users = User::where('borrado', false)->where('id_rol', 0)->get();
+        $payment = Payment_history::where('borrado',false)->get();
+        $validator = Validator::make(
+            $request->all(),[
+                'name' => 'required|min : 2|max : 20',
+                'email' => 'required|min:4|max:256|unique:users',
+                'password' => 'required|min : 8|max : 20',
+                'birth_year' => 'required|date:Y-m-d',
+                'id_pais' => 'required|integer|exists:countries,id',
+
+            ],
+            ['name.required'=>'Se debe ingresar un nombre.',
+            'name.min'=>'Se debe ingresar un nombre de mas caracteres.',
+            'name.max'=>'Se debe ingresar un nombre de menos caracteres.',
+            'email.required'=>'Se debe ingresar un email',
+            'email.min'=>'Se debe ingresar un email de mas caracteres',
+            'email.max'=>'Se debe ingresar un email de menos caracteres',
+            'email.unique'=>'Se debe ingresar un email que no este en uso',
+            'pasword.required'=>'se debe ingresar una contrasenia',
+            'pasword.min'=>'se debe ingresar una contrasenia de 8 o mas caracteres',
+            'pasword.required'=>'se debe ingresar una contrasenia de menos de 20 caracteres',
+            'birth_year.required'=>'se debe ingresar una fecha de nacimiento',
+            'birth_year.required'=>'se debe ingresar una fecha de nacimiento formato d-m-y',
+            'id_pais.integer' => 'El id del pais debe ser un integer.',
+            'id_pais.exists' => 'No se encuentra el id del pais',
+            ]
+            );
+        //Se verifica que no falle el ingreso de datos
+        if($validator->fails()){
+                return response($validator->errors(), 400);
+            }
+
+        
+        $newCard = new Payment_history();
+        $newCard->cardOwner = $request->cardOwner;
+        $newCard->creditCard = $request->creditCard;
+        $newCard->cvv=$request->cvv;
+        $newCard->month=$request->month;
+        $newCard->year=$request->year;
+        $newCard->metodo_pago='Credito';
+        $newCard->borrado = false;
+        $newCard->user_pay=$request->email;
+        $newCard->save();
+        
+        $newUser = new User();
+        $newUser->name = $request->name;
+        $newUser->email = $request->email;
+        $newUser->password = Hash::make($request->password);
+        $newUser->plan = TRUE;
+        $newUser->birth_year = $request->birth_year;
+        $newUser->id_pais = $request->id_pais;
+        $newUser->id_rol = $request->id_rol;
+        //El rol con id 2 es un usuario normal, el con id 1 es admin
+        //EL ROL NO DEBE ESTAR BORRADO O NO FUNCIONARA, ASI QUE DEBE EXISTIR SI O SI EN LA BASE DE DATOS 
+        $newUser->id_rol =$rol[1]->id;
+        $newUser->borrado = FALSE;
+        $newUser-> save();
+
+        echo '<script>alert("Usuario creado con exito!")</script>';
+        $users = User::where('borrado',false)->get();
+        return view('home/home',compact('users'));
+       
+    }
+
+
+
 
     public function store2(Request $request)
     {

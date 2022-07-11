@@ -10,6 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
+    
     /**public function country(){
         return $this->hasOne(country::class);
     }
